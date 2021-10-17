@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule ^(.*) public/$1 [L,PT]
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 35.246.166.174
