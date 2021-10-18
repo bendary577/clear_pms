@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('profile_id')->nullable();
             $table->boolean('activated');
             $table->boolean('blocked');
+            $table->string('forgot_password_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

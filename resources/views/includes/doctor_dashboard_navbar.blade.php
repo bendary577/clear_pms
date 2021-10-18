@@ -23,7 +23,7 @@
                                 <li class="nav-item active">          
                                         <a class="nav-link" href="{{route('doctor.add.clinic')}}">
                                             <div class="text-center">
-                                                <img src="{{url('/images/dashboard/patients.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                                <img src="{{url('/images/dashboard/clinics.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
                                                 <p class="text-danger">{{ __('lang.dashboard.no_clinic')}}</p>
                                             </div>
                                         </a>
@@ -32,7 +32,7 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{route('doctor.doctor.file', ['id' => Auth::user()->profile->id])}}">
                                     <div class="text-center">
-                                        <img src="{{url('/images/dashboard/clinics.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                        <img src="{{url('/images/dashboard/file.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
                                         <p>{{ __('lang.dashboard.file_history')}}</p>
                                     </div>
                                 </a>

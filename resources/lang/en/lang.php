@@ -58,13 +58,35 @@
     'signup.register' => 'Register',
     'signup.have_account' => 'already have an account ?',
     'signup.code' => 'Security Code',
+    
 
     //-------------------------------------------- login -------------------------------------
 
     'login.forgot_password' => 'Forgot Password ?',
     'login.remember_me' => 'Remember Me',
     'login.dont_have_account' => 'Don\'t have an account',
-    
+
+    //----------------------------------------------- forgot password --------------------------
+
+    'forgotPassword.mobile' => 'Mobile Number',
+    'forgotPassword.desc' => 'please write your mobile number, we will send a code to reset your password',
+    'forgotPassword.send' => 'Send Code',
+    'forgotPassword.submit' => 'submit code',
+    'forgotPassword.no_user' => 'sorry, no user registered in the system with this mobiel number',
+    'forgotPassword.code' => 'activation code',
+    'forgotPassword.no_code_sent' => 'didn\'t recieve any code ?',
+    'forgotPassword.resend' => 'resend code',
+    'forgotPassword.code_msg' => 'please use this code :code to reset your password',
+    'forgotPassword.sent_successfully' => 'reset password code was sent successfully',
+    'forgotPassword.sending_error' => 'we have encountered a problem during sending reset password code',
+    'forgotPassword.incorrect_code' => 'sorry, the code you have entered is incorrect',
+    'forgotPassword.reset_password_desc' => 'now tou can reset your password',
+    'forgotPassword.new_password' => 'new password',
+    'forgotPassword.confirm_password' => 'confirm password',
+    'forgotPassword.reset_password' => 'reset password',
+    'forgotPassword.reset_password_success' => 'password was successfully updated',
+
+
     //-------------------------------------------------- account navbar -------------------------
 
     'accnav.brand' => 'Clear PMS',
@@ -242,7 +264,7 @@
     'rec.no_diagnose' => 'patient has no diagnoses available',
     'rec.welcome' => 'Hello, Receptionist Dashboard !',
     'rec.import_data' => 'import data',
-    'rec.import_data_desc' => 'Import Excel Data to Clear PMS',
+    'rec.import_data_desc' => 'Import Data to Clear PMS',
     'rec.import_data_success' => 'data was imported successfully',
     'rec.import_data_error' => "error accured while importing data",
     'rec.import_file' => "Import File",
@@ -273,7 +295,7 @@
         'login.didnt_register' => 'Oppes! It seems you didn\'t register in our system',
         'admin.code_is_not_correct' => 'sorry, security code is not correct',
 
-        'patient_profile_added' => 'patient profile added succesfuly',
+        'patient_profile_added' => 'patient profile added succesfuly with code :code',
         'patient_profile_updated' => 'patient profile updated succesfuly',
         'patient_profile_deleted' => 'patient profile deleted succesfuly',
         'patient_sheet_uploaded' => 'patient sheet uploaded successfully',

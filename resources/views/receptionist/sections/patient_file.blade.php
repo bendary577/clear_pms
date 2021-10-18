@@ -10,6 +10,8 @@
             <h2>{{ __('lang.rec.file_title' , ['name' => $patient->name])}}</h2>
             <!-- <a href="" class="btn btn-primary">{{ __('lang.doctor.print_pdf')}}</a> -->
         </div>
+
+        <!----------------------------------------------- personal info -------------------------->
         <div class="row">
             <div class="personal_info col-md-6 my-4">
                 <div class="card" style="height:340px;">
@@ -33,7 +35,7 @@
                 <div class="card" style="height:340px;">
                     <div class="card-header">
                         <h5 class="card-title">{{ __('lang.doctor.clinic_info')}}</h5>
-                    </div>
+                    </div>  
                     <div class="card-body">
                         <!--
                         <p class="card-text">Clinic Name</p>
@@ -45,6 +47,8 @@
                 </div>
             </div>
         </div>
+
+        <!---------------------------------------------- patient card & sheet ------------------------->
         <div class="row my-4">
             <div class="personal_info col-md-6">
                 <div class="card" style="height:340px;">
@@ -86,6 +90,25 @@
                 </div>
             </div>
         </div>
+
+        <!------------------------------------------- patient files -------------------->
+        <div class="row">
+            <div class="my-2">
+                <div class="title my-4"><h3>Patient Files</h3></div>
+                <h4 class="text-success">patient has no attached medical files</h4>
+                <p> here, you can upload all medical files related to {{ $patient->name }} as medical tests, medical radiology and prescriptions </p>
+                <form method="POST" action="{{route('receptionist.patient.upload.files', ['id' => $patient->id ])}}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="my-2">
+                        <input type="file" id="patient_file" placeholder="Choose files"  name="patient_file" multiple >
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">upload files</button>
+                <form>
+            </div>
+        </div> 
+
+        <!------------------------------------------- patient diagnoses -------------------->
+        
         <div class="row">
             @if(count($diagnoses) > 0)
                 <div class="title my-4"><h3>{{ __('lang.rec.diagnoses')}}</h3></div>
@@ -108,9 +131,13 @@
                     </tbody>
                 </table>
             @else
-                <h4 class="text-success">{{ __('lang.rec.no_diagnose')}}</h4>
+                <hr>
+                <h4 class="text-success my-5">{{ __('lang.rec.no_diagnose')}}</h4>
             @endif
         </div>
+
+
+        <!---------------------------------- appointments -------------------------------->
         <!--
         <div class="row">
             <div class="title my-4"><h3>Follow Up Dates</h3></div>
@@ -133,8 +160,9 @@
                 </tbody>
             </table>
         </div>
-        -->
     @else
         <h3 class="text-danger">{{ __('lang.rec.no_patient')}}</h3>
     @endif
+    -->
+
 </div>

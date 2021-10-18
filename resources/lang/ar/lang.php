@@ -66,6 +66,27 @@
         'login.remember_me' => 'تذكرني ',
         'login.dont_have_account' => 'لا تملك حساب ؟',
 
+
+    //----------------------------------------------- forgot password --------------------------
+
+        'forgotPassword.mobile' => 'رقم الهاتف',
+        'forgotPassword.desc' => 'يرجي إدخال رقم الهاتف, سيتم إرسال كود تأكيد لإعادة إنشاء كلمة السر',
+        'forgotPassword.send' => 'أرسل الكود',
+        'forgotPassword.submit' => 'تحقق من الكود',
+        'forgotPassword.no_user' => 'عذرا, لا يوجد مستخدم مسجل لدينا بهذا الرقم',
+        'forgotPassword.code' => 'كود التأكيد',
+        'forgotPassword.no_code_sent' => 'لم يتم إرسال الكود ؟',
+        'forgotPassword.resend' => 'عد الإرسال',
+        'forgotPassword.code_msg' => 'برجاء استخدام هذا الكود :code  لتحديث كلمة السر',
+        'forgotPassword.sent_successfully' => 'تم إرسال كود تحديث كلمة السر بنجاح',
+        'forgotPassword.sending_error' => 'عذرا, تعذر إرسال كود تحديث كلمة السر',
+        'forgotPassword.incorrect_code' => 'عذرا, الكود الذي تم إدخاله غير صحيح',
+        'forgotPassword.reset_password_desc' => 'يمكنك الاَن تحديث كلمة السر الخاصة بك',
+        'forgotPassword.new_password' => 'كلمة السر الجديدة',
+        'forgotPassword.confirm_password' => 'تأكيد كلمة السر',
+        'forgotPassword.reset_password' => 'تحديث كلمة السر',
+        'forgotPassword.reset_password_success' => 'تم تحديث كلمة السر بنجاح',
+
         //-------------------------------------------------- account navbar -------------------------
 
     'accnav.brand' => 'Clear PMS',
@@ -277,7 +298,7 @@
         'login.didnt_register' => 'يبدو أنك غير مسجل لدينا حالياَ',
         'admin.code_is_not_correct' => 'كلمة حماية خاطئة',
 
-        'patient_profile_added' => 'تم إضافة حساب مريض بنجاح',
+        'patient_profile_added' => 'تم إضافة حساب مريض جديد بكود :code',
         'patient_profile_updated' => 'تم تحديث حساب المريض',
         'patient_profile_deleted' => 'تم حذف حساب المريض',
         'patient_sheet_uploaded' => 'تم رفع ملف المريض',

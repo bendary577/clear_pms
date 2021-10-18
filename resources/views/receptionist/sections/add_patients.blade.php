@@ -47,7 +47,7 @@
         </div>
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
         <div class="my-2">
-            <input type="file" name="image" accept="image/*"  >
+            <input type="file" name="image" accept="image/*" required>
         </div>
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>

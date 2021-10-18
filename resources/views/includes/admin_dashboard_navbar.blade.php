@@ -13,7 +13,7 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{route('admin.registration.requests')}}">
                                     <div class="text-center">
-                                        <img src="{{url('/images/dashboard/patients.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                        <img src="{{url('/images/dashboard/registration_requests.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
                                         <p>{{ __('lang.dashboard.registration_requests')}}</p>
                                     </div>
                                 </a>
@@ -31,7 +31,7 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{route('admin.receptionists')}}">
                                     <div class="text-center">
-                                        <img src="{{url('/images/dashboard/patients.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                        <img src="{{url('/images/dashboard/receptionists.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
                                         <p>{{ __('lang.dashboard.receptionists')}}</p>
                                     </div>
                                 </a>
@@ -47,7 +47,7 @@
                             <li class="nav-item active">
                                 <a class="nav-link" href="{{route('admin.medical.specialities')}}">
                                     <div class="text-center">
-                                        <img src="{{url('/images/dashboard/patients.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                        <img src="{{url('/images/dashboard/medical_specialities.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
                                         <p>{{ __('lang.dashboard.medical_specialities')}}</p>
                                     </div>
                                 </a>

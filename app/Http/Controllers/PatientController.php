@@ -31,7 +31,7 @@ class PatientController extends Controller
 
     public function store(Request $request)
     {
-        /*
+        
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|string|max:200',
@@ -41,8 +41,6 @@ class PatientController extends Controller
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-        */
-        
 
         $patient = new Patient();
         $patient->name = $request['name'];
@@ -57,10 +55,10 @@ class PatientController extends Controller
             $imageName = $request->image->getClientOriginalName();
             $path = '/patients_cards/'.date('Y-m-d').'/'.$patient->name.'/';
             $request->image->move(public_path().$path, $imageName);
-            $patient->card_image_path = $path.$imageName;
-            $patient->save();
+            $patient->card_image_path = $path.$imageName;  
         }
-
+        
+        $patient->save();
         /*
         $medicine = new Medicine();
         $medicine->name="dawaa";
@@ -68,7 +66,7 @@ class PatientController extends Controller
         $patient->medicines()->attach($medicine);
         */
         
-        session()->flash('success', trans('lang.patient_profile_added'));
+        session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
         return redirect()->back();   
     }
 

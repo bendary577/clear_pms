@@ -41,6 +41,18 @@ Route::post('/authenticate', [App\Http\Controllers\AuthenticationController::cla
 
 Route::get('/register', [App\Http\Controllers\AuthenticationController::class, 'register'])->name('register');
 
+Route::get('/forgot-password', [App\Http\Controllers\AuthenticationController::class, 'forgotPassword'])->name('forgot.password');
+
+Route::post('/send-code', [App\Http\Controllers\AuthenticationController::class, 'forgotPasswordSendCode'])->name('send.code');
+
+Route::get('/submit-code', [App\Http\Controllers\AuthenticationController::class, 'submitForgotPasswordCode'])->name('submit.code');
+
+Route::post('/activate-code', [App\Http\Controllers\AuthenticationController::class, 'activateForgotPasswordCode'])->name('activate.code');
+
+Route::get('/reset-password', [App\Http\Controllers\AuthenticationController::class, 'resetPassword'])->name('reset.password');
+
+Route::post('/submit-password', [App\Http\Controllers\AuthenticationController::class, 'submitResetPassword'])->name('submit.password');
+
 Route::post('/storeUser', [App\Http\Controllers\AuthenticationController::class, 'storeUser'])->name('storeUser');
 
 Route::get('/request_admin_activation', [App\Http\Controllers\AuthenticationController::class, 'activateAdminAccountView'])->name('request.admin.activation');
@@ -49,7 +61,7 @@ Route::post('/{email}/activate_admin', [App\Http\Controllers\AuthenticationContr
 
 //--------------------------------- protected routes ---------------------------
 Route::middleware('auth')->group(function () {
-
+    
     Route::get('/profile', function () {
         return view('profile.dashboard.dashboard_profile');
     })->name('profile');
@@ -215,6 +227,7 @@ Route::middleware('auth')->group(function () {
             });
 
             Route::prefix('patients')->group(function () {
+                
                 Route::get('/', [App\Http\Controllers\PatientController::class, 'indexReceptionist'])->name('receptionist.patients');
 
                 Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('receptionist.patients.search');
@@ -232,6 +245,8 @@ Route::middleware('auth')->group(function () {
                 Route::get('/{id}/download_patient_card', [App\Http\Controllers\PatientController::class, 'downloadPatientCard'])->name('receptionist.patient.download.card');
 
                 Route::get('/{id}/download_patient_sheet', [App\Http\Controllers\PatientController::class, 'downloadPatientSheet'])->name('receptionist.patient.download.sheet');
+
+                Route::post('{id}/upload_medical_files', [App\Http\Controllers\FileController::class, 'uploadPatientMedicalFiles'])->name('receptionist.patient.upload.files');
 
                 Route::get('{id}/patient_file', [App\Http\Controllers\PatientController::class, 'show'])->name('receptionist.patients.patient.file');
 
@@ -253,27 +268,4 @@ Route::middleware('auth')->group(function () {
 
 });
 
-/*
-//----------- localization ------------------
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
-{
-	Route::get('/', function()
-	{
-		return View::make('hello');
-	});
-	Route::get('test',function(){
-		return View::make('test');
-	});
-});
-/*
-Route::get('/user', [UserController::class, 'index']);
-Route::group(['prefix'=>'accounts','as'=>'account.'], function() {
-    Route::get('/', 'SomeController@index')->name('test');
-    Route::get('/new', function(){
-            return redirect()->route('account.test');
-    });
-});
-*/
-//Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

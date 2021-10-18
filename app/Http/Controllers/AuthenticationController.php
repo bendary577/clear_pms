@@ -121,22 +121,16 @@ class AuthenticationController extends Controller
             'password' => 'required|string',
         ]);
 
-        /*
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-        */
-
+        
         if(User::where('username', $request['username'])->exists()) {
 
             $user = User::where('username', $request['username'])->first();
 
             if($user->activated == false && $user->getHasAdminProfileAttribute() && $user->profile->is_super == false){
-                //return view('auth.admin_activate_account', ['email' => $user->email]);
-                //return redirect()->route('request.admin.activation', ['email' => $user->email]);
-                //var_dump(112);
                 return redirect()->route('request.admin.activation', ['email' => $user->email]);
-                //Redirect::route('request.admin.activation',['email' => $user->email]);
             }
 
             if($user->activated == false && !($user->getHasAdminProfileAttribute() && $user->profile->is_super == true)){
@@ -149,9 +143,12 @@ class AuthenticationController extends Controller
                 return redirect()->back();
             }
 
+            $remember_me = $request->has('remember_me') ? true : false;
             $credentials = $request->only('username', 'password');
 
-            if (Auth::attempt($credentials)) {
+            if (Auth::attempt($credentials)){
+                $user = User::where(['username' => $request['username']])->first();
+                Auth::login($user, $remember_me);
                 return redirect()->intended('/profile');
             }else{
                 return redirect('login')->with('error', trans('lang.login.invalid_credentials'));
@@ -160,6 +157,101 @@ class AuthenticationController extends Controller
         }else{
             return redirect('login')->with('error', trans('lang.login.didnt_register'));
         }
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgot_password');
+    }
+
+    public function forgotPasswordSendCode(Request $request)
+    {
+        /*
+        $validator = Validator::make($request->all(),
+        [
+            'mobile' => 'required|number',
+        ]);
+        if ($validator->fails()){
+            return  redirect()->back()->withErrors('error', $validator->errors()->all());   
+        }
+        $user = User::where('mobile', $request['mobile']);
+        $code = generateForgotPasswordCode();
+        $user->forgot_password_code = $code;
+        $user->save();
+
+        $basic  = new \Nexmo\Client\Credentials\Basic('3d7998cf', 'wkLTJTmvP49GLbBE');
+        $client = new \Nexmo\Client($basic);
+ 
+        $message = $client->message()->send([
+            'to' => $request['mobile'],
+            'from' => 'Clear PMS',
+            'text' =>  trans('lang.forgotPassword.code_msg', [ 'code' => $code])
+        ]);
+        */
+        return redirect('submit-code')->with('success', trans('lang.forgotPassword.sent_successfully'));
+
+    }
+
+    public function generateForgotPasswordCode(){
+        return rand(pow(10, 8-1), pow(10, 8)-1);
+    }
+
+    public function submitForgotPasswordCode()
+    {
+        return view('auth.forgot_password_code');
+    }
+
+    public function activateForgotPasswordCode(Request $request)
+    {
+
+        $validator = Validator::make($request->all(),
+        [
+            'mobile' => 'required',
+            'code' => 'required'
+        ]);
+        if ($validator->fails()){
+            return  redirect()->back()->withErrors('error', $validator->errors()->all());   
+        }
+
+        $user = User::where('mobile', $request['mobile']);
+
+        if(!$user){
+            session()->flash('error', trans('lang.forgotPassword.no_user'));
+            return redirect()->back(); 
+        }
+
+        if($request['code'] == $user->forgot_password_code){
+            return redirect('reset-password');
+        }
+        
+        session()->flash('error', trans('lang.forgotPassword.incorrect_code'));
+        return redirect()->back(); 
+    }
+
+    public function resetPassword()
+    {
+        return view('auth.reset_password');
+    }
+
+    public function submitResetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(),
+        [
+            'new_password' => 'required',
+            'confirm_password' => 'required'
+        ]);
+        if ($validator->fails()){
+            return  redirect()->back()->withErrors('error', $validator->errors()->all());   
+        }
+        $user = User::where('mobile', $request['mobile']);
+        if($request['new_password'] != $request['confirm_password']){
+            session()->flash('error', trans('lang.forgotPassword.incorrect_code'));
+            return redirect()->back(); 
+        }
+        $user->forgot_password_code = null;
+        $user->password = $request['new_password'];
+        $user->save();
+        return redirect('login')->with('success', trans('lang.forgotPassword.reset_password_success'));
     }
 
     public function activateAdminAccountView()
