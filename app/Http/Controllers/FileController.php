@@ -12,20 +12,23 @@ class FileController extends Controller
 
     public function uploadPatientMedicalFiles(Request $request, $id){
         
+        /*
         $validator = Validator::make($request->all(),
         [
-            'patient_file' => 'required',
-            'patient_file.*' => 'mimes:csv,txt,xlx,xls,pdf'
+            'patient_files' => 'required',
+            'patient_files.*' => 'mimes:csv,txt,xlx,xls,pdf'
         ]);
 
+        
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
+        */
         
         $patient = Patient::find($id);
      
-        if($request->hasfile('patient_file')){
-            foreach($request->file('patient_file') as $key => $file){
+        if($request->hasfile('patient_files')){
+            foreach($request->file('patient_files') as $file){
                 $patient_file = new File();
                 $file_name = $file->getClientOriginalName();
                 $patient_file->name = $file_name;
@@ -34,9 +37,11 @@ class FileController extends Controller
                 $file->move(public_path().$path, $file_name);
                 $patient_file->path = $path.$file_name;
                 $patient_file->save();
+                $patient_file->patient()->associate($patient)->save();
             }
+            return redirect()->back()->with('success', 'Files has been uploaded Successfully');
         }
-        return redirect()->back()->with('success', 'Files has been uploaded Successfully');
+        return redirect()->back()->with('error', 'please provide a valid file');
     }
   
 }

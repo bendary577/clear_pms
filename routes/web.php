@@ -61,6 +61,10 @@ Route::post('/{email}/activate_admin', [App\Http\Controllers\AuthenticationContr
 
 //--------------------------------- protected routes ---------------------------
 Route::middleware('auth')->group(function () {
+
+    Route::get('/test', function () {
+        return view('receptionist.sections.patient_files_list');
+    })->name('test');
     
     Route::get('/profile', function () {
         return view('profile.dashboard.dashboard_profile');

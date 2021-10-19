@@ -1,10 +1,19 @@
 <div class="container">
 
-    <!--
-     <div class="go_back mb-4"><a href="{{ url()->previous() }}">
-        <h6 class="text-primary">{{ __('lang.go_back')}}</h6></a>
-    </div>
-    -->
+    <!--- if patient files are added is added successfully ----------->
+    @if (Session::has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+
+    <!--- if patient files are not added successfully ----------->
+    @if($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+
     @if($patient)
         <div class="title my-4">
             <h2>{{ __('lang.rec.file_title' , ['name' => $patient->name])}}</h2>
@@ -48,7 +57,7 @@
             </div>
         </div>
 
-        <!---------------------------------------------- patient card & sheet ------------------------->
+        <!---------------------------------------------- patient card ------------------------->
         <div class="row my-4">
             <div class="personal_info col-md-6">
                 <div class="card" style="height:340px;">
@@ -63,6 +72,8 @@
                     </div>
                 </div>
             </div>
+
+            <!---------------------------------------------- patient sheet ------------------------->
             <div class="personal_info col-md-6">
                 <div class="card" style="height:340px;">
                     <div class="card-header">
@@ -81,7 +92,7 @@
                             <form method="POST" action="{{route('receptionist.patient.upload.sheet', ['id' => $patient->id ]) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="my-2">
-                                    <input type="file" name="sheet_image" accept="image/*"  >
+                                    <input type="file" id="sheet_image" name="sheet_image" accept="image/*" required >
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-2">{{ __('lang.upload')}}</button>
                             <form>
@@ -92,20 +103,21 @@
         </div>
 
         <!------------------------------------------- patient files -------------------->
+
         <div class="row">
             <div class="my-2">
                 <div class="title my-4"><h3>Patient Files</h3></div>
-                <h4 class="text-success">patient has no attached medical files</h4>
-                <p> here, you can upload all medical files related to {{ $patient->name }} as medical tests, medical radiology and prescriptions </p>
-                <form method="POST" action="{{route('receptionist.patient.upload.files', ['id' => $patient->id ])}}" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <div class="my-2">
-                        <input type="file" id="patient_file" placeholder="Choose files"  name="patient_file" multiple >
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-2">upload files</button>
-                <form>
+                @if(count($patient->files) > 0)
+                    @include('receptionist.sections.patient_files_list')
+                    @include('receptionist.sections.upload_patient_files')
+                @else
+                    <h4 class="text-success">patient has no attached medical files</h4>
+                    <p> here, you can upload all medical files related to {{ $patient->name }} as medical tests, medical radiology and prescriptions </p>
+                    @include('receptionist.sections.upload_patient_files')
+                @endif
             </div>
         </div> 
+
 
         <!------------------------------------------- patient diagnoses -------------------->
         
