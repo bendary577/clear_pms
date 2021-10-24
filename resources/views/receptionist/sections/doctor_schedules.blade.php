@@ -46,7 +46,7 @@
                     <tr>
                         <th>{{ $appointment->reason }}</th>
                         <th>{{ $appointment->date }}</th>
-                        <td>{{ date("g:i a", strtotime($appintment->from)) }}</td>
+                        <td>{{ date("g:i a", strtotime($appointment->from)) }}</td>
                         <td>{{ date("g:i a", strtotime($appointment->to)) }}</td>
                     </tr>
                     @endforeach

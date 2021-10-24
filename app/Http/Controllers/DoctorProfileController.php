@@ -118,7 +118,6 @@ class DoctorProfileController extends Controller
     {
         $doctor = DoctorProfile::where('id', $id)->with('medicalSpeciality')->first();
         $clinic = Clinic::where('doctor_profile_id', $doctor->id)->with('appointments')->first();
-        var_dump($clinic->id);
         return view('receptionist.dashboard.dashboard_doctor_schedules', ['doctor' => $doctor, 'clinic' => $clinic]);
     }
 }

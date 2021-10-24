@@ -269,6 +269,19 @@
     'rec.import_data_error' => "error accured while importing data",
     'rec.import_file' => "Import File",
 
+    'rec.patient_files' => 'Patient Files',
+    'rec.no_attached_files' => 'patient has no attached medical files',
+    'rec.upload_files_instructions' => 'here, you can upload all medical files related to :name as medical tests, medical radiology and prescriptions',
+    'rec.upload_patient_files' => 'Upload Patient Medical Files',
+    'rec.upload_files' => 'Upload Files',
+    'rec.appointment_list' => 'Appointments List',
+    'rec.appointment_date' => 'Appointment Date',
+    'rec.appointment_from' => 'From',
+    'rec.appointment_to' => 'To',
+    'rec.appointment_reason' => 'Reason',
+    'rec.appointment_doctor' => 'Doctor Name',
+
+
     //------------------------------------------ appointments ----------------------------------------
     'appointment.added' => 'appointment was added succesfuly',
 

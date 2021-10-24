@@ -244,8 +244,6 @@ Route::middleware('auth')->group(function () {
 
                 Route::post('{id}/update', [App\Http\Controllers\PatientController::class, 'update'])->name('receptionist.update.patient');
 
-                Route::post('{id}/upload_sheet', [App\Http\Controllers\PatientController::class, 'uploadSheetImage'])->name('receptionist.patient.upload.sheet');
-
                 Route::get('/{id}/download_patient_card', [App\Http\Controllers\PatientController::class, 'downloadPatientCard'])->name('receptionist.patient.download.card');
 
                 Route::get('/{id}/download_patient_sheet', [App\Http\Controllers\PatientController::class, 'downloadPatientSheet'])->name('receptionist.patient.download.sheet');

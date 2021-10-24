@@ -89,12 +89,12 @@
                     @else
                         <div class="card-body">
                             <h4 class="text-success">{{ __('lang.rec.no_patient_sheet')}}</h4>
-                            <form method="POST" action="{{route('receptionist.patient.upload.sheet', ['id' => $patient->id ]) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{route('receptionist.patient.upload.files', ['id' => $patient->id ]) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="my-2">
-                                    <input type="file" id="sheet_image" name="sheet_image" accept="image/*" required >
+                                    <input type="file" id="sheet_image" name="sheet_image" accept="image/*" >
                                 </div>
-                                <button type="submit" class="btn btn-primary mt-2">{{ __('lang.upload')}}</button>
+                                <button type="submit" name="patient_sheet" value="patient_sheet" class="btn btn-primary mt-2">{{ __('lang.upload')}}</button>
                             <form>
                         </div>
                     @endif
@@ -105,76 +105,85 @@
         <!------------------------------------------- patient files -------------------->
 
         <div class="row">
-            <div class="my-2">
-                <div class="title my-4"><h3>Patient Files</h3></div>
+            <div class="my-2 w-100">
+                <div class="title my-4"><h3>{{ __('lang.rec.patient_files')}}</h3></div>
                 @if(count($patient->files) > 0)
                     @include('receptionist.sections.patient_files_list')
                     @include('receptionist.sections.upload_patient_files')
                 @else
-                    <h4 class="text-success">patient has no attached medical files</h4>
-                    <p> here, you can upload all medical files related to {{ $patient->name }} as medical tests, medical radiology and prescriptions </p>
+                    <h4 class="text-success">{{ __('lang.rec.no_attached_files')}}</h4>
+                    <p> {{ __('lang.rec.no_attached_files', [ 'name' => $patient->name ] )}} </p>
                     @include('receptionist.sections.upload_patient_files')
                 @endif
             </div>
+            <hr> 
         </div> 
 
 
         <!------------------------------------------- patient diagnoses -------------------->
         
-        <div class="row">
-            @if(count($diagnoses) > 0)
-                <div class="title my-4"><h3>{{ __('lang.rec.diagnoses')}}</h3></div>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">{{ __('lang.rec.diagnose_name')}}</th>
-                            <th scope="col">{{ __('lang.doctor.treatment_protocol')}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($diagnoses as $diagnose)
-                            @foreach($diagnose->patients as $patient)
-                                <tr>
-                                    <th scope="row">{{ $diagnose->name }}</th>
-                                    <td>{{ $patient->pivot->treatment_protocol }}</td>
-                                </tr>
+        <div class="row mt-4">
+            <div class="my-4 w-100">
+                <h3>{{ __('lang.rec.diagnoses')}}</h3>
+                @if(count($diagnoses) > 0)
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ __('lang.rec.diagnose_name')}}</th>
+                                <th scope="col">{{ __('lang.rec.diagnose_description')}}</th>
+                                <th scope="col">{{ __('lang.doctor.treatment_protocol')}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($diagnoses as $diagnose)
+                                @foreach($diagnose->patients as $patient)
+                                    <tr>
+                                        <th scope="row">{{ $diagnose->name }}</th>
+                                        <td>{{ $patient->pivot->description }}</td>
+                                        <td>{{ $patient->pivot->treatment_protocol }}</td> 
+                                    </tr>
+                                @endforeach
                             @endforeach
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <hr>
-                <h4 class="text-success my-5">{{ __('lang.rec.no_diagnose')}}</h4>
-            @endif
+                        </tbody>
+                    </table>
+                @else
+                    <h4 class="text-danger mt-2">{{ __('lang.rec.no_diagnose')}}</h4>
+                @endif
+            </div>
         </div>
-
 
         <!---------------------------------- appointments -------------------------------->
-        <!--
         <div class="row">
-            <div class="title my-4"><h3>Follow Up Dates</h3></div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Follow Up Dates</th>
-                        <th scope="col">Mobile</th>
-                        <th scope="col">Specialization</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><button class="btn btn-success">check schedule</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="my-4 w-100">
+                <div class="title my-4"><h3>{{ __('lang.rec.appointment_list')}}</h3></div>
+                @if($patient->appointments)
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">{{ __('lang.rec.appointment_date')}}</th>
+                                <th scope="col">{{ __('lang.rec.appointment_from')}}</th>
+                                <th scope="col">{{ __('lang.rec.appointment_to')}}</th>
+                                <th scope="col">{{ __('lang.rec.appointment_reason')}}</th>
+                                <th scope="col">{{ __('lang.rec.appointment_doctor')}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($patient->appointments as $appointment)
+                                <tr>
+                                    <th scope="row">{{$appointment->date}}</th>
+                                    <td>{{ date("g:i a", strtotime($appointment->from))}}</td>
+                                    <td>{{ date("g:i a", strtotime($appointment->to))}}</td>
+                                    <td>{{$appointment->reason}}</td>
+                                    <td>{{$appointment->clinic->doctorProfile->user->name}}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                @else
+                    <h3 class="text-danger">{{ __('lang.rec.no_appointment')}}</h3>
+                @endif
+            </div>
         </div>
-    @else
-        <h3 class="text-danger">{{ __('lang.rec.no_patient')}}</h3>
-    @endif
-    -->
 
+    @endif
 </div>

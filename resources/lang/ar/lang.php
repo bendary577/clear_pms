@@ -267,6 +267,17 @@
     'rec.import_data_success' => 'تم استيراد البيانات بنجاح',
     'rec.import_data_error' => "حدث حطأ أثناء استيراد البيانات",
     'rec.import_file' => "رفع الملف",
+    'rec.patient_files' => 'ملفات المريض',
+    'rec.no_attached_files' => 'المريض لا يملك اي ملفات طبية',
+    'rec.upload_files_instructions' => 'بإمكانك رفع كل الملفات الطبية الخاصة ب :name مثل الاشعة والتحاليل والروشتات',
+    'rec.upload_patient_files' => 'رفع الملفات الطبية للمريض',
+    'rec.upload_files' => 'رفع الملفات',
+    'rec.appointment_list' => 'جدول المواعيد',
+    'rec.appointment_date' => 'تاريخ الزيارة',
+    'rec.appointment_from' => 'من',
+    'rec.appointment_to' => 'إلي',
+    'rec.appointment_reason' => 'سبب الزيارة',
+    'rec.appointment_doctor' => 'اسم الطبيب',
 
     //------------------------------------------ appointments ----------------------------------------
     'appointment.added' => 'تم إضافة الموعد بنجاح',

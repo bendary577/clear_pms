@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\Medicine;
 use App\Models\Diagnose;
+use App\Models\Appointment;
 use App\Models\MedicalSpeciality;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -76,7 +77,7 @@ class PatientController extends Controller
         $patient = Patient::find($id);
         $medical_specialities = MedicalSpeciality::all();
         $diagnoses = Diagnose::all();
-        return view('receptionist.dashboard.dashboard_patient_file', ['patient' => $patient,'medical_specialities' => $medical_specialities, 'diagnoses' => $diagnoses]);
+        return view('receptionist.dashboard.dashboard_patient_file', ['patient' => $patient,'medical_specialities' => $medical_specialities,'diagnoses' => $diagnoses]);
     }
 
 
@@ -148,28 +149,6 @@ class PatientController extends Controller
     }
 
 
-    public function uploadSheetImage(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(),
-        [
-            'sheet_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        if ($validator->fails()){
-            return  redirect()->back()->withErrors('error', $validator->errors()->all());   
-        }
-
-        $patient = Patient::find($id);
-        $imageName = $request->sheet_image->getClientOriginalName();
-        $path = '/patients_sheets/'.date('Y-m-d').'/'.$patient->name.'/';
-        $request->sheet_image->move(public_path().$path, $imageName);
-        $patient->sheet_image_path = $path.$imageName;
-        $patient->save();
-
-        session()->flash('success', trans('lang.patient_sheet_uploaded'));
-        return redirect()->back(); 
-    }
-
     public function downloadPatientCard($id){
         $patient = Patient::find($id);
         return response()->download(public_path().$patient->card_image_path);
@@ -190,7 +169,7 @@ class PatientController extends Controller
             $diagnoses = Diagnose::all();
             $patient = Patient::find($id);
             $add_diagnose_form = view('doctor.sections.add_diagnose', ['medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
-            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities, 'add_diagnose_form' => $add_diagnose_form ]);
+            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities,'add_diagnose_form' => $add_diagnose_form ]);
         }else{
             session()->flash('error', trans('lang.no_patient'));
             return redirect()->back(); 
