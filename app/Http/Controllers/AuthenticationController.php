@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ForgetPasswordMail;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticationController extends Controller
 {
@@ -27,10 +29,11 @@ class AuthenticationController extends Controller
     {
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|unique:users|max:255',
-            'email' => 'required',
-            'password' => 'required|string|min:8|confirmed',
+            'name' => 'required',
+            'username' => 'required|',
+            'email' => 'required|email|unique:users|max:255',
+            'password' => 'required',
+            'confirmPassword' => 'required'
         ]);
 
         /*
@@ -166,35 +169,26 @@ class AuthenticationController extends Controller
 
     public function forgotPasswordSendCode(Request $request)
     {
-        /*
         $validator = Validator::make($request->all(),
         [
-            'mobile' => 'required|number',
+            'email' => 'required',
         ]);
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-        $user = User::where('mobile', $request['mobile']);
-        $code = generateForgotPasswordCode();
-        $user->forgot_password_code = $code;
-        $user->save();
-
-        $basic  = new \Nexmo\Client\Credentials\Basic('3d7998cf', 'wkLTJTmvP49GLbBE');
-        $client = new \Nexmo\Client($basic);
- 
-        $message = $client->message()->send([
-            'to' => $request['mobile'],
-            'from' => 'Clear PMS',
-            'text' =>  trans('lang.forgotPassword.code_msg', [ 'code' => $code])
-        ]);
-        */
-        return redirect('submit-code')->with('success', trans('lang.forgotPassword.sent_successfully'));
-
+        if(User::where('email', '=', $request['email'])->exists()){
+            Session::put('email', $request['email']);
+            $user = User::where('email', '=', $request['email'])->first();
+            $user->forgot_password_code = $user->generateForgotPasswordCode();
+            $user->save();
+            $data = ['content' => `Reset Password Code is `.$user->forgot_password_code ];
+            Mail::to($user->email)->send(new ForgetPasswordMail($data, $user->email));
+            return redirect('submit-code')->with('success', trans('lang.forgotPassword.sent_successfully'));
+        }
+        session()->flash('error', trans('lang.forgotPassword.no_user'));
+        return redirect()->back();
     }
 
-    public function generateForgotPasswordCode(){
-        return rand(pow(10, 8-1), pow(10, 8)-1);
-    }
 
     public function submitForgotPasswordCode()
     {
@@ -206,14 +200,14 @@ class AuthenticationController extends Controller
 
         $validator = Validator::make($request->all(),
         [
-            'mobile' => 'required',
             'code' => 'required'
         ]);
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
 
-        $user = User::where('mobile', $request['mobile']);
+        $email = Session::get('email' );
+        $user = User::where('email', $email)->first();
 
         if(!$user){
             session()->flash('error', trans('lang.forgotPassword.no_user'));
@@ -243,7 +237,11 @@ class AuthenticationController extends Controller
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-        $user = User::where('mobile', $request['mobile']);
+        $user = User::where('email', Session::get('email'))->first();
+        if(!$user){
+            session()->flash('error', trans('lang.forgotPassword.no_user'));
+            return redirect()->back(); 
+        }
         if($request['new_password'] != $request['confirm_password']){
             session()->flash('error', trans('lang.forgotPassword.incorrect_code'));
             return redirect()->back(); 

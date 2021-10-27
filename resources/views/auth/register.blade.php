@@ -26,13 +26,17 @@
                 <div class="alert alert-danger">{{ Session::get('error') }}</div>
             @endif
 
-            <!--- if user is not added successfully ----------->
-            @if($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+            @if(count($errors) > 0 )
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <ul class="p-0 m-0" style="list-style: none;">
+                    @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
                     @endforeach
                 </ul>
+            </div>
             @endif
 
         <div class="admin_div" id="admin_div"></div>
@@ -46,14 +50,14 @@
 
           <!-- Username input -->
           <div class="form-outline mb-4">
-            <input type="text" id="form3Example3" class="form-control form-control-lg"
+            <input type="text" id="username" class="form-control form-control-lg"
               placeholder="{{ __('lang.signup.username')}}" name="username"/>
             <label class="form-label" for="form3Example3">{{ __('lang.signup.username')}}</label>
           </div>
 
           <!-- Username input -->
           <div class="form-outline mb-4">
-            <input type="text" id="form3Example3" class="form-control form-control-lg"
+            <input type="email" id="form3Example3" class="form-control form-control-lg"
               placeholder="{{ __('lang.signup.email')}}" name="email"/>
             <label class="form-label" for="form3Example3">{{ __('lang.signup.email')}}</label>
           </div>

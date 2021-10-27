@@ -162,7 +162,7 @@ class AdminProfileController extends Controller
             $user->profile->security_code =  $security_code;
             $user->profile->save();
             $data = ['content' => `Thanks for registration, your code is `.$security_code];
-            //Mail::to($user->email)->send(new ActivateAdminMail($data, $user->email));
+            Mail::to($user->email)->send(new ActivateAdminMail($data, $user->email));
             session()->flash('success', trans('lang.admin.code_generated_success', ['code' => $security_code]));
             return redirect()->back(); 
         }else{

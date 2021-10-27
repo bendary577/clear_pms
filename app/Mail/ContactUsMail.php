@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ActivateAdminMail extends Mailable
+class ContactUsMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,10 +23,10 @@ class ActivateAdminMail extends Mailable
     public function build()
     {
         $address = 'mbendary577@gmail.com';
-        $subject = 'Admin Account Activation';
+        $subject = 'Clear PMS Contact Mail';
         $name = 'Mohamed Bendary';
 
-        return $this->view('emails.activateAdminMail')
+        return $this->view('emails.contactusMail')
                     ->from($address, $name)
                     ->subject($subject)
                     ->with([ 'content' => $this->data['content'], 'email' => $this->userMail ]);

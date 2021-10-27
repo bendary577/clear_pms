@@ -19,7 +19,7 @@
     <form method="POST" action="{{route('receptionist.patient.store.appointment', ['clinicId'=>$clinicId, 'id'=>$id])}}">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="date">{{ __('lang.rec.table.birth_date')}}</label>
+            <label for="date">{{ __('lang.rec.appointment_date')}}</label>
             <input type="date" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
         </div>
         <div class="form-group">

@@ -7,16 +7,62 @@
 -->
 
     @if($patient)
+
         <div class="title my-4">
             <h2>{{ __('lang.rec.file_title' , ['name' => $patient->name])}}</h2>
             <!-- <a href="" class="btn btn-primary">{{ __('lang.doctor.print_pdf')}}</a> -->
         </div>
+
+                <!------------------------------------- add new diagnose --------------------------->
+                <div>
+            <a href="javascript:void(0);" id="add_diagnose" class="ml-2 btn btn-success">{{ __('lang.doctor.add_diagnose')}}</a>
+        </div>
+        <div id="add_diagnose_div" class="col-md-12 my-4">
+                    <!--- if diagnose is added successfully ----------->
+                    @if (Session::has('success'))
+                        <div class="alert alert-success my-2">{{ Session::get('success') }}</div>
+                    @endif
+
+                    <!--- if diagnose is not added successfully ----------->
+                    @if($errors->any())
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+            </div>
+            <script>
+                $(document).ready(function(){
+                    //opening and closing diagnosing area
+                    $('#add_diagnose').click(function() {
+                        let div = document.getElementById("add_diagnose_div");
+                        let btn = document.getElementById("add_diagnose");
+                        console.log(btn)
+                        if(div.childElementCount > 0){
+                            console.log("closing")
+                            $("#add_diagnose_div").empty();
+                            btn.innerHTML = "add new diagnose";
+                            btn.setAttribute("class", "btn btn-success");
+                        }else{
+                            console.log("opening")
+                            btn.innerHTML = "close current diagnosing";
+                            btn.setAttribute("class", "btn btn-warning");
+                            let add_diagnose_form = {!! json_encode($add_diagnose_form, JSON_HEX_TAG) !!};
+                            if(div.childElementCount === 0){
+                                $('#add_diagnose_div').append(add_diagnose_form); 
+                            }
+                        }
+                    });
+                });
+            </script>
+            
         <div class="row">
             <div class="personal_info col-md-6 my-4">
                 <div class="card" style="height:340px;">
                     <div class="card-header">
                         <div class="clearfix">
-                        <h5 class="card-title float-left">{{ __('lang.doctor.personal_info') }}</h5>
+                        <h5 class="card-title">{{ __('lang.doctor.personal_info') }}</h5>
                         </div>
                     </div>
                     <div class="card-body">
@@ -80,36 +126,9 @@
             </div>
         </div>
         
-        <div>
-            <a href="javascript:void(0);" id="add_diagnose" class="ml-2 btn btn-success">{{ __('lang.doctor.add_diagnose')}}</a>
-        </div>
-        <div id="add_diagnose_div" class="col-md-12 my-4">
-                    <!--- if diagnose is added successfully ----------->
-                    @if (Session::has('success'))
-                        <div class="alert alert-success my-2">{{ Session::get('success') }}</div>
-                    @endif
 
-                    <!--- if diagnose is not added successfully ----------->
-                    @if($errors->any())
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
-            </div>
-            <script>
-                $(document).ready(function(){
-                    $('#add_diagnose').click(function() {
-                        let div = document.getElementById("add_diagnose_div");
-                        let add_diagnose_form = {!! json_encode($add_diagnose_form, JSON_HEX_TAG) !!};
-                        if(div.childElementCount === 0){
-                            $('#add_diagnose_div').append(add_diagnose_form); 
-                        }
-                    });
-                });
-            </script>
 
+        <!-------------------------- diagnoses ----------------------------------->
         <div class="row">
             @if(count($diagnoses) >0)
                 <div class="title my-5"><h3>{{ __('lang.rec.diagnoses')}}</h3></div>
@@ -141,33 +160,6 @@
             </div>
             @endif
         </div>
-        <!--
-        <div class="row"> 
-            <div class="title my-4"><h3>Follow Up Dates</h3></div>
-            @if(count($patient->appointments) > 0)
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">follow up date</th>
-                            <th scope="col">from</th>
-                            <th scope="col">to</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($patient->appointments as $appointment)
-                            <tr>
-                                <th scope="row">{{ $appointment->date }}</th>
-                                <th scope="row">{{ $appointment->from }}</th>
-                                <th scope="row">{{ $appointment->to }}</th>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <h4 class="text-success">patient has no midicine doses available</h4>
-            @endif
-        </div>
-        -->
     @else
         <h3 class="text-danger">{{ __('lang.rec.no_patient')}}</h3>
     @endif

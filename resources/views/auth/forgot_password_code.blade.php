@@ -36,13 +36,7 @@
           <div class="mb-4 d-flex">
             <h5>{{ __('lang.forgotPassword.no_code_sent')}}</h5>
             <a href="#" class="text-primary mx-2"><h5>{{ __('lang.forgotPassword.resend')}}</h5></a>
-          </div>
-
-          <div class="form-outline mb-4">
-            <input type="tel" id="mobile" class="form-control form-control-lg"
-              placeholder="{{ __('lang.forgotPassword.mobile')}}" name="mobile"/>
-            <label class="form-label" for="mobile">{{ __('lang.forgotPassword.mobile')}}</label>
-          </div>   
+          </div>  
 
           <div class="form-outline mb-4">
             <input type="text" id="code" class="form-control form-control-lg"

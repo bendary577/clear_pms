@@ -29,6 +29,8 @@ Route::get('/', function () {
     }
 })->name('home');
 
+Route::post('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
+
 //--------- lang ----------------
 
 Route::get('/language/{lang}', [App\Http\Controllers\LocalizationController::class, 'index'])->name('change.language');

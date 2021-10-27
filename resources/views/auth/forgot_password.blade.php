@@ -37,9 +37,9 @@
 
           <!-- mobile input -->
           <div class="form-outline mb-4">
-            <input type="tel" id="mobile" class="form-control form-control-lg"
-              placeholder="{{ __('lang.forgotPassword.mobile')}}" name="mobile"/>
-            <label class="form-label" for="mobile">{{ __('lang.forgotPassword.mobile')}}</label>
+            <input type="email" id="email" class="form-control form-control-lg"
+              placeholder="{{ __('lang.forgotPassword.mobile')}}" name="email"/>
+            <label class="form-label" for="email">{{ __('lang.forgotPassword.mobile')}}</label>
           </div>          
 
           <div class="text-center mt-4 pt-2">

@@ -164,12 +164,13 @@ class PatientController extends Controller
     }
 
     public function getPatientFileHistory($id){
-        if(Patient::where('id', $id)->exists()) {
+        $appointment = Appointment::where('id', $id)->first();
+        $patient = Patient::where('id', $appointment->patient->id)->first();
+        if($patient) {
             $medical_specialities = MedicalSpeciality::all();
             $diagnoses = Diagnose::all();
-            $patient = Patient::find($id);
             $add_diagnose_form = view('doctor.sections.add_diagnose', ['medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
-            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities,'add_diagnose_form' => $add_diagnose_form ]);
+            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities, 'appointment'=>$appointment, 'add_diagnose_form' => $add_diagnose_form ]);
         }else{
             session()->flash('error', trans('lang.no_patient'));
             return redirect()->back(); 

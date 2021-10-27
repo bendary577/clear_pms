@@ -31,7 +31,6 @@ class Patient extends Model
         return $this->hasMany(File::class);
     }
 
-
     public function generateCode(){
         return rand(pow(10, 8-1), pow(10, 8)-1);
     }

@@ -9,7 +9,6 @@ use App\Models\DataOperations;
 
 class DataOperationsController extends Controller
 {
-    //
 
     public function getImportExcelView(){
         return view('receptionist.dashboard.dashboard_import_excel');
@@ -20,7 +19,5 @@ class DataOperationsController extends Controller
         session()->flash('success', trans('lang.rec.import_data_success'));
         return redirect()->back();   
     }
-
-
 
 }
