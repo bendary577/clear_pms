@@ -13,6 +13,7 @@ class Appointment extends Model
         'date',
         'from',
         'to',
+        'leaved_at',
         'reason'
     ];
 
@@ -24,5 +25,10 @@ class Appointment extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function perscreption()
+    {
+        return $this->hasOne(Perscreption::class);
     }
 }

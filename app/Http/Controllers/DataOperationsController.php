@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Exports\TransactionsExport;
-use App\Imports\TransactionsImport;
 use App\Models\DataOperations;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PatientsImport;
+use Illuminate\Support\Facades\Validator;
 
 class DataOperationsController extends Controller
 {
@@ -15,7 +15,19 @@ class DataOperationsController extends Controller
     }
 
     public function importExcel(Request $request){
-        \Excel::import(new DataOperations,$request->import_file);
+
+        $validator = Validator::make($request->all(),
+        [
+            //'name' => 'required|mimes:xlsx,xls',
+        ]);
+        
+        if ($validator->fails()){
+            return  redirect()->back()->withErrors($validator)->withInput();   
+        }
+
+        $file = $request->file('excel_file');
+
+        Excel::import(new PatientsImport, $file);
         session()->flash('success', trans('lang.rec.import_data_success'));
         return redirect()->back();   
     }

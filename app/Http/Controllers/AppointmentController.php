@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -71,9 +72,9 @@ class AppointmentController extends Controller
     }
 
 
-    public function update(Request $request, Appointment $appointment)
+    public function update(Request $request, $id)
     {
-        //
+        
     }
 
 
@@ -97,5 +98,16 @@ class AppointmentController extends Controller
     public function getAppointmentForm($clinicId, $id)
     {
         return view('receptionist.dashboard.dashboard_add_appointment', ['id'=>$id, 'clinicId' => $clinicId]);
+    }
+
+    public function registerPatientLeavingTime($appointment_id)
+    {
+        $appointment = Appointment::find($appointment_id);
+        $appointment->leaved_at = Carbon::now()->toDateTimeString();
+
+        $appointment->save();
+    
+        session()->flash('success', "appointment leaving time updated successfully");
+        return redirect('doctor_dashboard/clinic');
     }
 }

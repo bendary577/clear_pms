@@ -2,7 +2,7 @@
   
 <div class="container" style="margin-top: 5rem;">
     @if($message = Session::get('success'))
-        <div class="alert alert-info alert-dismissible fade in" role="alert">
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -45,8 +45,8 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <form style="margin-top: 15px;padding: 10px;" action="{{ route('receptionist.import.excel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }} 
-                    <input type="file" name="import_file" />
-                    <button class="btn btn-primary mt-2">{{ __('lang.rec.import_file')}}</button>
+                    <input type="file" name="excel_file" />
+                    <button type="submit" class="btn btn-primary mt-2">{{ __('lang.rec.import_file')}}</button>
                 </form>
               </div>
             </div>

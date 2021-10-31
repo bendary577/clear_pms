@@ -167,6 +167,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', [App\Http\Controllers\DoctorProfileController::class, 'welcome'])->name('doctor.dashboard');
 
+        Route::get('{appointment_id}/check_perscreption', [App\Http\Controllers\PerscreptionController::class, 'show'])->name('doctor.appointment.check.perscreption');
+
             Route::prefix('clinic')->group(function () {
                 
                 Route::get('/', [App\Http\Controllers\ClinicController::class, 'show'])->name('doctor.clinic');
@@ -181,7 +183,9 @@ Route::middleware('auth')->group(function () {
 
                 Route::get('/delete', [App\Http\Controllers\ClinicController::class, 'destroy'])->name('doctor.delete.clinic_hours');
 
-                Route::post('/{patient_id}/store_diagnose', [App\Http\Controllers\DiagnoseController::class, 'store'])->name('doctor.add.diagnose');
+                Route::post('/{appointment_id}/store_diagnose}', [App\Http\Controllers\DiagnoseController::class, 'store'])->name('doctor.add.diagnose');
+
+                Route::get('/{appointment_id}/end_visit}', [App\Http\Controllers\AppointmentController::class, 'registerPatientLeavingTime'])->name('doctor.end.visit');
 
                 Route::prefix('/patients')->group(function () {
 
@@ -229,7 +233,7 @@ Route::middleware('auth')->group(function () {
 
                 Route::get('/import-excel-view', [App\Http\Controllers\DataOperationsController::class, 'getImportExcelView'])->name('receptionist.import.excel.view');
                 
-                Route::get('/import-excel', [App\Http\Controllers\DataOperationsController::class, 'importExcel'])->name('receptionist.import.excel');
+                Route::post('/import-excel', [App\Http\Controllers\DataOperationsController::class, 'importExcel'])->name('receptionist.import.excel');
             });
 
             Route::prefix('patients')->group(function () {
@@ -253,6 +257,8 @@ Route::middleware('auth')->group(function () {
                 Route::post('{id}/upload_medical_files', [App\Http\Controllers\FileController::class, 'uploadPatientMedicalFiles'])->name('receptionist.patient.upload.files');
 
                 Route::get('{id}/patient_file', [App\Http\Controllers\PatientController::class, 'show'])->name('receptionist.patients.patient.file');
+
+                Route::get('{appointment_id}/check_perscreption', [App\Http\Controllers\PerscreptionController::class, 'show'])->name('receptionist.appointment.check.perscreption');
 
                 Route::prefix('/{id}/new_appointment')->group(function () {
 

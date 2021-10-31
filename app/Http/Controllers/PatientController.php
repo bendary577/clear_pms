@@ -169,7 +169,7 @@ class PatientController extends Controller
         if($patient) {
             $medical_specialities = MedicalSpeciality::all();
             $diagnoses = Diagnose::all();
-            $add_diagnose_form = view('doctor.sections.add_diagnose', ['medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
+            $add_diagnose_form = view('doctor.sections.add_diagnose', ['appointment'=> $appointment, 'medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
             return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities, 'appointment'=>$appointment, 'add_diagnose_form' => $add_diagnose_form ]);
         }else{
             session()->flash('error', trans('lang.no_patient'));
