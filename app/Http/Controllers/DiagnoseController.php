@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diagnose;
+use App\Models\Appointment;
 use App\Models\Patient;
+use App\Models\Perscreption;
+use App\Models\Medicine;
 use Illuminate\Http\Request;
 use App\Models\MedicalSpeciality;
 use Illuminate\Support\Facades\Validator;
@@ -25,7 +28,7 @@ class DiagnoseController extends Controller
     }
 
 
-    public function store(Request $request, $patient_id)
+    public function store(Request $request, $appointment_id)
     {
         $validator = Validator::make($request->all(),
         [
@@ -37,8 +40,9 @@ class DiagnoseController extends Controller
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
 
-        $patient = Patient::find($patient_id);
-
+        $appointment = Appointment::where('id', $appointment_id)->first();
+        $patient = Patient::where('id', $appointment->patient->id)->first();
+        //save the diagnoses info
         $diagnose = new Diagnose();
         $diagnose->name = $request['name'];
         $description = $request['description'];
@@ -48,8 +52,25 @@ class DiagnoseController extends Controller
         $diagnose->medicalSpeciality()->associate($medical_speciality)->save();
 
         $diagnose->save();
-
         $patient->diagnoses()->attach($diagnose, ['description' => $description, 'treatment_protocol' => $protocol]);
+
+        if($request['medicines_number']){
+            //save the perscreption info
+            $perscreption = new Perscreption();
+            $perscreption->save();
+            $appointment->perscreption()->save($perscreption);
+            $perscreption->appointment()->associate($appointment)->save();
+            $medicines_number = $request['medicines_number'];
+            for($medicines_counter = 1; $medicines_counter <= $medicines_number; $medicines_counter++){
+                $medicine = new Medicine();
+                $medicine->name = $request['medicine_'.$medicines_counter];
+                $medicine->dose = $request['dose_'.$medicines_counter];
+                $medicine->duration = $request['duration_'.$medicines_counter];
+                $medicine->save();
+                $perscreption->medicines()->save($medicine);
+                $medicine->perscreption()->associate($perscreption)->save();
+            }
+        }
 
         session()->flash('success', 'diagnose added succesfuly');
         return redirect()->back();   

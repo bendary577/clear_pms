@@ -50,7 +50,7 @@
     <div class="row">
         <div class="my-4 w-100">
             <div class="title my-4"><h3>{{ __('lang.doctor.appointment_list')}}</h3></div>
-            @if(count($clinic->appointments)>0)
+            @if(count($clinic->current_appointments)>0)
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -62,14 +62,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($clinic->appointments as $appointment)
-                            <tr>
-                                <th>{{ $appointment->patient->name }}</th>
-                                <td>{{ $appointment->date }}</td>
-                                <td>{{ date("g:i a", strtotime($appointment->from ))  }}</td>
-                                <td>{{ $appointment->reason}}</td>
-                                <td><a href="{{route('doctor.clinic.patient_file', ['id' => $appointment->id ])}}" class="btn btn-success">start visit</a></td>
-                            </tr>
+                        @foreach($clinic->current_appointments as $appointment)
+                                <tr>
+                                    <th>{{ $appointment->patient->name }}</th>
+                                    <td>{{ $appointment->date }}</td>
+                                    <td>{{ date("g:i a", strtotime($appointment->from ))  }}</td>
+                                    <td>{{ $appointment->reason}}</td>
+                                    <td><a href="{{route('doctor.clinic.patient_file', ['id' => $appointment->id ])}}" class="btn btn-success">start visit</a></td>
+                                </tr>
                         @endforeach
                     </tbody>
                 </table>

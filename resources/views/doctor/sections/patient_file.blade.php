@@ -1,20 +1,21 @@
 <div class="container">
 
-<!--
-    <div class="go_back mb-4"><a href="{{ url()->previous() }}">
-        <h6 class="text-primary">< go back</h6></a>
+    <div class="go_back mb-4">
+        <a href="{{ url()->previous() }}" style="text-decoration:inherit">
+            <h4 class="text-primary">< Return back</h4>
+        </a>
     </div>
--->
 
     @if($patient)
 
-        <div class="title my-4">
+        <div class="title my-4 d-flex justify-content-between">
             <h2>{{ __('lang.rec.file_title' , ['name' => $patient->name])}}</h2>
             <!-- <a href="" class="btn btn-primary">{{ __('lang.doctor.print_pdf')}}</a> -->
+            <a class="btn btn-danger" href="{{route('doctor.end.visit', ['appointment_id' => $appointment->id])}}">end visit</a>
         </div>
 
-                <!------------------------------------- add new diagnose --------------------------->
-                <div>
+        <!------------------------------------- add new diagnose --------------------------->
+        <div>
             <a href="javascript:void(0);" id="add_diagnose" class="ml-2 btn btn-success">{{ __('lang.doctor.add_diagnose')}}</a>
         </div>
         <div id="add_diagnose_div" class="col-md-12 my-4">
@@ -138,6 +139,7 @@
                             <th scope="col">{{ __('lang.rec.diagnose_name')}}</th>
                             <th scope="col">{{ __('lang.rec.diagnose_description')}}</th>
                             <th scope="col">{{ __('lang.doctor.treatment_protocol')}}</th>
+                            <th scope="col">action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -147,6 +149,7 @@
                                     <th scope="row">{{ $diagnose->name }}</th>
                                     <td>{{ $patient->pivot->description }}</td>
                                     <td>{{ $patient->pivot->treatment_protocol }}</td>
+                                    <td><a href="{{route('doctor.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">check perscreption</a></td>
                                 </tr>
                             @endforeach
                         @endforeach
@@ -155,7 +158,7 @@
             @else
             <div class="d-flex col-md-12">
                 <div>
-                    <h4 class="text-success">{{ __('lang.rec.no_diagnose')}}</h4>
+                    <h4 class="text-success" style="text-transform:capitalize">{{ __('lang.rec.no_diagnose')}}</h4>
                 </div>
             </div>
             @endif

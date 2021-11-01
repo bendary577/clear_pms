@@ -10,7 +10,14 @@ class Medicine extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'dose',
+        'duration'
     ];
+
+    public function perscreption()
+    {
+        return $this->belongsTo(Perscreption::class);
+    }
 
 }

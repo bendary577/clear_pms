@@ -160,22 +160,31 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
+                                <th scope="col">{{ __('lang.rec.appointment_doctor')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_date')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_from')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_to')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_reason')}}</th>
-                                <th scope="col">{{ __('lang.rec.appointment_doctor')}}</th>
+                                <th scope="col">leaved at</th>
+                                <th scope="col">action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($patient->appointments as $appointment)
-                                <tr>
-                                    <th scope="row">{{$appointment->date}}</th>
-                                    <td>{{ date("g:i a", strtotime($appointment->from))}}</td>
-                                    <td>{{ date("g:i a", strtotime($appointment->to))}}</td>
-                                    <td>{{$appointment->reason}}</td>
-                                    <td>{{$appointment->clinic->doctorProfile->user->name}}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$appointment->clinic->doctorProfile->user->name}}</td>
+                                        <th scope="row">{{$appointment->date}}</th>
+                                        <td>{{ date("g:i a", strtotime($appointment->from))}}</td>
+                                        <td>{{ date("g:i a", strtotime($appointment->to))}}</td>
+                                        <td>{{$appointment->reason}}</td>
+                                        @if($appointment->leaved_at == null)
+                                            <td><h6 class="text-danger">still pending</h6></td>
+                                            <td><h6 class="text-danger">no action available</h6></td>
+                                        @else
+                                            <td>{{ date("g:i a", strtotime($appointment->leaved_at)) }}</td>
+                                            <td><a href="{{route('receptionist.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">check perscreption</a></td>
+                                        @endif
+                                    </tr>
                             @endforeach
                         </tbody>
                     </table>

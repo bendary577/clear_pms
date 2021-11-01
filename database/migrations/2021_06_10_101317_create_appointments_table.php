@@ -22,6 +22,7 @@ class CreateAppointmentsTable extends Migration
             $table->date('date');
             $table->time('from');
             $table->time('to');
+            $table->time('leaved_at')->nullable();
             $table->enum('reason', ['consultant', 'new visit', 'follow up']);
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('clinic_id')->references('id')->on('clinics');

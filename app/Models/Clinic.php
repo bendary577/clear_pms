@@ -28,4 +28,9 @@ class Clinic extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+
+    public function current_appointments()
+    {
+        return $this->hasMany(Appointment::class)->where('leaved_at','=', null);;
+    }
 }

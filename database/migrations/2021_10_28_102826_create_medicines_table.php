@@ -15,7 +15,11 @@ class CreateMedicinesTable extends Migration
     {
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('perscreption_id')->nullable();
             $table->string('name');
+            $table->string('dose');
+            $table->string('duration');
+            $table->foreign('perscreption_id')->references('id')->on('perscreptions');
             $table->timestamps();
         });
     }
