@@ -10,7 +10,8 @@
         </div>
         <div class="form-group">
             <label for="name">{{__('lang.rec.diagnose_description')}}</label>
-            <input type="text" name="description" class="form-control" id="description" placeholder="{{__('lang.rec.diagnose_description')}}" required>
+            <!-- <input type="text" name="description" class="form-control" id="description" placeholder="{{__('lang.rec.diagnose_description')}}" required> -->
+            <textarea class="form-control" required name="description" rows="7" id="description" placeholder="{{__('lang.rec.diagnose_description')}}"></textarea>
         </div>
         <div class="form-group">
             <label for="name">{{__('lang.doctor.treatment_protocol')}}</label>
@@ -29,23 +30,23 @@
         <!----------------------------- medicines -------------------------------------->
         <div class="medicines" id="medicines">
             <div class="d-flex my-2" id="medicines_title">
-                <h3 class="text-primary">Required medicines</h3>
+                <h3 class="text-primary">{{__('lang.doctor.required_medicines')}}</h3>
                 <input type="text" name="medicines_number" class="form-control mx-2" style="width:40px;" id="medicines_number" value="1" placeholder="1">
-                <a href="javascript:void(0);" id="add_medicine" class="ml-2 btn btn-info">add medicine</a>
+                <a href="javascript:void(0);" id="add_medicine" class="ml-2 btn btn-info">{{__('lang.doctor.add_medicine')}}</a>
             </div>
 
             <div class="form-row" id="medicine_row_1">
                 <div class="form-group col-md-6">
-                    <label for="medicine">medicine</label>
-                    <input type="text" name="medicine_1" class="form-control" id="medicine_1" placeholder="medicine">
+                    <label for="medicine">{{__('lang.doctor.medicine')}}</label>
+                    <input type="text" name="medicine_1" class="form-control" id="medicine_1" placeholder="{{__('lang.doctor.medicine')}}">
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="dose">dose</label>
-                    <input type="text" name="dose_1" class="form-control" id="dose_1" placeholder="dose">
+                    <label for="dose">{{__('lang.doctor.dose')}}</label>
+                    <input type="text" name="dose_1" class="form-control" id="dose_1" placeholder="{{__('lang.doctor.dose')}}">
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="duration">duration</label>
-                    <input type="text" name="duration_1" class="form-control" id="duration_1" placeholder="duration">
+                    <label for="duration">{{__('lang.doctor.duration')}}</label>
+                    <input type="text" name="duration_1" class="form-control" id="duration_1" placeholder="{{__('lang.doctor.duration')}}">
                 </div>
             </div>
         </div>

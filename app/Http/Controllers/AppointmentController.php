@@ -107,7 +107,7 @@ class AppointmentController extends Controller
 
         $appointment->save();
     
-        session()->flash('success', "appointment leaving time updated successfully");
+        session()->flash('success', trans('lang.appointment.leaving_time_updated'));
         return redirect('doctor_dashboard/clinic');
     }
 }

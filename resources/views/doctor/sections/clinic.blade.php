@@ -68,7 +68,7 @@
                                     <td>{{ $appointment->date }}</td>
                                     <td>{{ date("g:i a", strtotime($appointment->from ))  }}</td>
                                     <td>{{ $appointment->reason}}</td>
-                                    <td><a href="{{route('doctor.clinic.patient_file', ['id' => $appointment->id ])}}" class="btn btn-success">start visit</a></td>
+                                    <td><a href="{{route('doctor.clinic.patient_file', ['id' => $appointment->id ])}}" class="btn btn-success">{{__('lang.doctor.start_visit')}}</a></td>
                                 </tr>
                         @endforeach
                     </tbody>

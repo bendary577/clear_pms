@@ -2,7 +2,7 @@
 
     <div class="go_back mb-4">
         <a href="{{ url()->previous() }}" style="text-decoration:inherit">
-            <h4 class="text-primary">< Return back</h4>
+            <h4 class="text-primary">{{ __('lang.go_back')}}</h4>
         </a>
     </div>
 
@@ -11,7 +11,7 @@
         <div class="title my-4 d-flex justify-content-between">
             <h2>{{ __('lang.rec.file_title' , ['name' => $patient->name])}}</h2>
             <!-- <a href="" class="btn btn-primary">{{ __('lang.doctor.print_pdf')}}</a> -->
-            <a class="btn btn-danger" href="{{route('doctor.end.visit', ['appointment_id' => $appointment->id])}}">end visit</a>
+            <a class="btn btn-danger" href="{{route('doctor.end.visit', ['appointment_id' => $appointment->id])}}">{{ __('lang.doctor.end_visit')}}</a>
         </div>
 
         <!------------------------------------- add new diagnose --------------------------->
@@ -149,7 +149,7 @@
                                     <th scope="row">{{ $diagnose->name }}</th>
                                     <td>{{ $patient->pivot->description }}</td>
                                     <td>{{ $patient->pivot->treatment_protocol }}</td>
-                                    <td><a href="{{route('doctor.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">check perscreption</a></td>
+                                    <td><a href="{{route('doctor.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">{{ __('lang.rec.check_perscreption')}}</a></td>
                                 </tr>
                             @endforeach
                         @endforeach

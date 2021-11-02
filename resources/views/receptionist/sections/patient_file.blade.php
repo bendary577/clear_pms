@@ -165,8 +165,8 @@
                                 <th scope="col">{{ __('lang.rec.appointment_from')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_to')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_reason')}}</th>
-                                <th scope="col">leaved at</th>
-                                <th scope="col">action</th>
+                                <th scope="col">{{ __('lang.appointment.leaved_at')}}</th>
+                                <th scope="col">{{ __('lang.rec.table.action')}}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -178,11 +178,11 @@
                                         <td>{{ date("g:i a", strtotime($appointment->to))}}</td>
                                         <td>{{$appointment->reason}}</td>
                                         @if($appointment->leaved_at == null)
-                                            <td><h6 class="text-danger">still pending</h6></td>
-                                            <td><h6 class="text-danger">no action available</h6></td>
+                                            <td><h6 class="text-danger">{{ __('lang.rec.still_pending')}}</h6></td>
+                                            <td><h6 class="text-danger">{{ __('lang.rec.no_action')}}</h6></td>
                                         @else
                                             <td>{{ date("g:i a", strtotime($appointment->leaved_at)) }}</td>
-                                            <td><a href="{{route('receptionist.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">check perscreption</a></td>
+                                            <td><a href="{{route('receptionist.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">{{ __('lang.rec.check_perscreption')}}</a></td>
                                         @endif
                                     </tr>
                             @endforeach

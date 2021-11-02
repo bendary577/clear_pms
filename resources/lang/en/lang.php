@@ -68,11 +68,11 @@
 
     //----------------------------------------------- forgot password --------------------------
 
-    'forgotPassword.mobile' => 'Mobile Number',
-    'forgotPassword.desc' => 'please write your mobile number, we will send a code to reset your password',
+    'forgotPassword.email' => 'Email',
+    'forgotPassword.desc' => 'please write your email, we will send a code to reset your password',
     'forgotPassword.send' => 'Send Code',
     'forgotPassword.submit' => 'submit code',
-    'forgotPassword.no_user' => 'sorry, no user registered in the system with this mobiel number',
+    'forgotPassword.no_user' => 'sorry, no user registered in the system with this email',
     'forgotPassword.code' => 'activation code',
     'forgotPassword.no_code_sent' => 'didn\'t recieve any code ?',
     'forgotPassword.resend' => 'resend code',
@@ -197,10 +197,9 @@
         'doctor.table.hour' => 'hour',
         'doctor.table.appointment_reason' => 'Appointment Reason',
         'doctor.table.diagnoses' => 'Diagnoses',
-        'doctor.table.action' => 'Action',
         'doctor.no_diagnoses' => 'No Diagnoses Yet',
         'doctor.check_patient_file' => 'Check Patient File',
-        'doctor.no_appointments' => 'No patient list appointments in your clinic yet',
+        'doctor.no_appointments' => 'No patient appointments list in your clinic yet',
         'doctor.file_title' => 'Doctor :name file',
         'doctor.print_pdf' => 'Print PDF',
         'doctor.personal_info' => 'Personal Information',
@@ -214,6 +213,14 @@
         'doctor.add_diagnose' => 'Add New Diagnose',
         'doctor.welcome' => 'Hello, Doctors Dashboard !',
         'doctor.treatment_protocol' => 'treatment protocol',
+        'doctor.start_visit' => 'start visit',
+        'doctor.end_visit' => 'end visit',
+        'doctor.required_medicines' => 'required medicines',
+        'doctor.add_medicine' => 'add medicine',
+        'doctor.medicine' => 'medicine',
+        'doctor.dose' => 'dose',
+        'doctor.duration' => 'duration',
+
     //-------------------------------------- receptionist --------------------------
     'rec.add_patient' => 'Add New Patient',
     'rec.search_patient' => 'Search For a Patient',
@@ -268,6 +275,10 @@
     'rec.import_data_success' => 'data was imported successfully',
     'rec.import_data_error' => "error accured while importing data",
     'rec.import_file' => "Import File",
+    'rec.import_access_file' => 'import access file',
+    'rec.import_excel_file' => 'import excel file',
+    'rec.import_csv_file' => 'import csv file',
+    'rec.please_import_file' => 'please import a valid file',
 
     'rec.patient_files' => 'Patient Files',
     'rec.no_attached_files' => 'patient has no attached medical files',
@@ -280,16 +291,21 @@
     'rec.appointment_to' => 'To',
     'rec.appointment_reason' => 'Reason',
     'rec.appointment_doctor' => 'Doctor Name',
-
+    'rec.check_perscreption' => 'check perscreption',
+    'rec.still_pending' => 'still pending',
+    'rec.no_action' => 'no action available',
+    'rec.table.action' => 'action',
 
     //------------------------------------------ appointments ----------------------------------------
     'appointment.added' => 'appointment was added succesfuly',
+    'appointment.leaved_at' => 'leaving time',
+    'appointment.leaving_time_updated' => 'appointment leaving time updated successfully',
 
 
 
         'download' => 'Download',
         'upload' => 'Upload File',
-        'go_back' => '< go back',
+        'go_back' => '< Beturn Back',
         'update' => 'Update',
         'submit' => 'Submit',
 
@@ -343,5 +359,10 @@
         'rec.table_exam_price' => 'Examination Price',
         'rec.table_follow_price' => 'Follow Up Price',
         'egyptian_pound' => ':price E.P',
+
+        'perscreption.no_medicine' => 'this perscreption has no medicines yet',
+        'perscreption.medicine_name' => 'medicine name',
+        'perscreption.medicine_dose' => 'medicine dose',
+        'perscreption.medicine_duration' => 'medicine duration',
         ]
 ?>

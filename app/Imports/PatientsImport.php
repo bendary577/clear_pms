@@ -12,6 +12,7 @@ class PatientsImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
+        dd($row);
         return new Patient([
             'name'  => $row['name'],
             'phone' => $row['phone'],

@@ -69,11 +69,11 @@
 
     //----------------------------------------------- forgot password --------------------------
 
-        'forgotPassword.mobile' => 'رقم الهاتف',
-        'forgotPassword.desc' => 'يرجي إدخال رقم الهاتف, سيتم إرسال كود تأكيد لإعادة إنشاء كلمة السر',
+        'forgotPassword.email' => ' البريد الإلكتروني',
+        'forgotPassword.desc' => 'يرجي إدخال البريد الإلكتروني , سيتم إرسال كود تأكيد لإعادة إنشاء كلمة السر',
         'forgotPassword.send' => 'أرسل الكود',
         'forgotPassword.submit' => 'تحقق من الكود',
-        'forgotPassword.no_user' => 'عذرا, لا يوجد مستخدم مسجل لدينا بهذا الرقم',
+        'forgotPassword.no_user' => 'عذرا, لا يوجد مستخدم مسجل لدينا بهذا البريد الإلكتروني',
         'forgotPassword.code' => 'كود التأكيد',
         'forgotPassword.no_code_sent' => 'لم يتم إرسال الكود ؟',
         'forgotPassword.resend' => 'عد الإرسال',
@@ -131,7 +131,7 @@
         'admin.table.name' => 'الاسم',
         'admin.table.account' => 'الحساب',
         'admin.table.created_at' => 'تاريخ التسجيل',
-        'admin.table.action' => 'التحكم',
+        'admin.table.action' => 'الإجراء',
         'admin.activate' => 'تنشيط الحساب',
         'admin.delete_request' => 'حذف طلب التسجيل',
         'admin.no_requests' => 'معذرة, لا يوجد طلبات تسجيل حالياَ',
@@ -189,7 +189,7 @@
         'doctor.working_hours' => 'مواعيد العمل',
         'doctor.table.from' => 'من',
         'doctor.table.to' => 'إلي',
-        'doctor.table.action' => 'التحكم',
+        'doctor.table.action' => 'الإجراء',
         'doctor.edit_working_hours' => 'تعديل ساعات العمل',
         'doctor.appointment_list' => 'قائمة مواعيد المرضي',
         'doctor.table.name' => 'الاسم',
@@ -213,6 +213,14 @@
         'doctor.add_diagnose' => 'إضافة تشخيص جديد',
         'doctor.welcome' => 'أهلا بك في لوحة تحكم الأطباء',
         'doctor.treatment_protocol' => 'البروتوكول الطبي',
+        'doctor.start_visit' => 'بدء الزيارة',
+        'doctor.end_visit' => 'إنهاء الزيارة',
+        'doctor.required_medicines' => 'الادوية المطلوبة',
+        'doctor.add_medicine' => 'إضافة دواء',
+        'doctor.medicine' => 'الدواء',
+        'doctor.dose' => 'الجرعة',
+        'doctor.duration' => 'الفترة الزمنية',
+
     //-------------------------------------- receptionist --------------------------
     'rec.add_patient' => 'إضافة سجل مريض',
     'rec.search_patient' => 'بحث عن مريض',
@@ -234,7 +242,7 @@
     'rec.table.doctor_name' => 'اسم الطبيب',
     'rec.table.available_from' => 'متاحة من',
     'rec.table.available_to' => 'متاحة إلي',
-    'rec.table.action' => 'التحكم',
+    'rec.table.action' => 'الإجراء',
     'rec.new_appointment' => 'حجز ميعاد زيارة',
     'rec.no_clinics' => 'عذرا, لا يوجد عيادات مسجلة حالياَ',
     'rec.no_search' => 'عذرا, لا يوجد نتائج بحث',
@@ -267,6 +275,12 @@
     'rec.import_data_success' => 'تم استيراد البيانات بنجاح',
     'rec.import_data_error' => "حدث حطأ أثناء استيراد البيانات",
     'rec.import_file' => "رفع الملف",
+    'rec.import_access_file' => 'استيراد ملف access',
+    'rec.import_excel_file' => 'استيراد ملف excel',
+    'rec.import_csv_file' => 'استيراد ملف csv',
+    'rec.please_import_file' => 'يرجي رفع الملف بشكل صحيح',
+
+
     'rec.patient_files' => 'ملفات المريض',
     'rec.no_attached_files' => 'المريض لا يملك اي ملفات طبية',
     'rec.upload_files_instructions' => 'بإمكانك رفع كل الملفات الطبية الخاصة ب :name مثل الاشعة والتحاليل والروشتات',
@@ -278,10 +292,15 @@
     'rec.appointment_to' => 'إلي',
     'rec.appointment_reason' => 'سبب الزيارة',
     'rec.appointment_doctor' => 'اسم الطبيب',
+    'rec.check_perscreption' => 'فحص الروشتة',
+    'rec.still_pending' => 'في قائمة الانتظار',
+    'rec.no_action' => 'لا يوجد أي إجراء متاح',
+    'rec.table.action' => 'الإجراء',
 
     //------------------------------------------ appointments ----------------------------------------
     'appointment.added' => 'تم إضافة الموعد بنجاح',
-
+    'appointment.leaved_at' => 'وقت المغادرة',
+    'appointment.leaving_time_updated' => 'تم تحديث ميعاد مغادرة المريض',
 
 
 
@@ -289,7 +308,7 @@
 
         'download' => 'تحميل',
         'upload' => 'رفع ملف',
-        'go_back' => 'عودة للوراء >',
+        'go_back' => 'عودة للوراء',
         'update' => 'تحديث',
         'submit' => 'تسجيل',
 
@@ -345,5 +364,12 @@
         'rec.table_exam_price' => 'سعر الكشف',
         'rec.table_follow_price' => 'سعر المتابعة',
         'egyptian_pound' => 'ج. م :price',
+
+        'perscreption.no_medicine' => 'هذه الروشتة لا تحتوي علي أية أدوية',
+        'perscreption.medicine_name' => 'اسم الدواء',
+        'perscreption.medicine_dose' => 'الجرعة',
+        'perscreption.medicine_duration' => 'المدة الزمنية',
+
+
         ]
 ?>

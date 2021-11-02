@@ -38,8 +38,8 @@
           <!-- mobile input -->
           <div class="form-outline mb-4">
             <input type="email" id="email" class="form-control form-control-lg"
-              placeholder="{{ __('lang.forgotPassword.mobile')}}" name="email"/>
-            <label class="form-label" for="email">{{ __('lang.forgotPassword.mobile')}}</label>
+              placeholder="{{ __('lang.forgotPassword.email')}}" name="email"/>
+            <label class="form-label" for="email">{{ __('lang.forgotPassword.email')}}</label>
           </div>          
 
           <div class="text-center mt-4 pt-2">

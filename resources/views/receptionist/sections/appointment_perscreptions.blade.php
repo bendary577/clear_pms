@@ -2,7 +2,7 @@
 
     <div class="go_back mb-4">
         <a href="{{ url()->previous() }}" style="text-decoration:inherit">
-            <h4 class="text-primary">< Return back</h4>
+            <h4 class="text-primary">{{ __('lang.go_back')}}</h4>
         </a>
     </div>
 
@@ -12,9 +12,9 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">medicine name</th>
-                            <th scope="col">medicine dose</th>
-                            <th scope="col">medicine duration</th>
+                            <th scope="col">{{ __('lang.perscreption.medicine_name')}}</th>
+                            <th scope="col">{{ __('lang.perscreption.medicine_dose')}}</th>
+                            <th scope="col">{{ __('lang.perscreption.medicine_duration')}}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,11 +28,11 @@
                     </tbody>
                 </table>
             @else
-                <h4 class="text-danger">this perscreption has no medicines</h4>
+                <h4 class="text-danger">{{ __('lang.perscreption.no_medicine')}}</h4>
             @endif
 
         @else
-            <h4 class="text-danger mt-4">this perscreption has no medicines yet</h4>
+            <h4 class="text-danger mt-4">{{ __('lang.perscreption.no_medicine')}}</h4>
         @endif
         </div>
 </div>
