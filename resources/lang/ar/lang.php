@@ -279,6 +279,8 @@
     'rec.import_excel_file' => 'استيراد ملف excel',
     'rec.import_csv_file' => 'استيراد ملف csv',
     'rec.please_import_file' => 'يرجي رفع الملف بشكل صحيح',
+    'rec.export_data' => 'تصدير البيانات',
+    'rec.excel_file_desc' => 'بإمكانك رفع كل بيانات المرضي الخاصة بالمؤسسة وإدخالها في قاعدة بيانات البرنامج',
 
 
     'rec.patient_files' => 'ملفات المريض',

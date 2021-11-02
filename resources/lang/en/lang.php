@@ -279,6 +279,8 @@
     'rec.import_excel_file' => 'import excel file',
     'rec.import_csv_file' => 'import csv file',
     'rec.please_import_file' => 'please import a valid file',
+    'rec.export_data' => 'export data',
+    'rec.excel_file_desc' => 'upload all your patients data in an excel file and merge it in your database',
 
     'rec.patient_files' => 'Patient Files',
     'rec.no_attached_files' => 'patient has no attached medical files',

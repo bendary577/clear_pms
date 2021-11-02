@@ -234,6 +234,8 @@ Route::middleware('auth')->group(function () {
                 Route::get('/import-excel-view', [App\Http\Controllers\DataOperationsController::class, 'getImportExcelView'])->name('receptionist.import.excel.view');
                 
                 Route::post('/import-excel', [App\Http\Controllers\DataOperationsController::class, 'importExcel'])->name('receptionist.import.excel');
+
+                Route::get('/export-excel', [App\Http\Controllers\DataOperationsController::class, 'exportExcel'])->name('receptionist.export.excel');
             });
 
             Route::prefix('patients')->group(function () {

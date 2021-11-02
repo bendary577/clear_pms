@@ -75,6 +75,9 @@
                         <li>
                             <a href="{{route('receptionist.import.excel.view')}}" class="text-dark">{{ __('lang.rec.import_data')}}</a>
                         </li>
+                        <li>
+                             <a href="{{route('receptionist.export.excel')}}" class="text-dark">{{ __('lang.rec.export_data')}}</a> 
+                        </li>
                     @endif
                 </ul>
         </li>
