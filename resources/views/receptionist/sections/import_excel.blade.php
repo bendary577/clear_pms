@@ -38,7 +38,7 @@
 
         <!---------------------------------- excel card ----------------------------->
 
-          <div class="col-md-3 ml-4">
+        <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
                 <img src="{{url('/images/dashboard/excel.png')}}" style="width:150px;height:150px" class="card-img-top" alt="...">

@@ -66,6 +66,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {!! $admins->appends(['sort' => 'votes'])->links() !!}
+            </div>
         @else
             <h3 class="text-danger mt-4">{{__('lang.admin.no_admins')}}</h3>
         @endif

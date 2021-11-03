@@ -16,7 +16,7 @@ class AdminProfileController extends Controller
 
     public function index()
     {
-        $admins = User::where('profile_id', '!=', Auth::user()->profile->id)->where('profile_type', '=', 'App\Models\AdminProfile')->where('activated', true)->get();
+        $admins = User::where('profile_id', '!=', Auth::user()->profile->id)->where('profile_type', '=', 'App\Models\AdminProfile')->where('activated', true)->paginate(5);
         return view('admin.dashboard.dashboard_admins', ['admins'=> $admins]);
     }
 

@@ -36,6 +36,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center align-items-center">
+                {!! $medicalSpecialities->links() !!}
+            </div>
         @else
             <h3 class="text-danger mt-4 mx-2">{{__('lang.admin.no_medical_specialities')}}</h3>
         @endif
