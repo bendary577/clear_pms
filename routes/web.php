@@ -229,6 +229,14 @@ Route::middleware('auth')->group(function () {
 
             Route::get('/{id}/doctor_schedules', [App\Http\Controllers\DoctorProfileController::class, 'schedules'] )->name('receptionist.doctor.schedules');
 
+            Route::get('/add_medicine', [App\Http\Controllers\SystemMedicineController::class, 'create'] )->name('receptionist.add.medicine');
+
+            Route::get('/store_medicine', [App\Http\Controllers\SystemMedicineController::class, 'store'] )->name('receptionist.store.medicine');
+
+            Route::get('/add_diagnose', [App\Http\Controllers\SystemDiagnosesController::class, 'create'] )->name('receptionist.add.diagnose');
+
+            Route::get('/store_diagnose', [App\Http\Controllers\SystemDiagnosesController::class, 'store'] )->name('receptionist.store.diagnose');
+
             Route::prefix('data-operations')->group(function () {
 
                 Route::get('/import-excel-view', [App\Http\Controllers\DataOperationsController::class, 'getImportExcelView'])->name('receptionist.import.excel.view');

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\Medicine;
+use App\Models\SystemMedicine;
 use App\Models\Diagnose;
+use App\Models\SystemDiagnoses;
 use App\Models\Appointment;
 use App\Models\MedicalSpeciality;
 use Illuminate\Http\Request;
@@ -169,7 +171,14 @@ class PatientController extends Controller
         if($patient) {
             $medical_specialities = MedicalSpeciality::all();
             $diagnoses = Diagnose::all();
-            $add_diagnose_form = view('doctor.sections.add_diagnose', ['appointment'=> $appointment, 'medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
+            $system_diagnoses = SystemDiagnoses::all();
+            $medicines = Medicine::all();
+            $system_medicines = SystemMedicine::all();
+            $system_medicines_names = [];
+            foreach ($system_medicines as $system_medicine){
+                array_push($system_medicines_names, $system_medicine->name);
+            }
+            $add_diagnose_form = view('doctor.sections.add_diagnose', ['appointment'=> $appointment, 'system_diagnoses' => $system_diagnoses, 'system_medicines' => $system_medicines , 'system_medicines_names' => $system_medicines_names, 'medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
             return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities, 'appointment'=>$appointment, 'add_diagnose_form' => $add_diagnose_form ]);
         }else{
             session()->flash('error', trans('lang.no_patient'));

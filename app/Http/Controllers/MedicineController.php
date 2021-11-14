@@ -11,13 +11,14 @@ class MedicineController extends Controller
 
     public function index()
     {
-        //
+        $medicines = Medicine::paginate(10);
+        return view('admin.dashboard.dashboard_medical_specialities', ['medicines' => $medicines]);
     }
 
 
     public function create()
     {
-        //
+       //
     }
 
 
@@ -34,6 +35,14 @@ class MedicineController extends Controller
 
         $medicine = new Medicine();
         $medicine->name = $request['name'];
+
+        if($request['dose']){
+            $medicine->name = $request['dose'];
+        }
+
+        if($request['duration']){
+            $medicine->name = $request['duration'];
+        }
 
         $medicine->save();
 

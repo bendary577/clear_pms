@@ -4,10 +4,24 @@
     <h4 class="text-primary">{{__('lang.doctor.add_diagnose')}}</h4>
     <form method="POST" action="{{route('doctor.add.diagnose', ['appointment_id' => $appointment->id])}}">
         {{ csrf_field() }}
+        <!--- 
         <div class="form-group">
             <label for="name">{{__('lang.rec.diagnose_name')}}</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="{{__('lang.rec.diagnose_name')}}" required>
         </div>
+        -->
+
+        <div class="form-group">
+            <label for="name">{{__('lang.rec.diagnose_name')}}</label>
+            <select class="form-control" id="name" name="name">
+                <option selected>{{__('lang.doctor.select')}}</option>
+                @foreach($system_diagnoses as $diagnose)    
+                    <option value="{{ $diagnose->name }}">{{ $diagnose->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        
         <div class="form-group">
             <label for="name">{{__('lang.rec.diagnose_description')}}</label>
             <!-- <input type="text" name="description" class="form-control" id="description" placeholder="{{__('lang.rec.diagnose_description')}}" required> -->
@@ -36,10 +50,24 @@
             </div>
 
             <div class="form-row" id="medicine_row_1">
+
                 <div class="form-group col-md-6">
+                    <label for="inputState">{{__('lang.doctor.medicine')}}</label>
+                    <select id="inputState" id="medicine_1" name="medicine_1" class="form-control">
+                        <option selected>Select</option>
+                        @foreach($system_medicines as $system_medicine)
+                            <option value="{{$system_medicine->id}}">{{ $system_medicine->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!--
+                    <div class="form-group col-md-6">
                     <label for="medicine">{{__('lang.doctor.medicine')}}</label>
                     <input type="text" name="medicine_1" class="form-control" id="medicine_1" placeholder="{{__('lang.doctor.medicine')}}">
                 </div>
+                -->
+
                 <div class="form-group col-md-4">
                     <label for="dose">{{__('lang.doctor.dose')}}</label>
                     <input type="text" name="dose_1" class="form-control" id="dose_1" placeholder="{{__('lang.doctor.dose')}}">
@@ -65,7 +93,7 @@
     $(document).ready(function(){
         //adding more medicine to the perscreption
         $('#add_medicine').click(function() {
-           
+
            //increment number of medicines
            let medicines_number_input = document.getElementById("medicines_number");
            let number = parseInt(medicines_number_input.value);
@@ -89,7 +117,6 @@
                                                     //let deleted_div = document.getElementById("medicine_row_"+number);
                                                     let deleted_div = document.getElementById("medicines").lastChild;
                                                     let child = deleted_div.lastElementChild; 
-                                                    console.log(deleted_div.innerHTML);
                                                     while (child) {
                                                         deleted_div.removeChild(child);
                                                         child = deleted_div.lastElementChild;
@@ -136,12 +163,32 @@
             duration_label.innerText = "duration";
 
             //-------inputs--------------------------------
+            
+            /*
             let medicine_input = document.createElement("input");
             medicine_input.setAttribute("type", "text");
             medicine_input.setAttribute("name", "medicine_"+number);
             medicine_input.setAttribute("class", "form-control");
             medicine_input.setAttribute("id", "medicine_"+number);
             medicine_input.setAttribute("placeholder", "medicine");
+            */
+
+            let medicine_select = document.createElement("select");
+           
+            medicine_select.setAttribute("name", "medicine_"+number);
+            medicine_select.setAttribute("class", "form-control");
+            medicine_select.setAttribute("id", "medicine_"+number);
+           
+
+            let system_medicines = @json($system_medicines_names);
+
+            for(let i=0; i < system_medicines.length; i++){
+                let medicine_option = document.createElement("option");
+                medicine_option.value = system_medicines[i];
+                medicine_option.text = system_medicines[i];
+                medicine_select.appendChild(medicine_option);
+            }
+            
 
             let dose_input = document.createElement("input");
             dose_input.setAttribute("type", "text");
@@ -159,7 +206,7 @@
 
            //add label and input elements to the 3 divs
            medicine_div.appendChild(medicine_label);
-           medicine_div.appendChild(medicine_input);
+           medicine_div.appendChild(medicine_select);
 
            dose_div.appendChild(dose_label);
            dose_div.appendChild(dose_input);

@@ -32,8 +32,7 @@ class DiagnoseController extends Controller
     {
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required|string|max:200',
-            'specialization' => 'required'
+            'name' => 'required',
         ]);
 
         if ($validator->fails()){
@@ -44,12 +43,14 @@ class DiagnoseController extends Controller
         $patient = Patient::where('id', $appointment->patient->id)->first();
         //save the diagnoses info
         $diagnose = new Diagnose();
-        $diagnose->name = $request['name'];
+        $diagnose->name = $request->get('name');
         $description = $request['description'];
         $protocol = $request['protocol'];
 
-        $medical_speciality = MedicalSpeciality::find(intval($request['specialization']));
-        $diagnose->medicalSpeciality()->associate($medical_speciality)->save();
+        if($request['specialization']){
+            $medical_speciality = MedicalSpeciality::find(intval($request['specialization']));
+            $diagnose->medicalSpeciality()->associate($medical_speciality)->save();
+        }
 
         $diagnose->save();
         $patient->diagnoses()->attach($diagnose, ['description' => $description, 'treatment_protocol' => $protocol]);

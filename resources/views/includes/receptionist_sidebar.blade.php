@@ -73,6 +73,12 @@
                             <a href="{{route('receptionist.doctors')}}" class="text-dark">{{ __('lang.dashboard.doctors')}}</a>
                         </li>
                         <li>
+                             <a href="{{route('receptionist.add.medicine')}}" class="text-dark">medicines</a> 
+                        </li>
+                        <li>
+                             <a href="{{route('receptionist.add.diagnose')}}" class="text-dark">diagnoses</a> 
+                        </li>
+                        <li>
                             <a href="{{route('receptionist.import.excel.view')}}" class="text-dark">{{ __('lang.rec.import_data')}}</a>
                         </li>
                         <li>

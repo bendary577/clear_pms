@@ -35,8 +35,8 @@
             <form method="POST" action="{{route('receptionist.patients.search')}}">
             {{ csrf_field() }}
                 <div class="input-group rounded">
-                    <input type="text" class="form-control rounded" placeholder="{{ __('lang.rec.search_code')}}" aria-label="Search"
-                        aria-describedby="search-addon" required name="code"/>
+                    <input type="text" class="form-control rounded" placeholder="search for patient using code or name" aria-label="Search"
+                        aria-describedby="search-addon" required name="search_keyword"/>
                     <input class="input-group-text border-0" id="search-addon" type="submit" value="{{ __('lang.rec.search')}}" />
                 </div>
             </form>
