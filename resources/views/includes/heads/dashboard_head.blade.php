@@ -37,3 +37,9 @@
 <script src="{{ asset('js/files_list.js') }}" defer></script>
 <link href="{{ asset('css/images.css') }}" rel="stylesheet"> 
 <script src="{{ asset('js/image_viewer.js') }}" defer></script>
+
+<!----------------- JQUERY -------------------->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
+<!------- Chartjs ---------->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

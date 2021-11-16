@@ -211,7 +211,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('receptionist_dashboard')->group(function () {
 
-            Route::get('/', [App\Http\Controllers\ReceptionistProfileController::class, 'welcome'])->name('receptionist.dashboard');
+            Route::get('/', [App\Http\Controllers\ReceptionistDashboardController::class, 'welcome'])->name('receptionist.dashboard');
 
             Route::get('/edit_profile', [App\Http\Controllers\ReceptionistProfileController::class, 'edit'])->name('receptionist.edit.profile');
 

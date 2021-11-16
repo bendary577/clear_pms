@@ -13,7 +13,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: black;
 }
 
 a,
@@ -65,9 +65,9 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #63cbff;
+    background: #e8ebed;
     /*#7386D5*/
-    color: #fff;
+    color: black;
     transition: all 0.3s;
 }
 
@@ -81,17 +81,17 @@ a:focus {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #63cbff;
+    background: #e8ebed;
     /*#6d7fcc*/
 }
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #e8ebed;
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: black;
     padding: 10px;
 }
 
@@ -111,29 +111,18 @@ a:focus {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #63cbff;
+    color: black;
+    background: #e8ebed;
 }
 
 a[data-toggle="collapse"] {
     position: relative;
 }
 
-/*
-.dropdown-toggle::after {
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
-
-*/
-
 ul ul a {
     font-size: 1.1em !important;
     padding-left: 30px !important;
-    background: #63cbff;
+    background: #e8ebed;
 }
 
 ul.CTAs {

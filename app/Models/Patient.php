@@ -42,4 +42,9 @@ class Patient extends Model
         return $this->belongsToMany(Diagnose::class, 'diagnose_patient')->withPivot('description', 'treatment_protocol');;
     }
 
+    public function receptionistProfile()
+    {
+        return $this->belongsTo(ReceptionistProfile::class);
+    }
+
 }

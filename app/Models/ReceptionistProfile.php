@@ -24,4 +24,9 @@ class ReceptionistProfile extends Model
       return $this->morphOne('App\Models\User', 'profile');
     }
 
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
 }

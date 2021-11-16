@@ -23,16 +23,20 @@
         <!----------------------------------------------- personal info -------------------------->
         <div class="row">
             <div class="personal_info col-md-6 my-4">
-                <div class="card" style="height:340px;">
+                <div class="card" style="height:450px;">
                     <div class="card-header">
                         <div class="clearfix">
                             <h5 class="card-title float-left">{{ __('lang.doctor.personal_info') }}</h5>
                             <a href="{{route('receptionist.edit.patient', ['id' => $patient->id ])}}" class="text-primary float-right">{{ __('lang.acc.edit_profile')}}</a>
                         </div>
+                        <p><small>list of all patient's personal info </small></p>
                     </div>
                     <div class="card-body">
                         <p class="card-text">{{ $patient->name }}</p>
-                        <p class="card-text">{{ $patient->phone }}</p>
+                        <p class="card-text">{{ $patient->receptionistProfile->user->name }}</p>
+                        @if($patient->phone)
+                            <p class="card-text">{{ $patient->phone }}</p>
+                        @endif
                         <p class="card-text">{{ $patient->gender }}</p>
                         <p class="card-text">{{ __('lang.rec.birthdate_at' , [ 'date' => $patient->birthdate])}}</p>
                         <p class="card-text">{{ __('lang.rec.registered_at' , [ 'date' => $patient->attendance_date])}}</p>
@@ -40,18 +44,23 @@
                     </div>
                 </div>
             </div>
-            <div class="personal_info col-md-6 my-4">
-                <div class="card" style="height:340px;">
+
+        <!----------------------------------------------- past visits info -------------------------->
+            <div class="past_visits_info col-md-6 my-4">
+                <div class="card" style="height:450px;">
                     <div class="card-header">
-                        <h5 class="card-title">{{ __('lang.doctor.clinic_info')}}</h5>
+                        <h5 class="">{{ __('lang.doctor.clinic_info')}}</h5>
+                        <p><small>list of doctors that patient has visited</small></p>
                     </div>  
-                    <div class="card-body">
-                        <!--
-                        <p class="card-text">Clinic Name</p>
-                        <p class="card-text">Doctor Name</p>
-                        <p class="card-text">Diagnoses info</p>
-                        -->
-                        <h5 class="card-title">{{ __('lang.rec.no_clinic')}}</h5>
+                    <div class="card-body" style="overflow-y: scroll;">
+                        @if(count($patient->appointments) > 0)
+                            @foreach($patient->appointments as $appointment)
+                                <p>{{ $appointment->clinic->doctorProfile->user->name }}</p>
+                                <p>{{ $appointment->clinic->doctorProfile->medicalSpeciality->name }}</p>
+                            @endforeach
+                        @else
+                            <h3 class="text-danger">{{ __('lang.rec.no_clinic')}}</h3>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -60,7 +69,7 @@
         <!---------------------------------------------- patient card ------------------------->
         <div class="row my-4">
             <div class="personal_info col-md-6">
-                <div class="card" style="height:340px;">
+                <div class="card" style="height:500px;">
                     <div class="card-header">
                         <h5 class="card-title">{{ __('lang.rec.patient_card')}}</h5>
                     </div>
@@ -75,7 +84,7 @@
 
             <!---------------------------------------------- patient sheet ------------------------->
             <div class="personal_info col-md-6">
-                <div class="card" style="height:340px;">
+                <div class="card" style="height:500px;">
                     <div class="card-header">
                         <h5 class="card-title">{{ __('lang.rec.patient_sheet')}}</h5>
                     </div>
@@ -88,7 +97,7 @@
                         </div>
                     @else
                         <div class="card-body">
-                            <h4 class="text-success">{{ __('lang.rec.no_patient_sheet')}}</h4>
+                            <h4 class="text-danger">{{ __('lang.rec.no_patient_sheet')}}</h4>
                             <form method="POST" action="{{route('receptionist.patient.upload.files', ['id' => $patient->id ]) }}" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="my-2">
@@ -111,8 +120,7 @@
                     @include('receptionist.sections.patient_files_list')
                     @include('receptionist.sections.upload_patient_files')
                 @else
-                    <h4 class="text-success">{{ __('lang.rec.no_attached_files')}}</h4>
-                    <p> {{ __('lang.rec.no_attached_files', [ 'name' => $patient->name ] )}} </p>
+                    <h4 class="text-danger">{{ __('lang.rec.no_attached_files')}}</h4>
                     @include('receptionist.sections.upload_patient_files')
                 @endif
             </div>
@@ -156,7 +164,8 @@
         <div class="row">
             <div class="my-4 w-100">
                 <div class="title my-4"><h3>{{ __('lang.rec.appointment_list')}}</h3></div>
-                @if($patient->appointments)
+                @if(count($patient->appointments) > 0)
+                    <h4 class="my-2">patient has <strong class="text-success">{{ count($patient->appointments) }}</strong> appointments </h4>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -189,7 +198,7 @@
                         </tbody>
                     </table>
                 @else
-                    <h3 class="text-danger">{{ __('lang.rec.no_appointment')}}</h3>
+                    <h4 class="text-danger">{{ __('lang.rec.no_appointment')}}</h4>
                 @endif
             </div>
         </div>

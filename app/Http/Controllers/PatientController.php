@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Storage;
+use App\Models\ReceptionistProfile;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -28,7 +30,12 @@ class PatientController extends Controller
 
     public function create()
     {
-        return view('receptionist.dashboard.dashboard_patients_add');
+        $system_diagnoses = SystemDiagnoses::all();
+        $system_medicines = SystemMedicine::all();
+        return view('receptionist.dashboard.dashboard_patients_add', [
+                        'system_diagnoses' => $system_diagnoses,
+                        'system_medicines' => $system_medicines
+                    ]);
     }
 
 
@@ -45,6 +52,8 @@ class PatientController extends Controller
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
 
+        $receptionistProfile = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
+
         $patient = new Patient();
         $patient->name = $request['name'];
         $patient->code = $patient->generateCode();
@@ -60,15 +69,12 @@ class PatientController extends Controller
             $request->image->move(public_path().$path, $imageName);
             $patient->card_image_path = $path.$imageName;  
         }
-        
+
+        $patient->receptionistProfile()->associate($receptionistProfile)->save();
         $patient->save();
-        /*
-        $medicine = new Medicine();
-        $medicine->name="dawaa";
-        $medicine->save();
-        $patient->medicines()->attach($medicine);
-        */
-        
+
+        $receptionistProfile->patients()->save($patient);
+
         session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
         return redirect()->back();   
     }

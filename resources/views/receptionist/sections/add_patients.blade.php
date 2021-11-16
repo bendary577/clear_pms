@@ -21,10 +21,17 @@
             <label for="name">{{ __('lang.rec.table.name')}}</label>
             <input type="name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.name')}}">
         </div>
+
         <div class="form-group">
             <label for="phone">{{ __('lang.rec.table.phone')}}</label>
             <input type="phone" name="phone" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.phone')}}">
         </div>
+
+        <div class="form-group">
+            <label for="phone">another phone number</label>
+            <input type="phone" name="phone" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.phone')}}">
+        </div>
+
         <div class="form-group">
             <label for="phone">{{ __('lang.rec.table.age')}}</label>
             <input type="number" name="age" class="form-control" id="number" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.age')}}">
@@ -45,6 +52,28 @@
             {{ __('lang.rec.table.female')}}
             </label>
         </div>
+
+        <div class="form-group my-3">
+            <label for="name">{{__('lang.rec.diagnose_name')}}</label>
+            <select class="form-control" id="name" name="name">
+                <option selected>{{__('lang.doctor.select')}}</option>
+                @foreach($system_diagnoses as $diagnose)    
+                    <option value="{{ $diagnose->name }}">{{ $diagnose->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+
+        <div class="form-group my-3">
+            <label for="inputState">{{__('lang.doctor.medicine')}}</label>
+            <select id="inputState" id="medicine_1" name="medicine_1" class="form-control">
+                <option selected>Select</option>
+                @foreach($system_medicines as $system_medicine)
+                    <option value="{{$system_medicine->id}}">{{ $system_medicine->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
         <div class="my-2">
             <input type="file" name="image" accept="image/*" required>

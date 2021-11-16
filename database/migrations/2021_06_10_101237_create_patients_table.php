@@ -15,6 +15,7 @@ class CreatePatientsTable extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('receptionist_profile_id')->nullable();
             $table->string('name');
             $table->string('phone');
             $table->integer('age');
@@ -24,6 +25,7 @@ class CreatePatientsTable extends Migration
             $table->date('attendance_date');
             $table->string('card_image_path')->nullable();
             $table->string('sheet_image_path')->nullable();
+            $table->foreign('receptionist_profile_id')->references('id')->on('receptionist_profiles');
             $table->timestamps();
         });
     }
