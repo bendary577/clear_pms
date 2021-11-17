@@ -103,7 +103,7 @@
     'dashboard.edit_profile' => 'Edit Profile',
     'dashboard.actions' => 'Actions',
         //------------ admin --------
-    'dashboard.registration_requests' => 'Registration Requests',
+    'dashboard.registration_requests' => 'New Requests',
     'dashboard.receptionists' => 'Receptionists',
     'dashboard.doctors' => 'Doctors',
     'dashboard.medical_specialities' => 'Medical Specialities',

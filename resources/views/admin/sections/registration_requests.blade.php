@@ -47,6 +47,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center align-items-center">
+                {!! $users->links() !!}
+            </div>
         @else
             <h3 class="text-danger mt-4">{{ __('lang.admin.no_requests')}}</h3>
         @endif

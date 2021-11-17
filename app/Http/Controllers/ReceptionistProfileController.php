@@ -13,7 +13,7 @@ class ReceptionistProfileController extends Controller
 
     public function index()
     {
-        $receptionists = ReceptionistProfile::paginate(10);
+        $receptionists = User::where('profile_type', '=', 'App\Models\ReceptionistProfile')->where('activated', true)->paginate(10);
         return view('admin.dashboard.dashboard_receptionists', ['receptionists' => $receptionists]);
     }
 

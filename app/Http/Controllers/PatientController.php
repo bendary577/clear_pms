@@ -24,7 +24,7 @@ class PatientController extends Controller
     public function index()
     {
         $patients = Patient::paginate(10);
-        return view('admin.dashboard.dashboard_medical_specialities', ['patient' => $patients]);
+        return view('receptionist.dashboard.dashboard_patients_list', ['patients' => $patients]);
     }
 
 
@@ -58,10 +58,20 @@ class PatientController extends Controller
         $patient->name = $request['name'];
         $patient->code = $patient->generateCode();
         $patient->phone = $request['phone'];
+        $patient->another_phone = $request['another_phone'];
         $patient->age = $request['age'];
         $patient->gender = $request['gender'];
         $patient->birthdate = $request['birthdate'];
         $patient->attendance_date = Carbon::now();
+
+        if($request['diagnose']){
+            $diagnose = new Diagnose();
+            $diagnose->name = $request->get('diagnose');
+            $description = $request['description'];
+            $protocol = $request['protocol'];
+            $diagnose->save();
+            $patient->diagnoses()->attach($diagnose, ['description' => $description, 'treatment_protocol' => $protocol]);
+        }
 
         if($request->image){
             $imageName = $request->image->getClientOriginalName();
@@ -69,7 +79,7 @@ class PatientController extends Controller
             $request->image->move(public_path().$path, $imageName);
             $patient->card_image_path = $path.$imageName;  
         }
-
+       
         $patient->receptionistProfile()->associate($receptionistProfile)->save();
         $patient->save();
 

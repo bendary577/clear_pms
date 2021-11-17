@@ -12,18 +12,11 @@
             </div>
 
             <div class="container">
-
-                <!--------------------- title ------------------------>
-                <h2> welcome </h2>
-
                 <!------------------- badges --------------------------->
                 @include('receptionist.sections.welcome_dashboard.upper_badges')
-
-                <!------------------- counts board --------------------------->
-
+                <!------------------- statistics --------------------------->
                 @include('receptionist.sections.welcome_dashboard.counts_section')
-
-                <!------------------- charts board --------------------------->
+                <!------------------- charts --------------------------->
                 @include('receptionist.sections.welcome_dashboard.charts')
             </div>
 </div>

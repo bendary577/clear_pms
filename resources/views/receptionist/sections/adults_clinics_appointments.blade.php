@@ -23,6 +23,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center align-items-center">
+            {!! $clinics->links() !!}
+        </div>
     @else
         <h3 class="text-danger mt-4">{{ __('lang.rec.no_clinics')}}</h3>
     @endif

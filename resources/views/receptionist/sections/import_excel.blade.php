@@ -17,7 +17,6 @@
       <div class="row">   
 
         <!---------------------------------- access card ----------------------------->
-        <!-- 
           <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -34,7 +33,6 @@
               </div>
             </div>
         </div>
-        -->
 
         <!---------------------------------- excel card ----------------------------->
 
@@ -56,7 +54,6 @@
         </div>
 
         <!---------------------------------- csv card ----------------------------->
-                <!-- 
         <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -73,7 +70,6 @@
               </div>
             </div>
         </div>
-                -->
         
       </div>
     </div>

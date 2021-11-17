@@ -27,30 +27,33 @@
                 <tbody>
                     @foreach ($receptionists as $receptionist)
                         <tr>
-                            <th scope="row">{{ $receptionist->user->name }}</th>
-                            @if(isset($receptionist->shift_start))
-                            <td>{{ date("g:i a", strtotime($receptionist->shift_start)) }}</td>
+                            <th scope="row">{{ $receptionist->name }}</th>
+                            @if(isset($receptionist->profile->shift_start))
+                            <td>{{ date("g:i a", strtotime($receptionist->profile->shift_start)) }}</td>
                             @else
                             <td>--</td>
                             @endif
-                            @if(isset($receptionist->shift_end))
-                            <td>{{ date("g:i a", strtotime($receptionist->shift_end)) }}</td>
+                            @if(isset($receptionist->profile->shift_end))
+                            <td>{{ date("g:i a", strtotime($receptionist->profile->shift_end)) }}</td>
                             @else
                             <td>--</td>
                             @endif
                             <td>
-                                <a href="{{route('admin.edit.receptionist', [ 'id' => $receptionist->id ])}}" class="btn btn-info">{{ __('lang.admin.update_account')}}</a>
-                                <a href="{{route('admin.delete.receptionist', [ 'id' => $receptionist->id ])}}" class="btn btn-danger">{{ __('lang.admin.delete_account')}}</a>
-                                @if($receptionist->user->blocked == 0)
-                                <a href="{{route('admin.block.account', [ 'id' => $receptionist->user->id ])}}" class="btn btn-warning">{{ __('lang.admin.block_account')}}</a>
+                                <a href="{{route('admin.edit.receptionist', [ 'id' => $receptionist->profile->id ])}}" class="btn btn-info">{{ __('lang.admin.update_account')}}</a>
+                                <a href="{{route('admin.delete.receptionist', [ 'id' => $receptionist->profile->id ])}}" class="btn btn-danger">{{ __('lang.admin.delete_account')}}</a>
+                                @if($receptionist->blocked == 0)
+                                <a href="{{route('admin.block.account', [ 'id' => $receptionist->id ])}}" class="btn btn-warning">{{ __('lang.admin.block_account')}}</a>
                                 @else
-                                <a href="{{route('admin.unblock.account', [ 'id' => $receptionist->user->id ])}}" class="btn btn-success">{{ __('lang.admin.unblock_account')}}</a>
+                                <a href="{{route('admin.unblock.account', [ 'id' => $receptionist->id ])}}" class="btn btn-success">{{ __('lang.admin.unblock_account')}}</a>
                                 @endif
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center align-items-center">
+                {!! $receptionists->links() !!}
+            </div>
         @else
             <h3 class="text-danger mt-4">{{__('lang.admin.no_receptionists')}}</h3>
         @endif

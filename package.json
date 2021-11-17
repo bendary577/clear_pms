@@ -22,6 +22,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "chart.js": "^3.6.0"
+        "@chartisan/chartjs": "^2.1.0",
+        "chart.js": "^2.9.4"
     }
 }

@@ -13,9 +13,9 @@
             </thead>
             <tbody>
                 <tr>
-                    <th>{{ $doctor->user->name }}</th>
-                    @if(isset($doctor->medicalSpeciality))
-                    <td>{{ $doctor->medicalSpeciality->name }}</td>
+                    <th>{{ $doctor->name }}</th>
+                    @if(isset($doctor->profile->medicalSpeciality))
+                    <td>{{ $doctor->profile->medicalSpeciality->name }}</td>
                     @else
                     <td>{{__('lang.doctor.no_medical_speciality')}}</td>
                     @endif 
@@ -23,6 +23,7 @@
                     <td>{{ date("g:i a", strtotime($clinic->available_from)) }}</td>
                     <td>{{ date("g:i a", strtotime($clinic->available_to)) }}</td>
                     @else
+                    <td>--</td>
                     <td>--</td>
                     @endif
                 </tr>
@@ -52,6 +53,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center align-items-center">
+                {!! $clinic->appointments->links() !!}
+            </div>
             @else
             <h4 class="text-danger mt-4">{{__('lang.doctor.no_appointments')}}</h4>
             @endif

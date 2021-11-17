@@ -27,25 +27,28 @@
                 <tbody>
                     @foreach ($doctors as $doctor)
                         <tr>
-                            <th scope="row">{{ $doctor->user->name }}</th>
-                            @if(isset($doctor->medicalSpeciality))
-                            <td>{{$doctor->phone}}</td>
+                            <th scope="row">{{ $doctor->name }}</th>
+                            @if(isset($doctor->profile->medicalSpeciality))
+                            <td>{{$doctor->profile->phone}}</td>
                             @else
                             <td>--</td>
                             @endif
-                            @if(isset($doctor->medicalSpeciality))
-                            <td>{{$doctor->medicalSpeciality->name}}</td>
+                            @if(isset($doctor->profile->medicalSpeciality))
+                            <td>{{$doctor->profile->medicalSpeciality->name}}</td>
                             @else
                             <td>--</td>
                             @endif
                             <td>
                                 <!-- <a href="" class="btn btn-info">{{__('lang.admin.check_scheduale')}}</a> -->
-                                <a href="{{route('admin.delete.doctor', ['id' => $doctor->user->id ])}}" class="btn btn-danger">{{__('lang.admin.delete')}}</a>
+                                <a href="{{route('admin.delete.doctor', ['id' => $doctor->id ])}}" class="btn btn-danger">{{__('lang.admin.delete')}}</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center align-items-center">
+                {!! $doctors->links() !!}
+            </div>
         @else
             <h3 class="text-danger mt-4">{{__('lang.admin.no_doctors')}}</h3>
         @endif

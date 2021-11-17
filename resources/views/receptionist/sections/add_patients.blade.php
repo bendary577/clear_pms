@@ -1,9 +1,17 @@
 <div class="container">
 
     <!--- if patient is added is added successfully ----------->
-    @if (Session::has('success'))
-        <div class="alert alert-success">{{ Session::get('success') }}</div>
+
+    @if($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <strong> {{ $message }}</strong>
+        </div>
     @endif
+    
+    {!! Session::forget('success') !!}
 
     <!--- if patient is not added successfully ----------->
     @if($errors->any())
@@ -28,8 +36,8 @@
         </div>
 
         <div class="form-group">
-            <label for="phone">another phone number</label>
-            <input type="phone" name="phone" class="form-control" id="phone" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.phone')}}">
+            <label for="another_phone">another phone number</label>
+            <input type="phone" name="another_phone" class="form-control" id="another_phone" aria-describedby="emailHelp" placeholder="Another Phone">
         </div>
 
         <div class="form-group">
@@ -55,19 +63,18 @@
 
         <div class="form-group my-3">
             <label for="name">{{__('lang.rec.diagnose_name')}}</label>
-            <select class="form-control" id="name" name="name">
-                <option selected>{{__('lang.doctor.select')}}</option>
+            <select class="form-control" id="diagnose" name="diagnose">
+                <option selected>Select Diagnose</option>
                 @foreach($system_diagnoses as $diagnose)    
                     <option value="{{ $diagnose->name }}">{{ $diagnose->name }}</option>
                 @endforeach
             </select>
         </div>
 
-
         <div class="form-group my-3">
-            <label for="inputState">{{__('lang.doctor.medicine')}}</label>
-            <select id="inputState" id="medicine_1" name="medicine_1" class="form-control">
-                <option selected>Select</option>
+            <label for="medication">{{__('lang.doctor.medicine')}}</label>
+            <select id="medication" name="medication" class="form-control">
+                <option selected>Select Medicine</option>
                 @foreach($system_medicines as $system_medicine)
                     <option value="{{$system_medicine->id}}">{{ $system_medicine->name }}</option>
                 @endforeach

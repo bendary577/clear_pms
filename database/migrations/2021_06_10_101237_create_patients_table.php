@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePatientsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
@@ -18,6 +14,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('receptionist_profile_id')->nullable();
             $table->string('name');
             $table->string('phone');
+            $table->string('another_phone');
             $table->integer('age');
             $table->integer('code');
             $table->enum('gender',['male', 'female']);
@@ -30,11 +27,6 @@ class CreatePatientsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('patients');

@@ -154,6 +154,7 @@
                             @endforeach
                         </tbody>
                     </table>
+
                 @else
                     <h4 class="text-danger mt-2">{{ __('lang.rec.no_diagnose')}}</h4>
                 @endif
@@ -197,6 +198,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center align-items-center">
+                        {!! $$patient->appointments->links() !!}
+                    </div>
                 @else
                     <h4 class="text-danger">{{ __('lang.rec.no_appointment')}}</h4>
                 @endif

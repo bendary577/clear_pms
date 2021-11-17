@@ -46,7 +46,6 @@
                             </div>
                         </div>
                     </div>
-
                         <tr>
                             <th scope="row">{{ $admin->name }}</th>
                             <td>

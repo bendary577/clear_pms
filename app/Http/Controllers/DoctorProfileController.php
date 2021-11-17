@@ -15,7 +15,7 @@ class DoctorProfileController extends Controller
 
     public function index()
     {
-        $doctors = DoctorProfile::with('medicalSpeciality')->paginate(10);
+        $doctors = User::where('profile_type', '=', 'App\Models\DoctorProfile')->where('activated', true)->paginate(10);
         return view('admin.dashboard.dashboard_doctors', ['doctors' => $doctors]);
     }
 
@@ -110,14 +110,14 @@ class DoctorProfileController extends Controller
 
     public function indexReceptionist()
     {
-        $doctors = DoctorProfile::with('medicalSpeciality')->paginate(10);
+        $doctors = User::where('profile_type', '=', 'App\Models\DoctorProfile')->where('activated', true)->paginate(10);
         return view('receptionist.dashboard.dashboard_doctors', ['doctors' => $doctors]);
     }
 
     public function schedules($id)
     {
-        $doctor = DoctorProfile::where('id', $id)->with('medicalSpeciality')->first();
-        $clinic = Clinic::where('doctor_profile_id', $doctor->id)->with('appointments')->first();
+        $doctor = User::where('profile_type', '=', 'App\Models\DoctorProfile')->where('profile_id', $id)->where('activated', true)->first();
+        $clinic = Clinic::where('doctor_profile_id', $doctor->profile->id)->with('appointments')->first();
         return view('receptionist.dashboard.dashboard_doctor_schedules', ['doctor' => $doctor, 'clinic' => $clinic]);
     }
 }

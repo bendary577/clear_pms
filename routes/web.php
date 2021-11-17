@@ -250,6 +250,8 @@ Route::middleware('auth')->group(function () {
                 
                 Route::get('/', [App\Http\Controllers\PatientController::class, 'indexReceptionist'])->name('receptionist.patients');
 
+                Route::get('/list', [App\Http\Controllers\PatientController::class, 'index'])->name('receptionist.patients.list');
+
                 Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('receptionist.patients.search');
 
                 Route::get('/add', [App\Http\Controllers\PatientController::class, 'create'])->name('receptionist.add.patient');
