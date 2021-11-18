@@ -131,7 +131,7 @@
 
         <!-------------------------- diagnoses ----------------------------------->
         <div class="row">
-            @if(count($diagnoses) >0)
+            @if(count($patient->diagnoses) >0)
                 <div class="title my-5"><h3>{{ __('lang.rec.diagnoses')}}</h3></div>
                 <table class="table table-hover">
                     <thead>
@@ -143,15 +143,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($diagnoses as $diagnose)
-                            @foreach($diagnose->patients as $patient)
-                                <tr>
-                                    <th scope="row">{{ $diagnose->name }}</th>
-                                    <td>{{ $patient->pivot->description }}</td>
-                                    <td>{{ $patient->pivot->treatment_protocol }}</td>
-                                    <td><a href="{{route('doctor.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">{{ __('lang.rec.check_perscreption')}}</a></td>
-                                </tr>
-                            @endforeach
+                        @foreach($patient->diagnoses as $diagnose)
+                            <tr>
+                                <th scope="row">{{ $diagnose->name }}</th>
+                                <td>{{ $diagnose->description }}</td>
+                                <td>{{ $diagnose->treatment_protocol }}</td>
+                                <td><a href="{{route('doctor.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">{{ __('lang.rec.check_perscreption')}}</a></td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

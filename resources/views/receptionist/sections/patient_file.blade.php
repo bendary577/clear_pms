@@ -56,7 +56,11 @@
                         @if(count($patient->appointments) > 0)
                             @foreach($patient->appointments as $appointment)
                                 <p>{{ $appointment->clinic->doctorProfile->user->name }}</p>
-                                <p>{{ $appointment->clinic->doctorProfile->medicalSpeciality->name }}</p>
+                                @if($appointment->clinic->doctorProfile->medicalSpeciality)
+                                    <p>{{ $appointment->clinic->doctorProfile->medicalSpeciality->name }}</p>
+                                @else
+                                    <p>no medical speciality</p>
+                                @endif
                             @endforeach
                         @else
                             <h3 class="text-danger">{{ __('lang.rec.no_clinic')}}</h3>
@@ -133,7 +137,7 @@
         <div class="row mt-4">
             <div class="my-4 w-100">
                 <h3>{{ __('lang.rec.diagnoses')}}</h3>
-                @if(count($diagnoses) > 0)
+                @if(count($patient->diagnoses) > 0)
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -143,14 +147,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($diagnoses as $diagnose)
-                                @foreach($diagnose->patients as $patient)
-                                    <tr>
-                                        <th scope="row">{{ $diagnose->name }}</th>
-                                        <td>{{ $patient->pivot->description }}</td>
-                                        <td>{{ $patient->pivot->treatment_protocol }}</td> 
-                                    </tr>
-                                @endforeach
+                            @foreach($patient->diagnoses as $diagnose)
+                                <tr>
+                                    <th>{{ $diagnose->name }}</th>
+                                    <td>{{ $diagnose->description }}</td>
+                                    <td>{{ $diagnose->treatment_protocol }}</td> 
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -198,9 +200,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center align-items-center">
-                        {!! $$patient->appointments->links() !!}
-                    </div>
                 @else
                     <h4 class="text-danger">{{ __('lang.rec.no_appointment')}}</h4>
                 @endif

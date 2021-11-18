@@ -12,9 +12,7 @@ class DoctorProfile extends Model
     protected $guarded = [];
 
     protected $fillable = [
-        'phone',
-        'avatar_path',
-        'about'
+        'has_clinic',
     ];
 
     

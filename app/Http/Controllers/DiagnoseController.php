@@ -41,19 +41,27 @@ class DiagnoseController extends Controller
 
         $appointment = Appointment::where('id', $appointment_id)->first();
         $patient = Patient::where('id', $appointment->patient->id)->first();
+        
         //save the diagnoses info
         $diagnose = new Diagnose();
         $diagnose->name = $request->get('name');
-        $description = $request['description'];
-        $protocol = $request['protocol'];
+
+        if($request['description']){
+        $diagnose->description = $request->get('description');
+        }
+        
+        if($request['treatment_protocol']){
+        $diagnose->treatment_protocol = $request->get('treatment_protocol');
+        }
 
         if($request['specialization']){
             $medical_speciality = MedicalSpeciality::find(intval($request['specialization']));
             $diagnose->medicalSpeciality()->associate($medical_speciality)->save();
         }
 
+        $diagnose->patient()->associate($patient)->save();
         $diagnose->save();
-        $patient->diagnoses()->attach($diagnose, ['description' => $description, 'treatment_protocol' => $protocol]);
+        $patient->diagnoses()->associate($diagnose)->save(); 
 
         if($request['medicines_number']){
             //save the perscreption info

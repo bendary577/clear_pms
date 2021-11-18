@@ -23,6 +23,9 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('profile_id')->nullable();
             $table->boolean('activated');
             $table->boolean('blocked');
+            $table->string('about')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('avatar_path')->nullable();
             $table->string('forgot_password_code')->nullable();
             $table->rememberToken();
             $table->timestamps();

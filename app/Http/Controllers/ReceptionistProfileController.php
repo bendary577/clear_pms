@@ -60,8 +60,6 @@ class ReceptionistProfileController extends Controller
         $id = Auth::user()->id;
         $receptionist = User::find($id);
 
-        $profile = ReceptionistProfile::find($receptionist->profile_id);
-
         if($request['name']){
             $receptionist->name = $request['name'];
         }
@@ -70,27 +68,27 @@ class ReceptionistProfileController extends Controller
             $imageName = $request->image->getClientOriginalName();
             $path = '/avatars/'.'/'.$receptionist->id.'/';
             $request->image->move(public_path().$path, $imageName);
-            $profile->avatar_path = $path.$imageName;
+            $receptionist->avatar_path = $path.$imageName;
         }
 
         if($request['phone']){
-            $profile->phone = $request['phone'];
+            $receptionist->phone = $request['phone'];
         }
 
         if($request['shift_start']){
-            $profile->shift_start = $request['shift_start'];
+            $receptionist->profile->shift_start = $request['shift_start'];
         }
 
         if($request['shift_end']){
-            $profile->shift_end = $request['shift_end'];
+            $receptionist->profile->shift_end = $request['shift_end'];
         }
 
         if($request['about']){
-            $profile->about = $request['about'];
+            $receptionist->about = $request['about'];
         }
 
         $receptionist->save();
-        $profile->save();
+        $receptionist->profile->save();
 
         session()->flash('success', trans('lang.rec.profile_updated'));
         return redirect()->back();   

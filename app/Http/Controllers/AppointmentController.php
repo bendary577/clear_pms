@@ -85,13 +85,13 @@ class AppointmentController extends Controller
 
     public function getAdultsClinicsAppointments($id)
     {
-        $clinics = Clinic::where('department', 'adults')->with('doctorProfile')->get();
+        $clinics = Clinic::where('department', 'adults')->with('doctorProfile')->paginate(10);
         return view('receptionist.dashboard.dashboard_udults_clinics_appointments', ['clinics' => $clinics, 'id' => $id]);
     }
 
     public function getChildrenClinicsAppointments($id)
     {
-        $clinics = Clinic::where('department', 'children')->with('doctorProfile')->get();
+        $clinics = Clinic::where('department', 'children')->with('doctorProfile')->paginate(10);
         return view('receptionist.dashboard.dashboard_children_clinics_appointments', ['clinics' => $clinics, 'id' => $id]);
     }
 

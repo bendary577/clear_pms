@@ -54,10 +54,6 @@ class AdminProfileController extends Controller
             $receptionist->shift_end = $request['shift_end'];
         }
 
-        if($request['about']){
-            $receptionist->about = $request['about'];
-        }
-
         $receptionist->save();
 
         session()->flash('success', trans('lang.rec.update_success'));
@@ -103,14 +99,14 @@ class AdminProfileController extends Controller
         }
 
         if($request['about']){
-            $admin->profile->about = $request['about'];
+            $admin->about = $request['about'];
         }
 
         if($request['image']){
             $imageName = $request->image->getClientOriginalName();
             $path = '/avatars/'.'/'.$admin->id.'/';
             $request->image->move(public_path().$path, $imageName);
-            $admin->profile->avatar_path = $path.$imageName;
+            $admin->avatar_path = $path.$imageName;
         }
 
         $admin->save();
@@ -134,9 +130,9 @@ class AdminProfileController extends Controller
     public function getRegistrationRequests(){
         $users = [];
         if(Auth::user()->profile->is_super == true){
-            $users = User::where('activated', false)->where('id', '!=', Auth::user()->id)->get();
+            $users = User::where('activated', false)->where('id', '!=', Auth::user()->id)->paginate(10);
         }else{
-            $users = User::where('activated', false)->where('id', '!=', Auth::user()->id)->where('profile_type', '!=', 'App\Models\AdminProfile')->get();
+            $users = User::where('activated', false)->where('id', '!=', Auth::user()->id)->where('profile_type', '!=', 'App\Models\AdminProfile')->paginate(10);
         }
         return view('admin.dashboard.dashboard_registration_requests', ['users'=> $users]);
     }

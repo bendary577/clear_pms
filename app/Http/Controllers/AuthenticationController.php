@@ -71,6 +71,7 @@ class AuthenticationController extends Controller
             }
         }else if($request['account'] == 'doctor'){
             $doctorProfile = new DoctorProfile();
+            $doctorProfile->has_clinic = false;
             $doctorProfile->save();
             $doctorProfile->user()->save($user);
             if(Role::where('name', 'doctor')->exists()){

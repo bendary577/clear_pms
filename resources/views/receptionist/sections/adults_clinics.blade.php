@@ -22,7 +22,6 @@
                     @else if($clinic->department === 'children')
                     <td>{{ __('lang.doctor.children') }}</td>
                     @endif
-
                     <td>{{ $clinic->doctorProfile->user->name }}</td>
                     <td>{{ date("g:i a", strtotime($clinic->available_from)) }}</td>
                     <td>{{ date("g:i a", strtotime($clinic->available_to)) }}</td>

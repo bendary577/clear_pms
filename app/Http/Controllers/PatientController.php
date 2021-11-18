@@ -94,8 +94,7 @@ class PatientController extends Controller
     {
         $patient = Patient::find($id);
         $medical_specialities = MedicalSpeciality::all();
-        $diagnoses = Diagnose::all();
-        return view('receptionist.dashboard.dashboard_patient_file', ['patient' => $patient,'medical_specialities' => $medical_specialities,'diagnoses' => $diagnoses]);
+        return view('receptionist.dashboard.dashboard_patient_file', ['patient' => $patient,'medical_specialities' => $medical_specialities]);
     }
 
 
@@ -182,11 +181,10 @@ class PatientController extends Controller
     }
 
     public function getPatientFileHistory($id){
-        $appointment = Appointment::where('id', $id)->first();
         $patient = Patient::where('id', $appointment->patient->id)->first();
         if($patient) {
+            $appointment = Appointment::where('id', $id)->first();
             $medical_specialities = MedicalSpeciality::all();
-            $diagnoses = Diagnose::all();
             $system_diagnoses = SystemDiagnoses::all();
             $medicines = Medicine::all();
             $system_medicines = SystemMedicine::all();
@@ -195,7 +193,7 @@ class PatientController extends Controller
                 array_push($system_medicines_names, $system_medicine->name);
             }
             $add_diagnose_form = view('doctor.sections.add_diagnose', ['appointment'=> $appointment, 'system_diagnoses' => $system_diagnoses, 'system_medicines' => $system_medicines , 'system_medicines_names' => $system_medicines_names, 'medical_specialities' => $medical_specialities, 'patient' => $patient])->render();
-            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'diagnoses' => $diagnoses, 'medical_specialities' => $medical_specialities, 'appointment'=>$appointment, 'add_diagnose_form' => $add_diagnose_form ]);
+            return view('doctor.dashboard.dashboard_patient_file', ['patient' => $patient, 'medical_specialities' => $medical_specialities, 'appointment'=>$appointment, 'add_diagnose_form' => $add_diagnose_form ]);
         }else{
             session()->flash('error', trans('lang.no_patient'));
             return redirect()->back(); 

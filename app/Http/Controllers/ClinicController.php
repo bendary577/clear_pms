@@ -22,7 +22,8 @@ class ClinicController extends Controller
 
     public function create()
     {
-        return view('doctor.dashboard.dashboard_add_clinic');  
+        $doctor = Auth::user();
+        return view('doctor.dashboard.dashboard_add_clinic', ['doctor' => $doctor]);  
     }
 
 
@@ -50,6 +51,7 @@ class ClinicController extends Controller
             $clinic->save();
 
             $doctor = DoctorProfile::find(Auth::user()->profile->id);
+            $doctor->has_clinic = true;
             $doctor->clinic()->save($clinic);
             $clinic->doctorProfile()->associate($doctor)->save();
 
@@ -139,13 +141,13 @@ class ClinicController extends Controller
 
     public function getAdultsClinics()
     {
-        $clinics = Clinic::where('department', 'adults')->with('doctorProfile')->get();
+        $clinics = Clinic::where('department', 'adults')->with('doctorProfile')->paginate(10);
         return view('receptionist.dashboard.dashboard_udults_clinics', ['clinics' => $clinics]);
     }
 
     public function getChildrenClinics()
     {
-        $clinics = Clinic::where('department', 'children')->with('doctorProfile')->get();
+        $clinics = Clinic::where('department', 'children')->with('doctorProfile')->paginate(10);
         return view('receptionist.dashboard.dashboard_children_clinics', ['clinics' => $clinics]);
     }
 

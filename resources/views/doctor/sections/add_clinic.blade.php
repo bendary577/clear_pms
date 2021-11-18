@@ -14,7 +14,10 @@
         </ul>
     @endif
 
-        <div class=""><h2>{{__('lang.doctor.add_clinic')}}</h2></div>
+    @if(!$doctor->has_clinic)
+        <div class="text-danger"><h2>sorry, you already have a clinic</h2></div>
+    @else
+    <div class=""><h2>{{__('lang.doctor.add_clinic')}}</h2></div>
         <form method="POST" action="{{route('doctor.store.clinic')}}">
             {{ csrf_field() }}
             <div class="form-group">
@@ -43,4 +46,5 @@
             </div>
             <button type="submit" class="btn btn-primary mt-2">{{__('lang.submit')}}</button>
         </form>
+    @endif
 </div>

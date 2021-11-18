@@ -64,15 +64,15 @@ class DoctorProfileController extends Controller
             $imageName = $request->image->getClientOriginalName();
             $path = '/avatars/'.'/'.$doctor->id.'/';
             $request->image->move(public_path().$path, $imageName);
-            $doctor->profile->avatar_path = $path.$imageName;
+            $doctor->avatar_path = $path.$imageName;
         }
 
         if($request['phone']){
-            $doctor->profile->phone = $request['phone'];
+            $doctor->phone = $request['phone'];
         }
 
         if($request['about']){
-            $doctor->profile->about = $request['about'];
+            $doctor->about = $request['about'];
         }
 
         if($request['specialization']){

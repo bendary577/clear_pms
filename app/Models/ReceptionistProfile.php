@@ -12,9 +12,6 @@ class ReceptionistProfile extends Model
     protected $guarded = [];
     
     protected $fillable = [
-        'phone',
-        'avatar_path',
-        'about',
         'shift_start',
         'shift_end',
     ];
