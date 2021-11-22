@@ -39,23 +39,17 @@ class AdminProfileController extends Controller
             'shift_start' => 'nullable',
             'shift_end' => 'nullable',
         ]);
-
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-
         $receptionist = ReceptionistProfile::find($id);
-
         if($request['shift_start']){
             $receptionist->shift_start = $request['shift_start'];
         }
-
         if($request['shift_end']){
             $receptionist->shift_end = $request['shift_end'];
         }
-
         $receptionist->save();
-
         session()->flash('success', trans('lang.rec.update_success'));
         return redirect()->back();  
     }

@@ -23,18 +23,14 @@ class SystemDiagnosesController extends Controller
         [
             'name' => 'required',
         ]);
-
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-
         $diagnose = new SystemDiagnoses();
         $diagnose->name = $request->get('name');
         $diagnose->save();
-
         session()->flash('success', 'system diagnose added succesfuly');
-        return redirect()->back();   
-        
+        return redirect()->back();    
     }
 
     public function show(SystemDiagnoses $systemDiagnoses)
