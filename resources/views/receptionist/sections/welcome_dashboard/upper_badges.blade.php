@@ -1,6 +1,6 @@
                 <div class="row my-4">
                     <div class="col-md-3">
-                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center" style="width:200px;height:50px">
+                        <a href="{{route('receptionist.patients.statistics')}}" class="badge badge-pill badge-light shadow d-flex justify-content-center upper_badge" style="width:200px;height:50px">
                             <div class="d-flex">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h6><span class="badge badge-danger mx-1">1</span>patients statistics</h6>
@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center" style="width:200px;height:50px">
+                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center upper_badge" style="width:200px;height:50px">
                             <div class="d-flex">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h6><span class="badge badge-warning mx-1">2</span>clinics statistics</h6>
@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center" style="width:200px;height:50px">
+                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center upper_badge" style="width:200px;height:50px">
                             <div class="d-flex">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h6><span class="badge badge-success mx-1">3</span>medical insights</h6>
@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center" style="width:200px;height:50px">
+                        <a class="badge badge-pill badge-light shadow d-flex justify-content-center upper_badge" style="width:200px;height:50px">
                             <div class="d-flex">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <h6><span class="badge badge-primary mx-1">4</span>system statistics</h6>

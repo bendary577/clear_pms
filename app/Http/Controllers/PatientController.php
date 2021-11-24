@@ -40,20 +40,16 @@ class PatientController extends Controller
 
 
     public function store(Request $request)
-    {
-        
+    { 
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|string|max:200',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-
         $receptionistProfile = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
-
         $patient = new Patient();
         $patient->name = $request['name'];
         $patient->code = $patient->generateCode();
@@ -63,28 +59,24 @@ class PatientController extends Controller
         $patient->gender = $request['gender'];
         $patient->birthdate = $request['birthdate'];
         $patient->attendance_date = Carbon::now();
-
         if($request['diagnose']){
             $diagnose = new Diagnose();
             $diagnose->name = $request->get('diagnose');
-            $description = $request['description'];
-            $protocol = $request['protocol'];
+            $diagnose->description = $request['description'];
+            $diagnose->treatment_protocol = $request['treatment_protocol'];
             $diagnose->save();
-            $patient->diagnoses()->attach($diagnose, ['description' => $description, 'treatment_protocol' => $protocol]);
+            $patient->diagnoses->add($diagnose);
+            //$diagnose->patient()->save($patient);
         }
-
         if($request->image){
             $imageName = $request->image->getClientOriginalName();
             $path = '/patients_cards/'.date('Y-m-d').'/'.$patient->name.'/';
             $request->image->move(public_path().$path, $imageName);
             $patient->card_image_path = $path.$imageName;  
         }
-       
         $patient->receptionistProfile()->associate($receptionistProfile)->save();
         $patient->save();
-
         $receptionistProfile->patients()->save($patient);
-
         session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
         return redirect()->back();   
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReceptionistProfile;
+use App\Models\SystemDiagnoses;
+use App\Models\SystemMedicine;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -112,5 +114,12 @@ class ReceptionistProfileController extends Controller
     public function welcome()
     {
         return view('receptionist.dashboard.dashboard_welcome');
+    }
+
+    public function startVisit($id)
+    {
+        $system_diagnoses = SystemDiagnoses::all();
+        $system_medicines = SystemMedicine::all();
+        return view('receptionist.dashboard.dashboard_specialist_patient_visit', ['id' => $id, 'system_diagnoses' => $system_diagnoses, 'system_medicines' => $system_medicines]);
     }
 }

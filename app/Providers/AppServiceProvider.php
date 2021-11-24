@@ -28,7 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultstringLength(191);
         $charts->register([
-            \App\Charts\SampleChart::class
+            \App\Charts\SampleChart::class,
+            \App\Charts\PatientsAgesChart::class,
+            \App\Charts\PatientsGendersChart::class,
+            \App\Charts\PatientsDiagnosesChart::class
         ]);
         Paginator::useBootstrap();
     }

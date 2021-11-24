@@ -15,6 +15,8 @@
                 <!------------------- badges --------------------------->
                 @include('receptionist.sections.welcome_dashboard.upper_badges')
                 <!------------------- statistics --------------------------->
+                @include('receptionist.sections.welcome_dashboard.main_statistics')
+                <!---------------------- counts ------------------------------->
                 @include('receptionist.sections.welcome_dashboard.counts_section')
                 <!------------------- charts --------------------------->
                 @include('receptionist.sections.welcome_dashboard.charts')

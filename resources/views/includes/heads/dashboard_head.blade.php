@@ -32,6 +32,8 @@
 
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> 
 
+<link href="{{ asset('css/upper_badge.css') }}" rel="stylesheet"> 
+
 <!----- PATIENT FILES LIST ------->
 <link href="{{ asset('css/files_list.css') }}" rel="stylesheet"> 
 <script src="{{ asset('js/files_list.js') }}" defer></script>
@@ -41,5 +43,8 @@
 <!----------------- JQUERY -------------------->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 
-<!------- Chartjs ---------->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Charting library -->
+<script src="https://unpkg.com/chart.js@^2.9.3/dist/Chart.min.js"></script>
+<!-- Chartisan -->
+<script src="https://unpkg.com/@chartisan/chartjs@^2.1.0/dist/chartisan_chartjs.umd.js"></script>

@@ -12,7 +12,9 @@ class Diagnose extends Model
     protected $table = 'diagnoses';
     
     protected $fillable = [
-        'name'
+        'name',
+        'description',
+        'treatment_protocol'
     ];
 
     public function medicalSpeciality()
