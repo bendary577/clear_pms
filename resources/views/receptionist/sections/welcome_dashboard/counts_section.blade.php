@@ -63,7 +63,7 @@
                         </div>
                         <div class="d-flex">
                             <div class=""><img src="{{url('/images/dashboard/down-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" /></div>
-                        <div class=""><h3 class="card-text text-danger">20%</h3></div>
+                            <div class=""><h3 class="card-text text-danger">20%</h3></div>
                         </div>
                         <div class="px-3"><p>since last month</p></div>
                     </div>

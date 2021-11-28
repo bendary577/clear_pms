@@ -19,8 +19,8 @@ class PatientsGendersChart extends BaseChart
         $men_patients_count = Patient::where('gender', '=', 'male')->count();
         $women_patients_count = Patient::where('gender', '=', 'female')->count();
 
-        $men_patients_percentage = ($men_patients_count/$patients_count)*100;
-        $women_patients_percentage = ($women_patients_count/$patients_count)*100;
+        $men_patients_percentage = round(($men_patients_count/$patients_count)*100);
+        $women_patients_percentage = round(($women_patients_count/$patients_count)*100);
 
         return Chartisan::build()
             ->labels([$men_patients_percentage.' % '.'Male', $women_patients_percentage.' % '.'Female'])

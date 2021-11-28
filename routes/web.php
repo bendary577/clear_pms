@@ -141,6 +141,9 @@ Route::middleware('auth')->group(function () {
         Route::prefix('receptionist_dashboard')->group(function () {
             Route::get('/', [App\Http\Controllers\ReceptionistDashboardController::class, 'welcome'])->name('receptionist.dashboard');
             Route::get('/patients_statistics', [App\Http\Controllers\ReceptionistDashboardController::class, 'patientsStatistics'])->name('receptionist.patients.statistics');
+            Route::get('/clinics_statistics', [App\Http\Controllers\ReceptionistDashboardController::class, 'clinicsStatistics'])->name('receptionist.clinics.statistics');
+            Route::get('/medical_insights', [App\Http\Controllers\ReceptionistDashboardController::class, 'medicalInsights'])->name('receptionist.medical.insights');
+            Route::get('/system_statistics', [App\Http\Controllers\ReceptionistDashboardController::class, 'systemStatistics'])->name('receptionist.system.statistics');
 
             Route::get('/edit_profile', [App\Http\Controllers\ReceptionistProfileController::class, 'edit'])->name('receptionist.edit.profile');
             Route::post('/update_profile', [App\Http\Controllers\ReceptionistProfileController::class, 'update'])->name('receptionist.update.profile');

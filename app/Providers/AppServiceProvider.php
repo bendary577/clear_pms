@@ -31,7 +31,9 @@ class AppServiceProvider extends ServiceProvider
             \App\Charts\SampleChart::class,
             \App\Charts\PatientsAgesChart::class,
             \App\Charts\PatientsGendersChart::class,
-            \App\Charts\PatientsDiagnosesChart::class
+            \App\Charts\PatientsDiagnosesChart::class,
+            \App\Charts\ClinicsDepartmentsPieChart::class,
+            \App\Charts\SystemDiagnosesBarChart::class
         ]);
         Paginator::useBootstrap();
     }

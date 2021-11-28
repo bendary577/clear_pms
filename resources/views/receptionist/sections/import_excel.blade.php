@@ -15,7 +15,6 @@
     <h2 class="text-title mb-4">{{ __('lang.rec.import_data_desc')}}</h2>
     <div class="container">
       <div class="row">   
-
         <!---------------------------------- access card ----------------------------->
           <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
