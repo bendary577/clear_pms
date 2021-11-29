@@ -53,11 +53,11 @@
                         <p><small>list of doctors that patient has visited</small></p>
                     </div>  
                     <div class="card-body" style="overflow-y: scroll;">
-                        @if(count($patient->appointments) > 0)
-                            @foreach($patient->appointments as $appointment)
-                                <p>{{ $appointment->clinic->doctorProfile->user->name }}</p>
-                                @if($appointment->clinic->doctorProfile->medicalSpeciality)
-                                    <p>{{ $appointment->clinic->doctorProfile->medicalSpeciality->name }}</p>
+                            @if(count($doctor_visits) > 0)
+                            @foreach($doctor_visits as $appointment)
+                                <p>{{ $appointment->visit->clinic->doctorProfile->user->name }}</p>
+                                @if($appointment->visit->clinic->doctorProfile->medicalSpeciality)
+                                    <p>{{ $appointment->visit->clinic->doctorProfile->medicalSpeciality->name }}</p>
                                 @else
                                     <p>no medical speciality</p>
                                 @endif
@@ -137,7 +137,7 @@
         <div class="row mt-4">
             <div class="my-4 w-100">
                 <h3>{{ __('lang.rec.diagnoses')}}</h3>
-                @if(count($patient->diagnoses) > 0)
+                @if(count($diagnoses) > 0)
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -147,7 +147,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($patient->diagnoses as $diagnose)
+                            @foreach($diagnoses as $diagnose)
                                 <tr>
                                     <th>{{ $diagnose->name }}</th>
                                     <td>{{ $diagnose->description }}</td>
@@ -156,7 +156,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 @else
                     <h4 class="text-danger mt-2">{{ __('lang.rec.no_diagnose')}}</h4>
                 @endif
@@ -172,7 +171,8 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">{{ __('lang.rec.appointment_doctor')}}</th>
+                                <th scope="col">visit type</th>
+                                <th scope="col">visit owner</th>
                                 <th scope="col">{{ __('lang.rec.appointment_date')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_from')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_to')}}</th>
@@ -184,14 +184,32 @@
                         <tbody>
                             @foreach($patient->appointments as $appointment)
                                     <tr>
-                                        <td>{{$appointment->clinic->doctorProfile->user->name}}</td>
+                                        @if($appointment->getHasReceptionistVisitAttribute())
+                                            <td>receptionist visit</td>
+                                            <td>{{$appointment->visit->receptionist->user->name}}</td>
+                                        @elseif($appointment->getHasDoctorVisitAttribute())
+                                            <td>doctor visit</td>
+                                            <td>{{$appointment->visit->clinic->doctorProfile->user->name}}</td>
+                                        @endif
                                         <th scope="row">{{$appointment->date}}</th>
                                         <td>{{ date("g:i a", strtotime($appointment->from))}}</td>
                                         <td>{{ date("g:i a", strtotime($appointment->to))}}</td>
-                                        <td>{{$appointment->reason}}</td>
+                                        @if($appointment->getHasDoctorVisitAttribute())
+                                            <td>{{$appointment->visit->reason}}</td>
+                                        @else
+                                            <td>--</td>
+                                        @endif
                                         @if($appointment->leaved_at == null)
                                             <td><h6 class="text-danger">{{ __('lang.rec.still_pending')}}</h6></td>
-                                            <td><h6 class="text-danger">{{ __('lang.rec.no_action')}}</h6></td>
+                                            @if($appointment->getHasReceptionistVisitAttribute())
+                                                @if($appointment->visit->receptionist->id == Auth::user()->profile->id)
+                                                    <td><a href="{{route('receptionist.start.visit', ['patient_id' => $patient->id, 'appointment_id'=> $appointment->id])}}" class="btn btn-warning">start visit</h6></td>
+                                                @else
+                                                <td><h6 class="text-danger">{{ __('lang.rec.no_action')}}</h6></td>
+                                                @endif
+                                            @else
+                                                <td><h6 class="text-danger">{{ __('lang.rec.no_action')}}</h6></td>
+                                            @endif
                                         @else
                                             <td>{{ date("g:i a", strtotime($appointment->leaved_at)) }}</td>
                                             <td><a href="{{route('receptionist.appointment.check.perscreption', ['appointment_id' => $appointment->id ])}}" class="btn btn-success">{{ __('lang.rec.check_perscreption')}}</a></td>

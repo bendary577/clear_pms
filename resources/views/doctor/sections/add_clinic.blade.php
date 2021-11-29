@@ -14,7 +14,7 @@
         </ul>
     @endif
 
-    @if(!$doctor->has_clinic)
+    @if($doctor->has_clinic)
         <div class="text-danger"><h2>sorry, you already have a clinic</h2></div>
     @else
     <div class=""><h2>{{__('lang.doctor.add_clinic')}}</h2></div>

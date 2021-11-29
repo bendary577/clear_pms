@@ -9,17 +9,26 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $with = ['visit'];
+
     protected $fillable = [
         'date',
         'from',
         'to',
-        'leaved_at',
-        'reason'
+        'leaved_at',    
     ];
 
-    public function clinic()
+    public function visit()
     {
-        return $this->belongsTo(Clinic::class);
+      return $this->morphTo();
+    }
+
+    public function getHasReceptionistVisitAttribute(){
+        return $this->visit_type == 'App\Models\ReceptionistVisit';
+    }
+
+    public function getHasDoctorVisitAttribute(){
+        return $this->visit_type == 'App\Models\DoctorVisit';
     }
 
     public function patient()

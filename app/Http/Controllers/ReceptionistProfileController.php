@@ -116,10 +116,4 @@ class ReceptionistProfileController extends Controller
         return view('receptionist.dashboard.dashboard_welcome');
     }
 
-    public function startVisit($id)
-    {
-        $system_diagnoses = SystemDiagnoses::all();
-        $system_medicines = SystemMedicine::all();
-        return view('receptionist.dashboard.dashboard_specialist_patient_visit', ['id' => $id, 'system_diagnoses' => $system_diagnoses, 'system_medicines' => $system_medicines]);
-    }
 }

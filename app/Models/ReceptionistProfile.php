@@ -26,4 +26,9 @@ class ReceptionistProfile extends Model
         return $this->hasMany(Patient::class);
     }
 
+    public function receptionistVisits()
+    {
+        return $this->hasMany(ReceptionistVisit::class);
+    }
+
 }

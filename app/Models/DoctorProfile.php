@@ -31,4 +31,5 @@ class DoctorProfile extends Model
         return $this->belongsTo(MedicalSpeciality::class);
     }
 
+
 }

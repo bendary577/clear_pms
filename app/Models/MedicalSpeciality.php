@@ -17,9 +17,4 @@ class MedicalSpeciality extends Model
     {
         return $this->hasMany(DoctorProfile::class);
     }
-
-    public function diagnoses()
-    {
-        return $this->hasMany(Diagnose::class);
-    }
 }

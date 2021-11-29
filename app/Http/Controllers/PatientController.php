@@ -30,12 +30,7 @@ class PatientController extends Controller
 
     public function create()
     {
-        $system_diagnoses = SystemDiagnoses::all();
-        $system_medicines = SystemMedicine::all();
-        return view('receptionist.dashboard.dashboard_patients_add', [
-                        'system_diagnoses' => $system_diagnoses,
-                        'system_medicines' => $system_medicines
-                    ]);
+        return view('receptionist.dashboard.dashboard_patients_add');
     }
 
 
@@ -59,15 +54,6 @@ class PatientController extends Controller
         $patient->gender = $request['gender'];
         $patient->birthdate = $request['birthdate'];
         $patient->attendance_date = Carbon::now();
-        if($request['diagnose']){
-            $diagnose = new Diagnose();
-            $diagnose->name = $request->get('diagnose');
-            $diagnose->description = $request['description'];
-            $diagnose->treatment_protocol = $request['treatment_protocol'];
-            $diagnose->save();
-            $patient->diagnoses->add($diagnose);
-            //$diagnose->patient()->save($patient);
-        }
         if($request->image){
             $imageName = $request->image->getClientOriginalName();
             $path = '/patients_cards/'.date('Y-m-d').'/'.$patient->name.'/';
@@ -78,7 +64,7 @@ class PatientController extends Controller
         $patient->save();
         $receptionistProfile->patients()->save($patient);
         session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
-        return redirect()->back();   
+        return redirect()->back()->with('patient_id', $patient->id );   
     }
 
 
@@ -86,7 +72,25 @@ class PatientController extends Controller
     {
         $patient = Patient::find($id);
         $medical_specialities = MedicalSpeciality::all();
-        return view('receptionist.dashboard.dashboard_patient_file', ['patient' => $patient,'medical_specialities' => $medical_specialities]);
+        $diagnoses = array();
+        $doctor_visits = array();
+        foreach($patient->appointments as $appointment){
+            if($appointment->getHasDoctorVisitAttribute()){
+                array_push($doctor_visits, $appointment); 
+            }
+            if($appointment->perscreption){
+                if($appointment->perscreption->diagnose->exists()){
+                    array_push($diagnoses, $appointment->perscreption->diagnose);
+                }
+            }
+        }
+        return view('receptionist.dashboard.dashboard_patient_file',
+                                                    [
+                                                        'patient' => $patient,
+                                                        'medical_specialities' => $medical_specialities,
+                                                        'doctor_visits' => $doctor_visits,
+                                                        'diagnoses' => $diagnoses
+                                                    ]);
     }
 
 

@@ -17,14 +17,9 @@ class Diagnose extends Model
         'treatment_protocol'
     ];
 
-    public function medicalSpeciality()
+    public function perscreption()
     {
-        return $this->belongsTo(MedicalSpeciality::class);
-    }
-
-    public function patient()
-    {
-        return $this->belongsTo(Patient::class);
+        return $this->belongsTo(Perscreption::class);
     }
 
 }

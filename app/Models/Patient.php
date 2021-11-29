@@ -37,11 +37,6 @@ class Patient extends Model
         return rand(pow(10, 8-1), pow(10, 8)-1);
     }
 
-    public function diagnoses()
-    {
-        return $this->hasMany(Diagnose::class);
-    }
-
     public function receptionistProfile()
     {
         return $this->belongsTo(ReceptionistProfile::class);

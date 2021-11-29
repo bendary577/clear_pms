@@ -24,13 +24,17 @@ class Clinic extends Model
         return $this->belongsTo(DoctorProfile::class);
     }
 
-    public function appointments()
+    public function doctorVisits()
     {
-        return $this->hasMany(Appointment::class);
+        return $this->hasMany(DoctorVisit::class);
     }
 
-    public function current_appointments()
+    public function currentDoctorVisits()
     {
-        return $this->hasMany(Appointment::class)->where('leaved_at','=', null);;
+        return $this->hasMany(DoctorVisit::class)
+                    ->whereHas('appointment', function($query) {
+                        $query->where('visit_type', 'App\Models\DoctorVisit')
+                              ->where('leaved_at', null);
+                    })->get();
     }
 }

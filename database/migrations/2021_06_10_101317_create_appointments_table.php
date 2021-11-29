@@ -18,14 +18,13 @@ class CreateAppointmentsTable extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_id')->nullable();
-            $table->unsignedBigInteger('clinic_id')->nullable();
+            $table->unsignedInteger('visit_id')->nullable();
+            $table->string('visit_type')->nullable();
             $table->date('date');
             $table->time('from');
             $table->time('to');
             $table->time('leaved_at')->nullable();
-            $table->enum('reason', ['consultant', 'new visit', 'follow up']);
             $table->foreign('patient_id')->references('id')->on('patients');
-            $table->foreign('clinic_id')->references('id')->on('clinics');
             $table->timestamps();
         });
     }

@@ -15,13 +15,11 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('medical_speciality_id')->nullable();
-            $table->unsignedBigInteger('patient_id')->nullable();
+            $table->unsignedBigInteger('perscreption_id')->nullable();
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('treatment_protocol')->nullable();
-            $table->foreign('medical_speciality_id')->references('id')->on('medical_specialities')->onDelete('cascade');
-            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
+            $table->foreign('perscreption_id')->references('id')->on('perscreptions');
             $table->timestamps();
         });
     }

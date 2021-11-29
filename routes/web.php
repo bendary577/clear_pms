@@ -186,13 +186,24 @@ Route::middleware('auth')->group(function () {
                 Route::post('/store', [App\Http\Controllers\PatientController::class, 'store'])->name('receptionist.store.patient');
                 Route::get('{id}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('receptionist.edit.patient');
                 Route::post('{id}/update', [App\Http\Controllers\PatientController::class, 'update'])->name('receptionist.update.patient');
-                Route::get('{id}/start_visit', [App\Http\Controllers\ReceptionistProfileController::class, 'startVisit'])->name('receptionist.start.visit');
                 Route::get('/{id}/download_patient_card', [App\Http\Controllers\PatientController::class, 'downloadPatientCard'])->name('receptionist.patient.download.card');
                 Route::get('/{id}/download_patient_sheet', [App\Http\Controllers\PatientController::class, 'downloadPatientSheet'])->name('receptionist.patient.download.sheet');
                 Route::post('{id}/upload_medical_files', [App\Http\Controllers\FileController::class, 'uploadPatientMedicalFiles'])->name('receptionist.patient.upload.files');
                 Route::get('{id}/patient_file', [App\Http\Controllers\PatientController::class, 'show'])->name('receptionist.patients.patient.file');
                 Route::get('{appointment_id}/check_perscreption', [App\Http\Controllers\PerscreptionController::class, 'show'])->name('receptionist.appointment.check.perscreption');
 
+                //receptionists visit
+                Route::prefix('/visit')->group(function () {
+                    Route::get('/list', [App\Http\Controllers\AppointmentController::class, 'listReceptionistVisits'])->name('receptionist.list.visits');
+                    Route::get('/{patient_id}/start/{appointment_id}', [App\Http\Controllers\AppointmentController::class, 'startReceptionistVisit'])->name('receptionist.start.visit');
+                    Route::get('/{patient_id}/start-immediately', [App\Http\Controllers\AppointmentController::class, 'startReceptionistVisitImmediately'])->name('receptionist.start.visit.immediately');
+                    Route::post('/{appointment_id}/save-prescription', [App\Http\Controllers\PerscreptionController::class, 'store'])->name('receptionist.save.prescription');
+                    Route::get('/{patient_id}/reserve', [App\Http\Controllers\AppointmentController::class, 'reserveReceptionistVisit'])->name('receptionist.reserve.visit');
+                    Route::post('{patient_id}/register', [App\Http\Controllers\AppointmentController::class, 'registerReceptionistVisit'])->name('receptionist.register.visit');
+                    Route::get('{appointment_id}/end', [App\Http\Controllers\AppointmentController::class, 'endReceptionistVisit'])->name('receptionist.end.visit');
+                });
+
+                //doctor visits
                 Route::prefix('/{id}/new_appointment')->group(function () {
                     Route::get('/', [App\Http\Controllers\AppointmentController::class, 'create'])->name('receptionist.patients.new.appointment');
                     Route::get('/adults_clinics', [App\Http\Controllers\AppointmentController::class, 'getAdultsClinicsAppointments'])->name('adults.clinic.patient.appointment');

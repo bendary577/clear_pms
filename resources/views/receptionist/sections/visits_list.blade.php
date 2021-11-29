@@ -12,35 +12,33 @@
             </ul>
     @endif
 
-    @if(count($patients) > 0)
+    @if(count($appointments) > 0)
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">date</th>
+                    <th scope="col">from</th>
+                    <th scope="col">to</th>
+                    <th scope="col">patient name</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
-                    @foreach($patients as $patient)
+                    @foreach($appointments as $appointment)
                         <tr>
-                            <th>{{$patient->name}}</th>
-                            <td>{{$patient->code}}</td>
-                            <td>{{$patient->age}}</td>
-                            <td>{{$patient->gender}}</td>
-                            <td>{{$patient->phone}}</td>
+                            <th>{{$appointment->date}}</th>
+                            <td>{{ date("g:i a", strtotime($appointment->from)) }}</td>
+                            <td>{{date("g:i a", strtotime($appointment->to)) }}</td>
+                            <td>{{$appointment->patient->name}}</td>
                             <td>
-                                <a href="{{route('receptionist.patients.patient.file', ['id'=>$patient->id])}}" class="btn btn-success ">
+                                <a href="{{route('receptionist.start.visit', ['patient_id' => $appointment->patient->id, 'appointment_id' => $appointment->id ])}}" class="btn btn-success ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>see file history</span>
+                                    <span>start visit</span>
                                 </a>
                             </td>
                         </tr>
@@ -48,9 +46,9 @@
             </tbody>
         </table>
         <div class="d-flex justify-content-center align-items-center">
-            <div>{!! $patients->links() !!}</div>
+            <div>{!! $appointments->links() !!}</div>
         </div>
     @else
-        <h3 class="text-danger">sorry, no patients are available in the system</h3>
+        <h3 class="text-danger">sorry, no appointments are available in the system</h3>
     @endif
 </div>

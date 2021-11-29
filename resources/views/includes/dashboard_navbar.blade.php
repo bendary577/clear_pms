@@ -34,6 +34,14 @@
                                     </div>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('receptionist.list.visits')}}">
+                                    <div class="text-center">
+                                        <img src="{{url('/images/dashboard/doctors.png')}}" class="mt-2" width="20" height="20" alt="welcome" />
+                                        <p>visits</p>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

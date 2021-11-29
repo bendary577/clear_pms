@@ -3,12 +3,19 @@
     <!--- if patient is added is added successfully ----------->
 
     @if($message = Session::get('success'))
-        <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <div class="alert alert-success" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
           <strong> {{ $message }}</strong>
+          <div class="mx-2 d-flex">
+            <a href="{{route('receptionist.start.visit.immediately', ['patient_id'=> Session::get('patient_id')])}}" class="btn btn-success mx-1">start visit now with a specialist</a>
+            <a href="{{route('receptionist.reserve.visit', ['patient_id'=> Session::get('patient_id')])}}" class="btn btn-primary">reserve for a visit with a specialist</a>
+          </div>
         </div>
+        @php 
+            Illuminate\Support\Facades\Session::forget('patient_id');  
+        @endphp
     @endif
     
     {!! Session::forget('success') !!}
@@ -59,26 +66,6 @@
             <label class="form-check-label" for="exampleRadios2">
             {{ __('lang.rec.table.female')}}
             </label>
-        </div>
-
-        <div class="form-group my-3">
-            <label for="name">{{__('lang.rec.diagnose_name')}}</label>
-            <select class="form-control" id="diagnose" name="diagnose">
-                <option selected>Select Diagnose</option>
-                @foreach($system_diagnoses as $diagnose)    
-                    <option value="{{ $diagnose->name }}">{{ $diagnose->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="form-group my-3">
-            <label for="medication">{{__('lang.doctor.medicine')}}</label>
-            <select id="medication" name="medication" class="form-control">
-                <option selected>Select Medicine</option>
-                @foreach($system_medicines as $system_medicine)
-                    <option value="{{$system_medicine->id}}">{{ $system_medicine->name }}</option>
-                @endforeach
-            </select>
         </div>
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
