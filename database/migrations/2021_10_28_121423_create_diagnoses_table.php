@@ -19,7 +19,7 @@ class CreateDiagnosesTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('treatment_protocol')->nullable();
-            $table->foreign('perscreption_id')->references('id')->on('perscreptions');
+            $table->foreign('perscreption_id')->references('id')->on('perscreptions')->onDelete('cascade');
             $table->timestamps();
         });
     }

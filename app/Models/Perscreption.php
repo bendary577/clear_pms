@@ -13,6 +13,14 @@ class Perscreption extends Model
 
     protected $fillable = [];
 
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($perscreption) { // before delete() method call this
+            $perscreption->diagnose()->delete();
+            $perscreption->medicines()->delete();
+        });
+    }
+
     public function appointment()
     {
         return $this->belongsTo(Appointment::class);

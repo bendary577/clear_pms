@@ -18,6 +18,14 @@ class Appointment extends Model
         'leaved_at',    
     ];
 
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($appointment) { // before delete() method call this
+            $appointment->visit()->delete();
+            $appointment->perscreption()->delete();
+        });
+    }
+
     public function visit()
     {
       return $this->morphTo();

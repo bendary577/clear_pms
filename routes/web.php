@@ -181,9 +181,10 @@ Route::middleware('auth')->group(function () {
             Route::prefix('patients')->group(function () {
                 Route::get('/', [App\Http\Controllers\PatientController::class, 'indexReceptionist'])->name('receptionist.patients');
                 Route::get('/list', [App\Http\Controllers\PatientController::class, 'index'])->name('receptionist.patients.list');
-                Route::post('/search', [App\Http\Controllers\SearchController::class, 'search'])->name('receptionist.patients.search');
+                Route::post('/search', [App\Http\Controllers\SearchController::class, 'elasticSearch'])->name('receptionist.patients.search');
                 Route::get('/add', [App\Http\Controllers\PatientController::class, 'create'])->name('receptionist.add.patient');
                 Route::post('/store', [App\Http\Controllers\PatientController::class, 'store'])->name('receptionist.store.patient');
+                Route::get('{id}/delete', [App\Http\Controllers\PatientController::class, 'delete'])->name('receptionist.delete.patient');
                 Route::get('{id}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('receptionist.edit.patient');
                 Route::post('{id}/update', [App\Http\Controllers\PatientController::class, 'update'])->name('receptionist.update.patient');
                 Route::get('/{id}/download_patient_card', [App\Http\Controllers\PatientController::class, 'downloadPatientCard'])->name('receptionist.patient.download.card');

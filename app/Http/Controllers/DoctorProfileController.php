@@ -117,7 +117,7 @@ class DoctorProfileController extends Controller
     public function schedules($id)
     {
         $doctor = User::where('profile_type', '=', 'App\Models\DoctorProfile')->where('profile_id', $id)->where('activated', true)->first();
-        $clinic = Clinic::where('doctor_profile_id', $doctor->profile->id)->with('appointments')->first();
+        $clinic = Clinic::where('doctor_profile_id', $doctor->profile->id)->with('doctorVisits')->first();
         return view('receptionist.dashboard.dashboard_doctor_schedules', ['doctor' => $doctor, 'clinic' => $clinic]);
     }
 }

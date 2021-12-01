@@ -112,8 +112,8 @@ class ReceptionistDashboardController extends Controller
             $clinic_max_appointments_count = -INF;
             $clinic_with_max_appointments = null;
             foreach($clinics as $clinic){
-                if(count($clinic->appointments) > $clinic_max_appointments_count){
-                    $clinic_max_appointments_count = count($clinic->appointments);
+                if(count($clinic->doctorVisits) > $clinic_max_appointments_count){
+                    $clinic_max_appointments_count = count($clinic->doctorVisits);
                     $clinic_with_max_appointments = $clinic;
                 }
             }

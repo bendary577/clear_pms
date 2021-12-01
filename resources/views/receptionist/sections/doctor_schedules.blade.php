@@ -32,7 +32,7 @@
 
         @if($clinic)
             <h4 class="mt-4">{{__('lang.doctor.appointment_list')}}</h4>
-            @if(count($clinic->appointments) > 0)
+            @if(count($clinic->doctorVisits) > 0)
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -43,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($clinic->appointments as $appointment)
+                    @foreach($clinic->doctorVisits as $appointment)
                     <tr>
                         <th>{{ $appointment->reason }}</th>
                         <th>{{ $appointment->date }}</th>

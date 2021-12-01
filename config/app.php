@@ -176,6 +176,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Elasticquent\ElasticquentServiceProvider::class,
         
     ],
 
@@ -232,6 +233,7 @@ return [
         'Laratrust'   => Laratrust\LaratrustFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
     ],
 
 ];

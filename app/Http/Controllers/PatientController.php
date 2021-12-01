@@ -23,6 +23,9 @@ class PatientController extends Controller
 
     public function index()
     {
+       // Patient::createIndex($shards = null, $replicas = null);
+       // Patient::putMapping($ignoreConflicts = true);
+        //Patient::addAllToIndex();
         $patients = Patient::paginate(10);
         return view('receptionist.dashboard.dashboard_patients_list', ['patients' => $patients]);
     }
@@ -63,6 +66,7 @@ class PatientController extends Controller
         $patient->receptionistProfile()->associate($receptionistProfile)->save();
         $patient->save();
         $receptionistProfile->patients()->save($patient);
+        $patient->addToIndex();
         session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
         return redirect()->back()->with('patient_id', $patient->id );   
     }
@@ -148,10 +152,12 @@ class PatientController extends Controller
     }
 
 
-    public function destroy($id)
+    public function delete($id)
     {
         if(Patient::where('id', $id)->exists()) {
             $patient = Patient::find($id);
+            //$patient->appointments()->delete();
+            //$patient->files()->delete();
             $patient->delete();
             session()->flash('success', trans('lang.patient_profile_deleted'));
             return redirect()->back(); 

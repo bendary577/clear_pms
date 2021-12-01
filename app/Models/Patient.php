@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use ElasticScoutDriverPlus\Searchable;
+use Elasticquent\ElasticquentTrait;
 
 class Patient extends Model
 {
-    use HasFactory;
+    use HasFactory, ElasticquentTrait;
     //use Searchable;
     
     protected $fillable = [
@@ -22,6 +23,21 @@ class Patient extends Model
         'card_image_path',
         'sheet_image_path',
     ];
+
+    protected $mappingProperties = array(
+        'name' => [
+          'type' => 'text',
+          "analyzer" => "standard",
+        ],
+      );
+
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($patient) { // before delete() method call this
+            $patient->appointments()->delete();
+            $patient->files()->delete();
+        });
+    }  
 
     public function appointments()
     {

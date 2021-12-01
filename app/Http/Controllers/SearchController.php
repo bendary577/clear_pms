@@ -26,26 +26,12 @@ class SearchController extends Controller
             session()->flash('error', 'patient profile doesn\'t exist');
             return redirect()->back(); 
         }
-        /*
-        //if search keyword is integer (code)
-        if (gettype($request['search_keyword']) == "integer"){
-            if(Patient::where('code', $request['search_keyword'])->exists()){
-                $patient = Patient::where('code', $request['search_keyword'])->first();
-                return view('receptionist.dashboard.dashboard_search', ['patient' => $patient]);
-            }else{
-                session()->flash('error', 'patient profile doesn\'t exist');
-                return redirect()->back(); 
-            }
-        //if search keyword is string (name)
-        }else if(gettype($request['search_keyword'] == "string")){
-            $query = Query::match()
-            ->field('name')
-            ->query($request['search_keyword'])
-            ->fuzziness('AUTO');
-            $searchResult = Patient::searchQuery($query)->execute();
-            return view('receptionist.dashboard.dashboard_search', ['patient' => $searchResult]);
-        }
-        */
+    }
+
+    public function elasticSearch(Request $request){
+        //dd($request['search_keyword']);
+        $patients = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]]);
+        return view('receptionist.dashboard.dashboard_search', ['patients' => $patients]);
     }
     
 }
