@@ -14,6 +14,12 @@
                     <span class="">
                         <a href="{{route('receptionist.edit.patient', ['id' => $patient->id ])}}" class="btn btn-dark">{{ __('lang.rec.update_profile')}}</a>
                     </span>
+                    <span class="">
+                        <a href="{{route('receptionist.reserve.visit', ['patient_id'=>$patient->id])}}" class="btn btn-warning">specialist visit</a>
+                    </span>
+                    <span class="">
+                        <a href="{{route('receptionist.start.visit.immediately', ['patient_id'=>$patient->id])}}" class="btn btn-primary">immediate specialist visit</a>
+                    </span>
                 </div>
             </div>
             <div class="line"></div>

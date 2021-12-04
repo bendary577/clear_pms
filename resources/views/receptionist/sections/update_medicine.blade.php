@@ -14,20 +14,16 @@
         </ul>
     @endif
 
-    <div class=""><h2>update medicine</h2></div>
-    <form method="POST" action="{{route('receptionist.update.medicine', ['id' => $id])}}">
+    <div class=""><h2>{{ __('lang.rec.medicines.update.screen') }}</h2></div>
+    <form method="POST" action="{{route('receptionist.update.medicine', ['id' => $system_medicine->id ])}}">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="date">medicine name</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
+            <label for="date">{{ __('lang.rec.medicines.name') }}</label>
+            <input type="text" name="name" class="form-control" id="medicine_name" placeholder="{{$system_medicine->name}}">
         </div>
         <div class="form-group">
-            <label for="date">medicine dose</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
-        </div>
-        <div class="form-group">
-            <label for="date">medicine duration</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
+            <label for="date">{{ __('lang.rec.medicines.code') }}</label>
+            <input type="text" name="code" class="form-control" id="medicine_name" placeholder="{{$system_medicine->code}}">
         </div>
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>

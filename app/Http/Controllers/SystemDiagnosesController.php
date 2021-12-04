@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SystemDiagnoses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SystemDiagnosesController extends Controller
 {
@@ -41,7 +42,8 @@ class SystemDiagnosesController extends Controller
 
     public function edit($id)
     {
-        return view('receptionist.dashboard.dashboard_update_diagnose', ['id' => $id]);
+        $system_diagnose = SystemDiagnoses::where('id', $id)->first();
+        return view('receptionist.dashboard.dashboard_update_diagnose', ['system_diagnose' => $system_diagnose]);
     }
 
     public function update(Request $request, $id)
@@ -62,7 +64,7 @@ class SystemDiagnosesController extends Controller
         return redirect()->back(); 
     }
 
-    public function destroy(SystemDiagnoses $systemDiagnoses)
+    public function delete($id)
     {
         if(SystemDiagnoses::where('id', $id)->exists()) {
             $system_diagnose = SystemDiagnoses::find($id);

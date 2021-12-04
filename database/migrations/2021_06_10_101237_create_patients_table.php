@@ -14,7 +14,7 @@ class CreatePatientsTable extends Migration
             $table->unsignedBigInteger('receptionist_profile_id')->nullable();
             $table->string('name');
             $table->string('phone');
-            $table->string('another_phone');
+            $table->string('another_phone')->nullable();
             $table->integer('age');
             $table->integer('code');
             $table->enum('gender',['male', 'female']);

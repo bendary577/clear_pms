@@ -4,7 +4,7 @@
         <div class="col-md-4 col-xs-6">
             <div class="card shadow" style="width: 18rem;border-radius:20px">
                 <div class="card-body">
-                    <h5 class="card-title" style="color:gray">This Week</h5>
+                    <h5 class="card-title" style="color:gray">{{ __('lang.rec.welcome.this_week') }}</h5>
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
@@ -36,21 +36,21 @@
         <div class="col-md-4 col-xs-6">
             <div class="card shadow" style="width: 18rem;border-radius:20px">
                 <div class="card-body">
-                    <h5 class="card-title" style="color:gray">This Month</h5>
+                    <h5 class="card-title" style="color:gray">{{ __('lang.rec.welcome.this_month') }}</h5>
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_patients_count }} new patients</strong></small>
+                                <small class="card-text"><strong>{{ $monthly_new_patients_count }} new patients</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_appointments_count }} new appointments</strong></small>
+                                <small class="card-text"><strong>{{ $monthly_new_appointments_count }} new appointments</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_finished_appointments_count }} finished appointments</strong></small>
+                                <small class="card-text"><strong>{{ $monthly_finished_appointments_count }} finished appointments</strong></small>
                             </div>
                         </li>
                     </ul>
@@ -61,21 +61,21 @@
         <div class="col-md-4 col-xs-6">
             <div class="card shadow" style="width: 18rem;border-radius:20px">
                 <div class="card-body">
-                    <h5 class="card-title" style="color:gray">This Year</h5>
+                    <h5 class="card-title" style="color:gray">{{ __('lang.rec.welcome.this_year') }}</h5>
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_patients_count }} new patients</strong></small>
+                                <small class="card-text"><strong>{{ $yearly_new_patients_count }} new patients</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_appointments_count }} new appointments</strong></small>
+                                <small class="card-text"><strong>{{ $yearly_new_appointments_count }} new appointments</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_finished_appointments_count }} finished appointments</strong></small>
+                                <small class="card-text"><strong>{{ $yearly_finished_appointments_count }} finished appointments</strong></small>
                             </div>
                         </li>
                     </ul>

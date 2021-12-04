@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Elasticquent\ElasticquentServiceProvider::class,
+        Abram\Odbc\ODBCServiceProvider::class
         
     ],
 

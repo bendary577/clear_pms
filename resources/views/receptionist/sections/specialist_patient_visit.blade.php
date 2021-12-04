@@ -23,8 +23,8 @@
     @endif
 
     <div class="d-flex justify-content-between">
-        <h2>Patient Receptionist Visit</h2>
-        <a href="{{route('receptionist.end.visit', ['appointment_id' => $appointment_id])}}" class="btn btn-danger">end visit</a>
+        <h2>{{ __('lang.rec.patients.visit') }}</h2>
+        <a href="{{route('receptionist.end.visit', ['appointment_id' => $appointment_id])}}" class="btn btn-danger">{{ __('lang.rec.patients.visit.end') }}</a>
     </div>
 
     <form method="POST" action="{{route('receptionist.save.prescription', ['appointment_id'=> $appointment_id])}}">
@@ -33,7 +33,6 @@
         <div class="form-group my-3">
             <label for="diagnose_name">{{__('lang.rec.diagnose_name')}}</label>
             <select class="form-control" id="diagnose_name" name="diagnose_name">
-                <option selected>Select Diagnose</option>
                 @foreach($system_diagnoses as $diagnose)    
                     <option value="{{ $diagnose->name }}">{{ $diagnose->name }}</option>
                 @endforeach

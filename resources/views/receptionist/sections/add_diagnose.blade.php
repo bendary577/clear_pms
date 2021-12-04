@@ -14,20 +14,12 @@
         </ul>
     @endif
 
-    <div class=""><h2>add diagnose</h2></div>
+    <div class=""><h2>{{ __('lang.rec.diagnoses.add') }}</h2></div>
     <form method="POST" action="{{route('receptionist.store.medicine')}}">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="date">medicine name</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
-        </div>
-        <div class="form-group">
-            <label for="date">medicine dose</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
-        </div>
-        <div class="form-group">
-            <label for="date">medicine duration</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
+            <label for="date">{{ __('lang.rec.diagnoses.add.name') }}</label>
+            <input type="text" name="name" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
         </div>
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>

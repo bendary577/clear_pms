@@ -39,9 +39,10 @@
                             <div class="px-2 my-2">
                                 <h6 class="card-text mt-2"><strong>{{ $weekly_new_patients_count }} new patients</strong></h6>
                             </div>
+
                             <div class="px-1 my-2 d-flex">
-                                <div class=""><img src="{{url('/images/dashboard/down-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" /></div>
-                                <h6 class="card-text text-danger mt-2"><strong>{{ $weekly_patients_change_percentage }}% increase</strong></h6>
+                                <!--<div class=""><img src="{{url('/images/dashboard/down-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" /></div>-->
+                                <h6 class="card-text text-success mt-2"><strong>{{ $weekly_patients_change_percentage }}% increase</strong></h6>
                             </div>
                             <h6 class="px-2">from last week</h6>
                         </div>
@@ -69,6 +70,7 @@
                     </div>
                 </div>
             </div>
+            <!----
             <div class="row">
                 <div class="card shadow my-3" style="border-radius:20px;height:280px;">
                     <div class="card-body">
@@ -77,6 +79,7 @@
                     </div>
                 </div>
             </div>
+            --->
         </div>
     </div>
 </div>

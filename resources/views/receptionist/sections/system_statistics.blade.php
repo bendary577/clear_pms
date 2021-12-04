@@ -27,6 +27,7 @@
                         </div>
                     </div>
                 </div>
+                <!-------
                 <div class="col-md-3 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;height:220px;border-radius:20px">
                         <div class="card-body">
@@ -41,6 +42,7 @@
                         </div>
                     </div>
                 </div>   
+                ------------>
                 <div class="col-md-3 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;height:220px;border-radius:20px">
                         <div class="card-body">

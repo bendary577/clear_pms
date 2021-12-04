@@ -9,6 +9,15 @@
           <strong> {{ $message }}</strong>
         </div>
     @endif
+
+    @if($message = Session::get('error'))
+        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+          <strong> {{ $message }}</strong>
+        </div>
+    @endif
     
     {!! Session::forget('success') !!}
     <br />
@@ -23,10 +32,10 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">{{ __('lang.rec.import_access_file')}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <form style="margin-top: 15px;padding: 10px;" action="{{ route('receptionist.import.excel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                <p class="card-text">transfer all your patients data from microsoft access database to clear pms system using database migration</p>
+                <form style="margin-top: 15px;padding: 10px;" action="{{ route('receptionist.import.access') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }} 
-                    <input type="file" name="import_file" />
+                    <input type="file" name="access_db" />
                     <button class="btn btn-primary mt-2">{{ __('lang.rec.import_file')}}</button>
                 </form>
               </div>
@@ -52,7 +61,7 @@
             </div>
         </div>
 
-        <!---------------------------------- csv card ----------------------------->
+        <!---------------------------------- csv card 
         <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -69,7 +78,7 @@
               </div>
             </div>
         </div>
-        
+        ----------------------------->
       </div>
     </div>
 </div>

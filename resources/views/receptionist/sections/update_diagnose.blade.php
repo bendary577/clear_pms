@@ -14,12 +14,12 @@
         </ul>
     @endif
 
-    <div class=""><h2>update diagnose</h2></div>
-    <form method="POST" action="{{route('receptionist.update.diagnose', ['id' => $id])}}">
+    <div class=""><h2>{{ __('lang.rec.diagnoses.update.screen') }}</h2></div>
+    <form method="POST" action="{{route('receptionist.update.diagnose', ['id' => $system_diagnose->id])}}">
         {{ csrf_field() }}
         <div class="form-group">
-            <label for="date">diagnose name</label>
-            <input type="text" name="date" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
+            <label for="date">{{ __('lang.rec.diagnoses.name') }}</label>
+            <input type="text" name="name" class="form-control" id="system_diagnose" placeholder="{{$system_diagnose->name}}">
         </div>
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>

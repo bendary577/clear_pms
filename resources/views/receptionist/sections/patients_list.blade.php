@@ -16,12 +16,12 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('lang.rec.patients.name') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.code') }}}</th>
+                    <th scope="col">{{ __('lang.rec.patients.age') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.gender') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.phone') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>see file history</span>
+                                    <span>{{ __('lang.rec.patients.check.file') }}</span>
                                 </a>
                                 <a href="{{route('receptionist.reserve.visit', ['patient_id'=>$patient->id])}}" class="btn btn-warning ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -49,7 +49,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>specialist visit</span>
+                                    <span>{{ __('lang.rec.patients.specialist.visit') }}</span>
                                 </a>
                                 <a href="{{route('receptionist.patients.new.appointment', ['id'=>$patient->id])}}" class="btn btn-info ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -58,7 +58,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>doctor visit</span>
+                                    <span>{{ __('lang.rec.patients.doctor.visit') }}</span>
                                 </a>
                                 <a href="{{route('receptionist.delete.patient', ['id'=>$patient->id])}}" class="btn btn-danger ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -67,7 +67,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>delete</span>
+                                    <span>{{ __('lang.rec.patients.delete') }}</span>
                                 </a>
                             </td>
                         </tr>
@@ -78,6 +78,6 @@
             <div>{!! $patients->links() !!}</div>
         </div>
     @else
-        <h3 class="text-danger">sorry, no patients are available in the system</h3>
+        <h3 class="text-danger">{{ __('lang.rec.no.patients.available') }}</h3>
     @endif
 </div>

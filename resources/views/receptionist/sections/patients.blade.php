@@ -11,7 +11,7 @@
                     <line x1="5" y1="12" x2="5" y2="12.01" />
                     <line x1="5" y1="18" x2="5" y2="18.01" />
                 </svg>
-                <span>see patients list</span>
+                <span>{{ __('lang.rec.patients.list') }}</span>
             </a>
        </div>
        <div class="">
@@ -35,7 +35,7 @@
                     <path d="M4 12h4" />
                     <path d="M4 18h4" />
                 </svg>
-                <span>search patients</span>
+                <span>{{ __('lang.rec.patients.search') }}</span>
             </div>
             <div class="dropdown-menu ">
                 <a class="dropdown-item" href="#">Search by Name</a>
@@ -72,7 +72,7 @@
             <form method="POST" action="{{route('receptionist.patients.search')}}">
             {{ csrf_field() }}
                 <div class="input-group rounded">
-                    <input type="text" class="form-control rounded" placeholder="search for patient using code or name" aria-label="Search"
+                    <input type="text" class="form-control rounded" placeholder="{{__('lang.rec.search_code_name')}}" aria-label="Search"
                         aria-describedby="search-addon" required name="search_keyword"/>
                     <input class="input-group-text border-0" id="search-addon" type="submit" value="{{ __('lang.rec.search')}}" />
                 </div>

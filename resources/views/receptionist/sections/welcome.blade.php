@@ -20,6 +20,7 @@
                 @include('receptionist.sections.welcome_dashboard.counts_section')
                 <!------------------- charts --------------------------->
                 @include('receptionist.sections.welcome_dashboard.charts')
+
             </div>
 </div>
 

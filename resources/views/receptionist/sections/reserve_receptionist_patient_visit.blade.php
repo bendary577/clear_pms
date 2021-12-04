@@ -15,7 +15,7 @@
     @endif
 
     <div class="">
-        <h2>Reserve a new patient visit</h2>
+        <h2>{{ __('lang.rec.patients.reserve.visit') }}</h2>
     </div>
 
     <form method="POST" action="{{route('receptionist.register.visit', ['patient_id'=> $patient_id])}}">

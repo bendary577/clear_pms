@@ -25,9 +25,23 @@ class ReceptionistDashboardController extends Controller
             $weekStartDate = $now->startOfWeek()->format('Y-m-d H:i');
             $weekEndDate = $now->endOfWeek()->format('Y-m-d H:i');
 
+            $monthStartDate = $now->startOfMonth()->subMonthsNoOverflow()->toDateString();
+            $monthEndDate = $now->subMonthsNoOverflow()->endOfMonth()->toDateString();
+
+            $yearStartDate = $now->startOfWeek()->format('Y-m-d H:i');
+            $yearEndDate = $now->startOfWeek()->format('Y-m-d H:i');
+
             $weekly_new_patients_count = Patient::whereBetween('created_at', [$weekStartDate, $weekEndDate])->count();
             $weekly_new_appointments_count = Appointment::whereBetween('created_at', [$weekStartDate, $weekEndDate])->where('leaved_at', '=', 'null')->count();
             $weekly_finished_appointments_count = Appointment::whereBetween('created_at', [$weekStartDate, $weekEndDate])->where('leaved_at', '!=', 'null')->count();
+
+            $monthly_new_patients_count = Patient::whereBetween('created_at', [$monthStartDate, $monthEndDate])->count();
+            $monthly_new_appointments_count = Appointment::whereBetween('created_at', [$monthStartDate, $monthEndDate])->where('leaved_at', '=', 'null')->count();
+            $monthly_finished_appointments_count = Appointment::whereBetween('created_at', [$monthStartDate, $monthEndDate])->where('leaved_at', '!=', 'null')->count();
+
+            $yearly_new_patients_count = Patient::whereBetween('created_at', [$yearStartDate, $yearEndDate])->count();
+            $yearly_new_appointments_count = Appointment::whereBetween('created_at', [$yearStartDate, $yearEndDate])->where('leaved_at', '=', 'null')->count();
+            $yearly_finished_appointments_count = Appointment::whereBetween('created_at', [$yearStartDate, $yearEndDate])->where('leaved_at', '!=', 'null')->count();
 
             $receptionistsCount = ReceptionistProfile::all()->count();
             $doctorsCount = DoctorProfile::all()->count();
@@ -37,6 +51,12 @@ class ReceptionistDashboardController extends Controller
                 'weekly_new_patients_count' => $weekly_new_patients_count,
                 'weekly_new_appointments_count' => $weekly_new_appointments_count,
                 'weekly_finished_appointments_count' => $weekly_finished_appointments_count,
+                'monthly_new_patients_count' => $monthly_new_patients_count,
+                'monthly_new_appointments_count' => $monthly_new_appointments_count,
+                'monthly_finished_appointments_count' => $monthly_finished_appointments_count,
+                'yearly_new_patients_count' => $yearly_new_patients_count,
+                'yearly_new_appointments_count' => $yearly_new_appointments_count,
+                'yearly_finished_appointments_count' => $yearly_finished_appointments_count,
                 'receptionistsCount' => $receptionistsCount,
                 'doctorsCount' => $doctorsCount,
                 'clinicsCount' => $clinicsCount,

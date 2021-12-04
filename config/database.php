@@ -91,6 +91,16 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'odbc' => [
+            'driver' => 'odbc',
+            'dsn' => 'Driver={Microsoft Access Driver (*.mdb)};',
+            'host' => '127.0.0.1',
+            'username' => '',
+            'password' => '',
+            'database' => '',
+            'grammar' => 'SqlServerGrammar',
+        ],
+
     ],
 
     /*

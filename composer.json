@@ -6,8 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "abram/laravel-odbc": "dev-master",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "consoletvs/charts": "7.*",
+        "elasticquent/elasticquent": "dev-master",
         "elasticsearch/elasticsearch": "^6.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -19,8 +21,7 @@
         "laravel/ui": "^3.3",
         "maatwebsite/excel": "^3.1",
         "mcamara/laravel-localization": "^1.6",
-        "santigarcor/laratrust": "^6.3",
-        "elasticquent/elasticquent": "dev-master"
+        "santigarcor/laratrust": "^6.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

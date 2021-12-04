@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SystemMedicine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SystemMedicineController extends Controller
 {
@@ -41,7 +42,8 @@ class SystemMedicineController extends Controller
 
     public function edit($id)
     {
-        return view('receptionist.dashboard.dashboard_update_medicine', ['id' => $id]);
+        $system_medicine = SystemMedicine::where('id', $id)->first();
+        return view('receptionist.dashboard.dashboard_update_medicine', ['system_medicine' => $system_medicine]);
     }
 
     public function update(Request $request, $id)
@@ -56,6 +58,9 @@ class SystemMedicineController extends Controller
         $medicine = SystemMedicine::where('id', $id)->first();
         if($request['name']){
             $medicine->name = $request['name'];
+        }
+        if($request['code']){
+            $medicine->code = $request['code'];
         }
         $medicine->save();
         session()->flash('success', 'system medicine updated succesfuly');

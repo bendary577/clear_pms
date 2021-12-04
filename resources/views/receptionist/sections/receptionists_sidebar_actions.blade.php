@@ -17,7 +17,7 @@
                                     <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
                                     <circle cx="12" cy="12" r="3" />
                                 </svg>
-                                <div class="mx-2"><small>manage patients</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.manage.patients') }}</small></div>
                             </a>
                         </li>
                         <li>
@@ -31,7 +31,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>available patients</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.patients') }}</small></div>
                             </a>
                         </li>
                         <li>
@@ -42,7 +42,7 @@
                                     <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                                     <path d="M16 11h6m-3 -3v6" />
                                 </svg>
-                                <div class="mx-2"><small>add new patient</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.add.patient') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -70,7 +70,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>available doctors</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.doctors') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -100,7 +100,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>available clinics</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.patients') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -113,7 +113,7 @@
                         <path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7" />
                         <line x1="8.5" y1="8.5" x2="15.5" y2="15.5" />
                     </svg> 
-                    <small>system medicines</small>
+                    <small>{{ __('lang.rec.system.medicines') }}</small>
                 </a>
                     <ul class="collapse list-unstyled" id="system_medicines">
                         <li>
@@ -127,7 +127,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>available medicines</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.medicines') }}</small></div>
                             </a>
                         </li>
                         <li>
@@ -139,7 +139,7 @@
                                     <line x1="12" y1="11" x2="12" y2="17" />
                                     <line x1="9" y1="14" x2="15" y2="14" />
                                 </svg>
-                                <div class="mx-2"><small>add new medicine</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.add.medicine') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -155,7 +155,7 @@
                         <path  d="M6 3v2" />
                         <circle cx="20" cy="10" r="2" />
                     </svg>    
-                    <small>system diagnoses</small>
+                    <small>{{ __('lang.rec.system.diagnoses') }}</small>
                 </a>
                     <ul class="collapse list-unstyled" id="system_diagnoses">
                         <li>
@@ -169,7 +169,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>available diagnoses</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.diagnoses') }}</small></div>
                             </a>
                         </li>
                         <li>
@@ -181,7 +181,7 @@
                                     <line x1="12" y1="11" x2="12" y2="17" />
                                     <line x1="9" y1="14" x2="15" y2="14" />
                                 </svg>
-                                <div class="mx-2"><small>add new diagnose</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.add.diagnose') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -195,7 +195,7 @@
                         <path d="M4 6v8m5.009 .783c.924 .14 1.933 .217 2.991 .217c4.418 0 8 -1.343 8 -3v-6" />
                         <path d="M11.252 20.987c.246 .009 .496 .013 .748 .013c4.418 0 8 -1.343 8 -3v-6m-18 7h7m-3 -3l3 3l-3 3" />
                     </svg>
-                    <small>import data</small>
+                    <small>{{ __('lang.rec.import_data') }}</small>
                 </a>
                     <ul class="collapse list-unstyled" id="import_data">
                         <li>
@@ -205,7 +205,7 @@
                                     <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                                     <path d="M12 7l-2 4l4 3l-2 4v3" />
                                 </svg>
-                                <div class="mx-2"><small>patients data</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.import_data') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -219,17 +219,17 @@
                         <path d="M4 6v6c0 1.657 3.582 3 8 3a19.84 19.84 0 0 0 3.302 -.267m4.698 -2.733v-6" />
                         <path d="M4 12v6c0 1.599 3.335 2.905 7.538 2.995m8.462 -6.995v-2m-6 7h7m-3 -3l3 3l-3 3" />
                     </svg>
-                    <small>export data</small>
+                    <small>{{ __('lang.rec.export_data') }}</small>
                 </a>
                     <ul class="collapse list-unstyled" id="export_data">
                         <li>
-                            <a href="{{route('admin.registration.requests')}}" class="text-dark d-flex">
+                            <a href="{{route('receptionist.export.excel')}}" class="text-dark d-flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-broken" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                                     <path d="M12 7l-2 4l4 3l-2 4v3" />
                                 </svg>
-                                <div class="mx-2"><small>patients data</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.export_data') }}</small></div>
                             </a>
                         </li>
                     </ul>

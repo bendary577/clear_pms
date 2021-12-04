@@ -3,9 +3,9 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Code</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('lang.rec.medicines.name') }}</th>
+                    <th scope="col">{{ __('lang.rec.medicines.code') }}</th>
+                    <th scope="col">{{ __('lang.rec.medicines.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +21,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>update</span>
+                                    <span>{{ __('lang.rec.medicines.update') }}</span>
                                 </a>
                                 <a href="{{route('receptionist.delete.medicine', ['id' => $system_medicine->id])}}" class="btn btn-danger ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -32,7 +32,7 @@
                                         <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
                                         <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                     </svg>
-                                    <span>delete</span>
+                                    <span>{{ __('lang.rec.medicines.delete') }}</span>
                                 </a>
                             </td>
                         </tr>
@@ -43,6 +43,6 @@
             <div>{!! $system_medicines->links() !!}</div>
         </div>
     @else
-        <h3 class="text-danger">sorry, no system medicines are available in the system</h3>
+        <h3 class="text-danger">{{ __('lang.rec.no.medicines') }}</h3>
     @endif
 </div>

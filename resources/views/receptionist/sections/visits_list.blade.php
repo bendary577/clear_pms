@@ -16,11 +16,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">date</th>
-                    <th scope="col">from</th>
-                    <th scope="col">to</th>
-                    <th scope="col">patient name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('lang.rec.patients.visit.date') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.visit.from') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.visit.to') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.visit.patient') }}</th>
+                    <th scope="col">{{ __('lang.rec.patients.visit.action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,7 +38,7 @@
                                         <line x1="10" y1="14" x2="20" y2="4" />
                                         <polyline points="15 4 20 4 20 9" />
                                     </svg>
-                                    <span>start visit</span>
+                                    <span>{{ __('lang.rec.patients.visit.start') }}</span>
                                 </a>
                             </td>
                         </tr>
@@ -49,6 +49,6 @@
             <div>{!! $appointments->links() !!}</div>
         </div>
     @else
-        <h3 class="text-danger">sorry, no appointments are available in the system</h3>
+        <h3 class="text-danger">{{ __('lang.rec.patients.no.visits') }}</h3>
     @endif
 </div>
