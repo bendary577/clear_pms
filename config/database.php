@@ -93,11 +93,11 @@ return [
 
         'odbc' => [
             'driver' => 'odbc',
-            'dsn' => 'Driver={Microsoft Access Driver (*.mdb)};',
+            'dsn' => '"Driver={Microsoft Access Driver (*.mdb)};DBQ=c:\Desktop\patients.mdb"',
             'host' => '127.0.0.1',
             'username' => '',
             'password' => '',
-            'database' => '',
+            'database' => 'patients.mdb',
             'grammar' => 'SqlServerGrammar',
         ],
 

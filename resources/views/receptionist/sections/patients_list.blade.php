@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th scope="col">{{ __('lang.rec.patients.name') }}</th>
-                    <th scope="col">{{ __('lang.rec.patients.code') }}}</th>
+                    <th scope="col">{{ __('lang.rec.patients.code') }}</th>
                     <th scope="col">{{ __('lang.rec.patients.age') }}</th>
                     <th scope="col">{{ __('lang.rec.patients.gender') }}</th>
                     <th scope="col">{{ __('lang.rec.patients.phone') }}</th>
