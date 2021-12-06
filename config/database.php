@@ -91,9 +91,11 @@ return [
             'prefix_indexes' => true,
         ],
 
+        //'"Driver={Microsoft Access Driver (*.mdb)};DBQ=c:\Desktop\patients.mdb"',
+        //'"Driver={Microsoft Access Driver (*.mdb)};DBQ=home/cselection/Desktop/patients.mdb"',
         'odbc' => [
             'driver' => 'odbc',
-            'dsn' => '"Driver={Microsoft Access Driver (*.mdb)};DBQ=c:\Desktop\patients.mdb"',
+            'dsn' => '"Driver={Microsoft Access Driver (*.mdb)};DBQ=home/cselection/Desktop/patients.mdb"',
             'host' => '127.0.0.1',
             'username' => '',
             'password' => '',
