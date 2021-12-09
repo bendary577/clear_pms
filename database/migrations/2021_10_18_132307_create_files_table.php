@@ -19,7 +19,7 @@ class CreateFilesTable extends Migration
             $table->string('name');
             $table->string('extension');
             $table->string('path');
-            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
     }

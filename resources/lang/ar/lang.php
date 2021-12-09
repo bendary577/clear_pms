@@ -334,7 +334,7 @@
     'rec.patients.phone' => 'رقم المحمول',
     'rec.patients.another.phone' => 'رقم اّخر',
     'rec.patients.action' => 'الإجراء',
-    'rec.patients.check.file' => 'فحص ملف المريض',
+    'rec.patients.check.file' => 'ملف المريض',
     'rec.patients.specialist.visit' => 'زيارة أخصائي',
     'rec.patients.doctor.visit' => 'زيارة طبيب',
     'rec.patients.delete' => 'حذف',

@@ -12,7 +12,32 @@
             </ul>
     @endif
 
+
     @if(count($patients) > 0)
+        <div class="">
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger mb-4" id="delete_records_btn" data-toggle="modal" data-target="#delete_records_modal">delete all patients records</a>
+        </div>
+
+        <div class="modal fade" id="delete_records_modal"  tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Warning</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>are you sure you want to delete all patients records in the system ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a type="button" href="{{route('receptionist.delete.all.patient')}}" type="button" class="btn btn-primary">yes</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -32,8 +57,8 @@
                             <td>{{$patient->age}}</td>
                             <td>{{$patient->gender}}</td>
                             <td>{{$patient->phone}}</td>
-                            <td>
-                                <a href="{{route('receptionist.patients.patient.file', ['id'=>$patient->id])}}" class="btn btn-success ">
+                            <td class="d-flex">
+                                <a href="{{route('receptionist.patients.patient.file', ['id'=>$patient->id])}}" class="d-flex mx-1 btn btn-sm btn-success ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
@@ -42,7 +67,7 @@
                                     </svg>
                                     <span>{{ __('lang.rec.patients.check.file') }}</span>
                                 </a>
-                                <a href="{{route('receptionist.reserve.visit', ['patient_id'=>$patient->id])}}" class="btn btn-warning ">
+                                <a href="{{route('receptionist.reserve.visit', ['patient_id'=>$patient->id])}}" class="d-flex mx-1 btn btn-sm btn-warning ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
@@ -51,7 +76,7 @@
                                     </svg>
                                     <span>{{ __('lang.rec.patients.specialist.visit') }}</span>
                                 </a>
-                                <a href="{{route('receptionist.patients.new.appointment', ['id'=>$patient->id])}}" class="btn btn-info ">
+                                <a href="{{route('receptionist.patients.new.appointment', ['id'=>$patient->id])}}" class="d-flex mx-1 btn btn-sm btn-info ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
@@ -60,7 +85,7 @@
                                     </svg>
                                     <span>{{ __('lang.rec.patients.doctor.visit') }}</span>
                                 </a>
-                                <a href="{{route('receptionist.delete.patient', ['id'=>$patient->id])}}" class="btn btn-danger ">
+                                <a href="{{route('receptionist.delete.patient', ['id'=>$patient->id])}}" class="d-flex mx-1 btn btn-sm btn-danger ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
@@ -81,3 +106,13 @@
         <h3 class="text-danger">{{ __('lang.rec.no.patients.available') }}</h3>
     @endif
 </div>
+
+<!--
+<script>
+    $(document).ready(function(){
+        $("#delete_records_btn").click(function(){
+            alert("The paragraph was clicked.");
+        });
+    });
+</script>
+-->

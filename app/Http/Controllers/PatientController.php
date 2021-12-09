@@ -78,13 +78,15 @@ class PatientController extends Controller
         $medical_specialities = MedicalSpeciality::all();
         $diagnoses = array();
         $doctor_visits = array();
-        foreach($patient->appointments as $appointment){
-            if($appointment->getHasDoctorVisitAttribute()){
-                array_push($doctor_visits, $appointment); 
-            }
-            if($appointment->perscreption){
-                if($appointment->perscreption->diagnose->exists()){
-                    array_push($diagnoses, $appointment->perscreption->diagnose);
+        if(count($patient->appointments) > 0 ){
+            foreach($patient->appointments as $appointment){
+                if($appointment->getHasDoctorVisitAttribute()){
+                    array_push($doctor_visits, $appointment); 
+                }
+                if($appointment->perscreption){
+                    if($appointment->perscreption->diagnose->exists()){
+                        array_push($diagnoses, $appointment->perscreption->diagnose);
+                    }
                 }
             }
         }
@@ -165,6 +167,13 @@ class PatientController extends Controller
             session()->flash('error', 'user not found');
             return redirect()->back(); 
         }
+    }
+
+    public function deleteAll()
+    {
+        Patient::query()->delete();
+        session()->flash('success', "all patients records were deleted successfully");
+        return redirect()->back(); 
     }
 
 

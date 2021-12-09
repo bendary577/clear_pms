@@ -156,8 +156,8 @@ Route::middleware('auth')->group(function () {
 
             Route::prefix('system-diagnoses')->group(function () {
                 Route::get('/list', [App\Http\Controllers\SystemDiagnosesController::class, 'index'])->name('receptionist.system.diagnoses.list');
-                Route::get('/add_diagnose', [App\Http\Controllers\SystemDiagnosesController::class, 'create'] )->name('receptionist.add.diagnose');
-                Route::get('/store_diagnose', [App\Http\Controllers\SystemDiagnosesController::class, 'store'] )->name('receptionist.store.diagnose');
+                Route::get('/add', [App\Http\Controllers\SystemDiagnosesController::class, 'create'] )->name('receptionist.add.diagnose');
+                Route::post('/store', [App\Http\Controllers\SystemDiagnosesController::class, 'store'] )->name('receptionist.store.diagnose');
                 Route::get('/{id}/edit', [App\Http\Controllers\SystemDiagnosesController::class, 'edit'] )->name('receptionist.edit.diagnose');
                 Route::post('/{id}/update', [App\Http\Controllers\SystemDiagnosesController::class, 'update'] )->name('receptionist.update.diagnose');
                 Route::get('/{id}/delete', [App\Http\Controllers\SystemDiagnosesController::class, 'delete'])->name('receptionist.delete.diagnose');
@@ -186,6 +186,7 @@ Route::middleware('auth')->group(function () {
                 Route::get('/add', [App\Http\Controllers\PatientController::class, 'create'])->name('receptionist.add.patient');
                 Route::post('/store', [App\Http\Controllers\PatientController::class, 'store'])->name('receptionist.store.patient');
                 Route::get('{id}/delete', [App\Http\Controllers\PatientController::class, 'delete'])->name('receptionist.delete.patient');
+                Route::get('delete-all', [App\Http\Controllers\PatientController::class, 'deleteAll'])->name('receptionist.delete.all.patient');
                 Route::get('{id}/edit', [App\Http\Controllers\PatientController::class, 'edit'])->name('receptionist.edit.patient');
                 Route::post('{id}/update', [App\Http\Controllers\PatientController::class, 'update'])->name('receptionist.update.patient');
                 Route::get('/{id}/download_patient_card', [App\Http\Controllers\PatientController::class, 'downloadPatientCard'])->name('receptionist.patient.download.card');

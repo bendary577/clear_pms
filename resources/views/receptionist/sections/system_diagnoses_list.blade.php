@@ -11,8 +11,8 @@
                     @foreach($system_diagnoses as $system_diagnose)
                         <tr>
                             <th>{{$system_diagnose->name}}</th>
-                            <td>
-                                <a href="{{route('receptionist.edit.diagnose', ['id' => $system_diagnose->id])}}" class="btn btn-success ">
+                            <td class="d-flex">
+                                <a href="{{route('receptionist.edit.diagnose', ['id' => $system_diagnose->id])}}" class="d-flex mx-1 btn btn-sm btn-success ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-external-link" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5" />
@@ -21,7 +21,7 @@
                                     </svg>
                                     <span>{{ __('lang.rec.diagnoses.update') }}</span>
                                 </a>
-                                <a href="{{route('receptionist.delete.diagnose', ['id' => $system_diagnose->id])}}" class="btn btn-danger ">
+                                <a href="{{route('receptionist.delete.diagnose', ['id' => $system_diagnose->id])}}" class="d-flex mx-1 btn btn-sm btn-danger ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                         <line x1="4" y1="7" x2="20" y2="7" />

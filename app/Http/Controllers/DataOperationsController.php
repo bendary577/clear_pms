@@ -10,6 +10,8 @@ use App\Exports\PatientsExport;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\ReceptionistProfile;
+use Carbon\Carbon;
 
 class DataOperationsController extends Controller
 {
@@ -18,34 +20,38 @@ class DataOperationsController extends Controller
         return view('receptionist.dashboard.dashboard_import_excel');
     }
 
-    public function importExcel(Request $request){
-
+    public function importExcel(Request $request)
+    {
         $validator = Validator::make($request->all(),
         [
             //'name' => 'required|mimes:xlsx,xls',
         ]);
-        
         if ($validator->fails()){
             return  redirect()->back()->withErrors($validator)->withInput();   
         }
-
         if ($request->hasfile('excel_file')){
+            $records_count = 0;
             $file = $request->file('excel_file');
             $path = $file->getRealPath();
             $patients = Excel::toArray(new PatientsImport, $file->store('temp'));
             if(!empty($patients) && count($patients)){
                 foreach ($patients[0] as $patient) {
-                    Patient::create([
-                        'name' => $patient['name'],
-                        'phone' => $patient['phone'],
-                        'age' => $patient['age'],
-                        'code' => $patient['code'],
-                        'gender' => $patient['gender'],
-                        'birthdate' => date("Y-m-d", strtotime($patient['birthdate'])),
-                        'attendance_date' => date("Y-m-d", strtotime($patient['attendance_date'])),
-                    ]);
+                    $records_count++;
+                    $receptionistProfile = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
+                    $new_patient = new Patient();
+                    $new_patient->name =  $patient['name'] ? $patient['name'] : 'no name';
+                    $new_patient->code = $new_patient->generateCode();
+                    $new_patient->phone =  $patient['phone'] ? $patient['phone'] : 'no phone';
+                    $new_patient->age = $patient['age'] ? $patient['age'] : 0;
+                    $new_patient->gender = $patient['gender'] == 1 ? 'male' : 'female';
+                    $new_patient->birthdate = Carbon::now();
+                    $new_patient->attendance_date = Carbon::now();
+                    $new_patient->receptionistProfile()->associate($receptionistProfile)->save();
+                    $receptionistProfile->patients()->save($new_patient);
+                    $new_patient->addToIndex();
                 }
-                session()->flash('success', trans('lang.rec.import_data_success'));
+                // trans('lang.rec.import_data_success')
+                session()->flash('success', $records_count+" patients records where added");
                 return redirect()->back(); 
             }
         }else{
@@ -55,7 +61,6 @@ class DataOperationsController extends Controller
     }
 
     public function exportExcel(){
-        //return (new PatientsExport)->download('patients.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         return Excel::download(new PatientsExport, 'patients.xlsx');
     }
 

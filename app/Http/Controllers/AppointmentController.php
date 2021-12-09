@@ -122,6 +122,7 @@ class AppointmentController extends Controller
     public function listReceptionistVisits(){
         $receptionist = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
         $appointments = Appointment::where('visit_type' , '=', 'App\Models\ReceptionistVisit')->where('visit_id', '=', $receptionist->id)->where('leaved_at', '=', null)->paginate(10);
+        dd($appointments[0]->patient->name);
         return view('receptionist.dashboard.dashboard_visits_list', ['appointments' => $appointments]);
     }
 

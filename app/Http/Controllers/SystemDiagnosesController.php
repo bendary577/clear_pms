@@ -23,13 +23,13 @@ class SystemDiagnosesController extends Controller
     {
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required',
+            'name' => 'required|string|max:200',
         ]);
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
         $diagnose = new SystemDiagnoses();
-        $diagnose->name = $request->get('name');
+        $diagnose->name = $request['name'];
         $diagnose->save();
         session()->flash('success', 'system diagnose added succesfuly');
         return redirect()->back();    

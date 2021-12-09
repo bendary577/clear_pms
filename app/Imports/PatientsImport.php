@@ -7,12 +7,14 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Row;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PatientsImport implements ToModel, WithHeadingRow
+class PatientsImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
 {
     public function model(array $row)
     {
-        dd($row);
         return new Patient([
             'name'  => $row['name'],
             'phone' => $row['phone'],
@@ -23,4 +25,15 @@ class PatientsImport implements ToModel, WithHeadingRow
             'attendance_date' => $row['attendance_date'],
         ]);
     }
+
+    public function batchSize(): int
+    {
+        return 1500;
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
+    }
+
 }

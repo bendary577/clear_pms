@@ -30,8 +30,11 @@ class SearchController extends Controller
 
     public function elasticSearch(Request $request){
         //dd($request['search_keyword']);
-        $patients = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]]);
-        return view('receptionist.dashboard.dashboard_search', ['patients' => $patients]);
+        $results = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]])->paginate(10);       
+        return view('receptionist.dashboard.dashboard_search', [
+                                                                    'patients' => $results
+                                                                    //'total' => $results->hits['total']
+                                                                ]);
     }
     
 }

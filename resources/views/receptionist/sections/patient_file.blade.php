@@ -77,12 +77,25 @@
                     <div class="card-header">
                         <h5 class="card-title">{{ __('lang.rec.patient_card')}}</h5>
                     </div>
-                    <div class="card-body text-center">
-                        <div class="" style="height:85%;">
-                            <img  style="width:100%;height:100%" src="{{url($patient->card_image_path)}}" alt="Card image">
+                    @if($patient->card_image_path)
+                        <div class="card-body text-center">
+                            <div class="" style="height:85%;">
+                                <img  style="width:100%;height:100%" src="{{url($patient->card_image_path)}}" alt="Card image">
+                            </div>
+                            <a href="{{route('receptionist.patient.download.card', ['id' => $patient->id])}}" class="btn btn-info mt-2">{{__('lang.download')}}</a>
                         </div>
-                        <a href="{{route('receptionist.patient.download.card', ['id' => $patient->id])}}" class="btn btn-info mt-2">{{__('lang.download')}}</a>
-                    </div>
+                    @else
+                        <div class="card-body">
+                            <h4 class="text-danger">{{ __('lang.rec.no_patient_sheet')}}</h4>
+                            <form method="POST" action="{{route('receptionist.patient.upload.files', ['id' => $patient->id ]) }}" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <div class="my-2">
+                                    <input type="file" id="card_image" name="card_image" accept="image/*" >
+                                </div>
+                                <button type="submit" name="patient_card" value="patient_card" class="btn btn-primary mt-2">{{ __('lang.upload')}}</button>
+                            <form>
+                        </div>
+                    @endif
                 </div>
             </div>
 

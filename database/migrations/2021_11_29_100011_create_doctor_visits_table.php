@@ -17,7 +17,7 @@ class CreateDoctorVisitsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('clinic_id')->nullable();
             $table->enum('reason', ['consultant', 'new visit', 'follow up']);
-            $table->foreign('clinic_id')->references('id')->on('clinics');
+            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
             $table->timestamps();
         });
     }

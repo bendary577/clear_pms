@@ -1,7 +1,8 @@
 
   
 <div class="container" style="margin-top: 5rem;">
-    @if($message = Session::get('success'))
+    
+@if($message = Session::get('success'))
         <div class="alert alert-success alert-dismissible fade in" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
@@ -60,8 +61,7 @@
               </div>
             </div>
         </div>
-
-        <!---------------------------------- csv card 
+ 
         <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -78,7 +78,6 @@
               </div>
             </div>
         </div>
-        ----------------------------->
       </div>
     </div>
 </div>

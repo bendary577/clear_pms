@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateSystemMedicinesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('system_medicines', function (Blueprint $table) {
@@ -21,64 +17,63 @@ class CreateSystemMedicinesTable extends Migration
         });
 
         DB::table('system_medicines')->insert([
-            ['name' => 'هالونيز 5 مجم'],
-            ['name' => 'ريسبادكس شراب'],
-            ['name' => 'ابيكسدون0.5'],
-            ['name' => 'ابيكسدون 1'],
-            ['name' => 'ابيكسدون 2'],
-            ['name' => 'ابيكسدون 3'],
-            ['name' => 'ريسبيردال 4'],
-            ['name' => 'نيورازين 100'],
-            ['name' => 'تريبتزول 25'],
-            ['name' => 'اميبرامين 25'],
-            ['name' => 'تجريتول 200'],
-            ['name' => 'تجريتول 400'],
-            ['name' => 'أرباتج100'],
-            ['name' => 'زاكلو100'],
-            ['name' => 'كلوزابين 25 مجم'],
-            ['name' => 'سوبرانيل 25'],
-            ['name' => 'كلوميبرامين 75 مجم'],
-            ['name' => 'كيوتابكس 25'],
-            ['name' => 'كيوتابكس100'],
-            ['name' => 'برولول 10'],
-            ['name' => 'لوسترال 50'],
-            ['name' => 'بروزاك 20'],
-            ['name' => 'سيبرالكس 10'],
-            ['name' => 'سيتالو برام 40 مجم'],
-            ['name' => 'أولابكس 10'],
-            ['name' => 'أولابكس 5'],
-            ['name' => 'اولانزابين 7.5 مجم'],
-            ['name' => 'أبيلفاى10'],
-            ['name' => 'كرونو145'],
-            ['name' => 'ديباكين200'],
-            ['name' => 'أتوموكس10 مجم'],
-            ['name' => 'أتوموكس 18 مجم'],
-            ['name' => 'أتوموكس25 مجم'],
-            ['name' => 'أتوموكس40'],
-            ['name' => 'أتوموكس60'],
-            ['name' => 'هلوبيردول 5'],
-            ['name' => 'هالوبيردول ديبو 50 مجم'],
-            ['name' => 'جوجينتول2'],
-            ['name' => 'دوجماتيل50'],
-            ['name' => 'دوجماتيل فورت200'],
-            ['name' => 'فافرين50 مجم'],
-            ['name' => 'دترونين شراب'],
-            ['name' => 'بريانيل400 '],
-            ['name' => 'أكتينون2 مجم'],
-            ['name' => 'كينوبريد5 مجم'],
-            ['name' => 'اروكستين12.5 مجم'],
-            ['name' => 'باروكستين 25 مجم'],
-            ['name' => 'باروكستين 37.5 مجم'],
+            ['name' => 'هالونيز 5 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ريسبادكس شراب', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ابيكسدون0.5', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ابيكسدون 1', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ابيكسدون 2', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ابيكسدون 3', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ريسبيردال 4', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'نيورازين 100', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'تريبتزول 25', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'اميبرامين 25', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'تجريتول 200', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'تجريتول 400', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أرباتج100', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'زاكلو100', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كلوزابين 25 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'سوبرانيل 25', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كلوميبرامين 75 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كيوتابكس 25', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كيوتابكس100', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'برولول 10', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'لوسترال 50', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'بروزاك 20', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'سيبرالكس 10', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'سيتالو برام 40 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أولابكس 10', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أولابكس 5', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'اولانزابين 7.5 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أبيلفاى10', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كرونو145', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'ديباكين200', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أتوموكس10 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أتوموكس 18 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أتوموكس25 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أتوموكس40', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أتوموكس60', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'هلوبيردول 5', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'هالوبيردول ديبو 50 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'جوجينتول2', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'دوجماتيل50', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'دوجماتيل فورت200', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'فافرين50 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'دترونين شراب', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'بريانيل400 ', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'أكتينون2 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'كينوبريد5 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'اروكستين12.5 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'باروكستين 25 مجم', 'code' => $this->generateMedicinesCode()],
+            ['name' => 'باروكستين 37.5 مجم', 'code' => $this->generateMedicinesCode()],
         ]);
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('system_medicines');
+    }
+
+    public function generateMedicinesCode(){
+        return rand(pow(10, 8-1), pow(10, 8)-1);
     }
 }

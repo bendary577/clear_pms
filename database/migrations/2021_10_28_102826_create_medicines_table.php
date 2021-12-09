@@ -19,7 +19,7 @@ class CreateMedicinesTable extends Migration
             $table->string('name');
             $table->string('dose')->nullable();
             $table->string('duration')->nullable();
-            $table->foreign('perscreption_id')->references('id')->on('perscreptions');
+            $table->foreign('perscreption_id')->references('id')->on('perscreptions')->onDelete('cascade');
             $table->timestamps();
         });
 

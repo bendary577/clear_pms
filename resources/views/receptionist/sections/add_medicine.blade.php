@@ -19,7 +19,7 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="date">{{ __('lang.rec.medicines.name') }}</label>
-            <input type="text" name="name" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
+            <input type="text" name="name" class="form-control" id="birth_date" placeholder="name">
         </div>
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>

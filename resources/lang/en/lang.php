@@ -333,7 +333,7 @@
     'rec.patients.phone' => 'phone',
     'rec.patients.another.phone' => 'another phone',
     'rec.patients.action' => 'action',
-    'rec.patients.check.file' => 'check patient file',
+    'rec.patients.check.file' => 'patient file',
     'rec.patients.specialist.visit' => 'specialist visit',
     'rec.patients.doctor.visit' => 'doctor visit',
     'rec.patients.delete' => 'delete',

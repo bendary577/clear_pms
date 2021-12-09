@@ -16,7 +16,7 @@ class CreateReceptionistVisitsTable extends Migration
         Schema::create('receptionist_visits', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('receptionist_id')->nullable();
-            $table->foreign('receptionist_id')->references('id')->on('receptionist_profiles');
+            $table->foreign('receptionist_id')->references('id')->on('receptionist_profiles')->onDelete('cascade');
             $table->timestamps();
         });
     }
