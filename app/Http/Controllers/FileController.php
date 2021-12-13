@@ -48,6 +48,16 @@ class FileController extends Controller
             }
             return redirect()->back()->with('error', 'please provide a valid file');
         //uploading patient sheet file
+        }else if($request->has("patient_card")){
+            $imageName = $request->card_image->getClientOriginalName();
+            $path = '/patients_cards/'.date('Y-m-d').'/'.$patient->name.'/';
+            $request->card_image->move(public_path().$path, $imageName);
+            $patient->card_image_path = $path.$imageName;
+            $patient->save();
+
+            session()->flash('success', trans('lang.patient_sheet_uploaded'));
+            return redirect()->back();
+        //uploading patient sheet file     
         }else if($request->has("patient_sheet")){
             $imageName = $request->sheet_image->getClientOriginalName();
             $path = '/patients_sheets/'.date('Y-m-d').'/'.$patient->name.'/';

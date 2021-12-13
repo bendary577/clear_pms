@@ -25,7 +25,7 @@
     <h2 class="text-title mb-4">{{ __('lang.rec.import_data_desc')}}</h2>
     <div class="container">
       <div class="row">   
-        <!---------------------------------- access card ----------------------------->
+        <!---------------------------------- access card 
           <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -42,7 +42,8 @@
               </div>
             </div>
         </div>
-
+        ----------------------------->
+        
         <!---------------------------------- excel card ----------------------------->
 
         <div class="col-md-3 ml-4">
@@ -61,7 +62,8 @@
               </div>
             </div>
         </div>
- 
+
+         <!---------------------------------- csv card 
         <div class="col-md-3 ml-4">
             <div class="card" style="width: 16rem; height:32rem;">
               <div class="d-flex justify-content-center align-items-center my-2">
@@ -78,6 +80,7 @@
               </div>
             </div>
         </div>
+        ----------------------------->
       </div>
     </div>
 </div>
