@@ -195,6 +195,16 @@ Route::middleware('auth')->group(function () {
                 Route::get('{id}/patient_file', [App\Http\Controllers\PatientController::class, 'show'])->name('receptionist.patients.patient.file');
                 Route::get('{appointment_id}/check_perscreption', [App\Http\Controllers\PerscreptionController::class, 'show'])->name('receptionist.appointment.check.perscreption');
 
+                //receptionists relatives
+                Route::prefix('/relatives')->group(function(){
+                    Route::get('/list', [App\Http\Controllers\RelativeController::class, 'index'])->name('receptionist.list.relatives');
+                    Route::get('/create', [App\Http\Controllers\RelativeController::class, 'create'])->name('receptionist.create.relative');
+                    Route::post('/store', [App\Http\Controllers\RelativeController::class, 'store'])->name('receptionist.store.relative');
+                    Route::get('/edit', [App\Http\Controllers\RelativeController::class, 'edit'])->name('receptionist.edit.relative');
+                    Route::post('/update', [App\Http\Controllers\RelativeController::class, 'update'])->name('receptionist.update.relative');
+                    Route::get('/delete', [App\Http\Controllers\RelativeController::class, 'delete'])->name('receptionist.delete.relative');
+                });
+
                 //receptionists visit
                 Route::prefix('/visit')->group(function () {
                     Route::get('/list', [App\Http\Controllers\AppointmentController::class, 'listReceptionistVisits'])->name('receptionist.list.visits');

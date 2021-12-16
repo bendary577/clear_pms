@@ -237,5 +237,55 @@
             </div>
         </div>
 
+        <!---------------------------------- relatives information -------------------------------->
+
+        <div class="row">
+            <div class="card" id="relatives_info">
+                <div class="card-body">
+                    <button class="btn btn-danger" id="add_relative_id">Add New</button>
+                    <div class="" id="add_relative_div">
+                        <div class="my-2"><h3 class="">Relative Information</h3></div>
+
+                        <form method="POST" action="{{route('')}}">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Age</label>
+                                <input type="number" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Work Place</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Relative Relation</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Medical History</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Notes</label>
+                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
 </div>
+
+<script>
+    $("#add_relative_id").click(function(){
+        $("#add_relative_div").toggle();
+    });
+</script>

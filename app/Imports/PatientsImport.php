@@ -7,11 +7,13 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Row;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Illuminate\Contracts\Queue\ShouldQueue;
+//use Maatwebsite\Excel\Concerns\WithChunkReading;
+//use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-class PatientsImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading, ShouldQueue
+//WithBatchInserts, WithChunkReading
+
+class PatientsImport implements ToModel, WithHeadingRow, ShouldQueue
 {
     public function model(array $row)
     {
@@ -26,6 +28,7 @@ class PatientsImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
         ]);
     }
 
+    /*
     public function batchSize(): int
     {
         return 1500;
@@ -35,5 +38,6 @@ class PatientsImport implements ToModel, WithHeadingRow, WithBatchInserts, WithC
     {
         return 1000;
     }
+    */
 
 }

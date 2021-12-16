@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use ElasticScoutDriverPlus\Searchable;
 use Elasticquent\ElasticquentTrait;
 
 class Patient extends Model
 {
     use HasFactory, ElasticquentTrait;
-    //use Searchable;
     
     protected $fillable = [
         'name',
@@ -32,15 +29,21 @@ class Patient extends Model
         ],
       );
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-        static::deleting(function($patient) { // before delete() method call this
+        static::deleting(function($patient) { 
             $patient->appointments()->delete();
             $patient->files()->delete();
         });
     }  
 
-    public function appointments()
+    public function relatives()
+    {
+        return $this->hasMany(Relative::class);
+    }
+
+    public function appointments() 
     {
         return $this->hasMany(Appointment::class);
     }
@@ -50,8 +53,9 @@ class Patient extends Model
         return $this->hasMany(File::class);
     }
 
-    public function generateCode(){
-        return rand(pow(10, 8-1), pow(10, 8)-1);
+    public function address()
+    {
+        return $this->hasOne(Address::class);
     }
 
     public function receptionistProfile()
@@ -59,4 +63,8 @@ class Patient extends Model
         return $this->belongsTo(ReceptionistProfile::class);
     }
 
+    public function generateCode()
+    {
+        return rand(pow(10, 8-1), pow(10, 8)-1);
+    }
 }

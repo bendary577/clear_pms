@@ -15,12 +15,14 @@ class CreateRelativesTable extends Migration
     {
         Schema::create('relatives', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('patient_id')->nullable();
             $table->string('name');
             $table->string('age');
-            $table->string('work_place');
+            $table->string('work_place')->nullable();
             $table->string('relative_relation');
-            $table->string('medical_history');
-            $table->string('notes');
+            $table->string('medical_history')->nullable();
+            $table->string('notes')->nullable();
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->timestamps();
         });
     }
