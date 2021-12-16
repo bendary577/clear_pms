@@ -1,7 +1,5 @@
 <div class="container">
 
-    <!--- if patient is added is added successfully ----------->
-
     @if($message = Session::get('success'))
         <div class="alert alert-success" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -20,7 +18,6 @@
     
     {!! Session::forget('success') !!}
 
-    <!--- if patient is not added successfully ----------->
     @if($errors->any())
         <ul>
             @foreach ($errors->all() as $error)
@@ -55,6 +52,25 @@
             <label for="birth_date">{{ __('lang.rec.table.birth_date')}}</label>
             <input type="date" name="birthdate" class="form-control" id="birth_date" placeholder="{{ __('lang.rec.table.birth_date')}}">
         </div>
+
+        @if(count($receptionistProfiles) > 0)
+            <div class="form-group">
+                <label for="receptionist_profile_id">Associated Receptionist</label>
+                <select id="receptionist_profile_id" name="receptionist_profile_id" class="form-control">
+                    @foreach($receptionistProfiles as $receptionistProfile)
+                        <option value="{{$receptionistProfile->id}}">{{ $receptionistProfile->user->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        @else
+            <h2 class="">sorry, no receptionist</h2>
+        @endif
+
+        <div class="form-group">
+            <label for="attendance_date">Attendance Date</label>
+            <input type="date" name="attendance_date" class="form-control" id="attendance_date" placeholder="Attendance Date">
+        </div>
+
         <div class="form-check">
             <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="male" checked>
             <label class="form-check-label" for="exampleRadios1">
@@ -70,8 +86,9 @@
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
         <div class="my-2">
-            <input type="file" name="image" accept="image/*" required>
+            <input type="file" name="image" accept="image/*">
         </div>
+
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>
 </div>

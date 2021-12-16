@@ -22,6 +22,7 @@ class CreatePatientsTable extends Migration
             $table->date('attendance_date');
             $table->string('card_image_path')->nullable();
             $table->string('sheet_image_path')->nullable();
+            $table->string('receptionist_name')->nullable();
             $table->foreign('receptionist_profile_id')->references('id')->on('receptionist_profiles')->onDelete('set null');
             $table->timestamps();
         });

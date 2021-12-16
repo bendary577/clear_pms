@@ -120,9 +120,8 @@ class AppointmentController extends Controller
     //-------------------------------------------------------------------- rec section ----------------------------------------
 
     public function listReceptionistVisits(){
-        $receptionistVisit = ReceptionistVisit::where('receptionist_id', '=', Auth::user()->profile->id)->first();
-        $appointments = Appointment::where('visit_type' , '=', 'App\Models\ReceptionistVisit')->where('visit_id', '=', $receptionistVisit->id)->where('leaved_at', '=', null)->paginate(10);
-        return view('receptionist.dashboard.dashboard_visits_list', ['appointments' => $appointments]);
+        $visits = ReceptionistVisit::where('receptionist_id', '=', Auth::user()->profile->id)->with('appointment')->paginate(10);
+        return view('receptionist.dashboard.dashboard_visits_list', ['visits' => $visits]);
     }
 
     public function startReceptionistVisitImmediately($patient_id)

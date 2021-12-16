@@ -33,7 +33,8 @@ class PatientController extends Controller
 
     public function create()
     {
-        return view('receptionist.dashboard.dashboard_patients_add');
+        $receptionistProfiles = ReceptionistProfile::all();
+        return view('receptionist.dashboard.dashboard_patients_add', [ 'receptionistProfiles' => $receptionistProfiles ]);
     }
 
 
@@ -42,12 +43,11 @@ class PatientController extends Controller
         $validator = Validator::make($request->all(),
         [
             'name' => 'required|string|max:200',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            //'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-        $receptionistProfile = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
         $patient = new Patient();
         $patient->name = $request['name'];
         $patient->code = $patient->generateCode();
@@ -63,9 +63,12 @@ class PatientController extends Controller
             $request->image->move(public_path().$path, $imageName);
             $patient->card_image_path = $path.$imageName;  
         }
-        $patient->receptionistProfile()->associate($receptionistProfile)->save();
+        if($request['receptionist_profile_id']){
+            $receptionistProfile = ReceptionistProfile::where('id', '=', $request['receptionist_profile_id'])->first();
+            $receptionistProfile->patients()->save($patient);
+            $patient->receptionistProfile()->associate($receptionistProfile)->save();
+        }
         $patient->save();
-        $receptionistProfile->patients()->save($patient);
         $patient->addToIndex();
         session()->flash('success', trans('lang.patient_profile_added', ['code' => $patient->code]));
         return redirect()->back()->with('patient_id', $patient->id );   
@@ -158,9 +161,8 @@ class PatientController extends Controller
     {
         if(Patient::where('id', $id)->exists()) {
             $patient = Patient::find($id);
-            //$patient->appointments()->delete();
-            //$patient->files()->delete();
             $patient->delete();
+            Patient::reindex();
             session()->flash('success', trans('lang.patient_profile_deleted'));
             return redirect()->back(); 
         }else{
