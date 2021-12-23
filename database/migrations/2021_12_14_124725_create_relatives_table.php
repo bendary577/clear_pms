@@ -25,6 +25,7 @@ class CreateRelativesTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *
