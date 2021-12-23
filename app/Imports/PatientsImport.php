@@ -7,17 +7,18 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Row;
-use Illuminate\Contracts\Queue\ShouldQueue;
+//use Illuminate\Contracts\Queue\ShouldQueue;
 //use Maatwebsite\Excel\Concerns\WithChunkReading;
 //use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-//WithBatchInserts, WithChunkReading
+//WithBatchInserts, WithChunkReading, ShouldQueue
 
-class PatientsImport implements ToModel, WithHeadingRow, ShouldQueue
+class PatientsImport implements ToModel, WithHeadingRow 
 {
     public function model(array $row)
     {
         return new Patient([
+            'id'  => $row['ID'],
             'name'  => $row['name'],
             'phone' => $row['phone'],
             'age' => $row['age'],

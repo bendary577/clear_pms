@@ -50,8 +50,7 @@ class DataOperationsController extends Controller
                     $receptionistProfile->patients()->save($new_patient);
                     $new_patient->addToIndex();
                 }
-                // trans('lang.rec.import_data_success')
-                session()->flash('success', $records_count+" patients records where added");
+                session()->flash('success', trans('lang.rec.import_data_success'));
                 return redirect()->back(); 
             }
         }else{
