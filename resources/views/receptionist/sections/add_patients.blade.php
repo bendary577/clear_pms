@@ -13,7 +13,7 @@
         </div>
         @php 
             Illuminate\Support\Facades\Session::forget('patient_id');  
-        @endphp
+        @endphp 
     @endif
     
     {!! Session::forget('success') !!}
@@ -31,7 +31,7 @@
         {{ csrf_field() }}
         <div class="form-group">
             <label for="name">{{ __('lang.rec.table.name')}}</label>
-            <input type="name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.name')}}">
+            <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.table.name')}}">
         </div>
 
         <div class="form-group">
@@ -77,7 +77,8 @@
             {{ __('lang.rec.table.male')}}
             </label>
         </div>
-            <div class="form-check">
+
+        <div class="form-check">
             <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="female">
             <label class="form-check-label" for="exampleRadios2">
             {{ __('lang.rec.table.female')}}
@@ -85,6 +86,7 @@
         </div>
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
+        
         <div class="my-2">
             <input type="file" name="image" accept="image/*">
         </div>
@@ -92,3 +94,4 @@
         <button type="submit" class="btn btn-primary mt-2">{{ __('lang.submit')}}</button>
     </form>
 </div>
+

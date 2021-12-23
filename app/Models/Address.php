@@ -16,4 +16,9 @@ class Address extends Model
         'street',
         'notes',
     ];
+
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }
 }
