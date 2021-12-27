@@ -73,16 +73,30 @@
 
         <div class="form-check">
             <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="male" checked>
-            <label class="form-check-label" for="exampleRadios1">
-            {{ __('lang.rec.table.male')}}
-            </label>
+            <label class="form-check-label" for="exampleRadios1">{{ __('lang.rec.table.male')}}</label>
         </div>
 
         <div class="form-check">
             <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="female">
-            <label class="form-check-label" for="exampleRadios2">
-            {{ __('lang.rec.table.female')}}
-            </label>
+            <label class="form-check-label" for="exampleRadios2">{{ __('lang.rec.table.female')}}</label>
+        </div>
+
+        <div class="mt-4"><h4>Code Policy</h4></div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="code_checkbox" id="random_code_checkbox" value="random">
+            <label class="form-check-label" for="random_code_checkbox">Random</label>
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="code_checkbox" id="custom_code_checkbox" value="custom">
+            <label class="form-check-label" for="custom_code_checkbox">Custom</label>
+        </div>
+
+        <div class="form-group" id="code_div">
+            <label for="code">Code</label>
+            <p class="text-danger">code must be unique</p>
+            <input type="text" name="code" class="form-control" id="code" aria-describedby="code" placeholder="code">
         </div>
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
@@ -95,3 +109,14 @@
     </form>
 </div>
 
+<script>
+    jQuery("input:radio[name=code_checkbox]").on("change", function() {
+            if($('#custom_code_checkbox').is(":checked")){
+                console.log("checked")
+                $("#code_div").show();
+            }else{
+                console.log("not checked")
+                $("#code_div").hide();
+            }
+        }).change();
+</script>

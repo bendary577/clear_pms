@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataOperations;
+use App\Models\SystemConfiguration;
 use App\Models\Patient;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PatientsImport;
@@ -13,11 +14,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ReceptionistProfile;
 use Carbon\Carbon;
 
+
+
 class DataOperationsController extends Controller
 {
-
+    
     public function getImportExcelView(){
-        return view('receptionist.dashboard.dashboard_import_excel');
+        $system_configurations = SystemConfiguration::all()->first();
+        return view('receptionist.dashboard.dashboard_import_excel', ['system_configurations' => $system_configurations]);
     }
 
     public function importExcel(Request $request)
