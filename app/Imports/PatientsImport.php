@@ -22,10 +22,13 @@ class PatientsImport implements ToModel, WithHeadingRow
             'name'  => $row['name'],
             'phone' => $row['phone'],
             'age' => $row['age'],
-            'code' => $row['code'],
+            'code' => $row['ID'],
             'gender' => $row['gender'],
             'birthdate' => $row['birthdate'],
             'attendance_date' => $row['attendance_date'],
+            'receptionist_name' => $row['specialist'],
+            'diagnose' => $row['diagnose'],
+            'medicine' => $row['medicine'],
         ]);
     }
 

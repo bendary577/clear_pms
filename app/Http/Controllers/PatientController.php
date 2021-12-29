@@ -50,7 +50,7 @@ class PatientController extends Controller
         }
         $patient = new Patient();
         $patient->name = $request['name'];
-        $patient->code = $patient->generateCode();
+        $patient->code = $request['code'];
         $patient->phone = $request['phone'];
         $patient->another_phone = $request['another_phone'];
         $patient->age = $request['age'];
@@ -67,6 +67,24 @@ class PatientController extends Controller
             $receptionistProfile = ReceptionistProfile::where('id', '=', $request['receptionist_profile_id'])->first();
             $receptionistProfile->patients()->save($patient);
             $patient->receptionistProfile()->associate($receptionistProfile)->save();
+        }
+        if($request['city']){
+            $patient->city = $request['city'];
+        }
+        if($request['province']){
+            $patient->province = $request['province'];
+        }
+        if($request['parent_name']){
+            $patient->parent_name = $request['parent_name'];
+        }
+        if($request['parent_workplace']){
+            $patient->parent_workplace = $request['parent_workplace'];
+        }
+        if($request['mother_name']){
+            $patient->mother_name = $request['mother_name'];
+        }
+        if($request['mother_workplace']){
+            $patient->mother_workplace = $request['mother_workplace'];
         }
         $patient->save();
         $patient->addToIndex();

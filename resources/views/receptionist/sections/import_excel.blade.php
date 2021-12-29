@@ -34,13 +34,10 @@
                 <div class="instructions_list">
                     <ul class="mx-5">
                         <li>
-                          <h6>please choose your patient's code policy from <a href="" class="" data-toggle="modal" data-target="#code_policy">here</a></h6>
-                        </li>
-                        <li>
                           <h6>make sure that receptionists names recorded in the file are available in the system and associated with accounts with the same name</h6>
                         </li>
                         <li>
-                          <h6>make sure your excel sheet has the right format (system default) or build your custom format <a href="" class="" data-toggle="modal" data-target="#excel_policy">here</a></h6>
+                          <h6>make sure your excel sheet has the right format (system default)</h6>
                           <img src="{{url('/images/dashboard/excel-format.jpg')}}" style="width:100%;height:90px" class="" alt="excel-format">
                         </li>
                     </ul>

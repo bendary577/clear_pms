@@ -81,22 +81,68 @@
             <label class="form-check-label" for="exampleRadios2">{{ __('lang.rec.table.female')}}</label>
         </div>
 
-        <div class="mt-4"><h4>Code Policy</h4></div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="code_checkbox" id="random_code_checkbox" value="random">
-            <label class="form-check-label" for="random_code_checkbox">Random</label>
-        </div>
-
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="code_checkbox" id="custom_code_checkbox" value="custom">
-            <label class="form-check-label" for="custom_code_checkbox">Custom</label>
-        </div>
-
-        <div class="form-group" id="code_div">
+        <div class="form-group mt-2" id="code_div">
             <label for="code">Code</label>
-            <p class="text-danger">code must be unique</p>
             <input type="text" name="code" class="form-control" id="code" aria-describedby="code" placeholder="code">
+        </div>
+
+        <div class="row">
+            <div class="col form-group">
+                <label for="province">Province</label>
+                <select class="form-control" id="province" name="province" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">القاهرة</option>
+                    <option value="1">الجيزة</option>
+                    <option value="1">الإسكندرية</option>
+                    <option value="1">الدقهلية</option>
+                    <option value="1">الشرقية</option>
+                    <option value="1">المنوفية</option>
+                    <option value="1">القليوبية</option>
+                    <option value="1">البحيرة</option>
+                    <option value="1">الغربية</option>
+                    <option value="1">بورسعيد</option>
+                    <option value="1">دمياط</option>
+                    <option value="1">الاسماعيلية</option>
+                    <option value="1">السويس</option>
+                    <option value="1">كفر الشيخ</option>
+                    <option value="1">الفيوم</option>
+                    <option value="1">بني سويف</option>
+                    <option value="1">مطروح</option>
+                    <option value="1">شمال سيناء</option>
+                    <option value="1">جنوب سيناء</option>
+                    <option value="1">المنيا</option>
+                    <option value="1">اسيوط</option>
+                    <option value="1">سوهاج</option>
+                    <option value="1">قنا</option>
+                    <option value="1">البحر الاحمر</option>
+                    <option value="1">الاقصر</option>
+                    <option value="1">اسوان</option>
+                </select>
+            </div>
+            <div class="col form-group">
+                <label for="city">City</label>
+                <input type="text" name="city" class="form-control" id="city" aria-describedby="code" placeholder="city">
+            </div>
+        </div>
+
+        <div class="form-group mt-2" id="code_div">
+            <label for="code">Parent Name</label>
+            <input type="text" name="parent_name" class="form-control" id="code" aria-describedby="code" placeholder="parent name">
+        </div>
+
+        <div class="form-group mt-2" id="code_div">
+            <label for="code">Parent Workplace</label>
+            <input type="text" name="parent_workplace" class="form-control" id="code" aria-describedby="code" placeholder="parent workplace">
+        </div>
+
+        <div class="form-group mt-2" id="code_div">
+            <label for="code">Mother Name</label>
+            <input type="text" name="mother_name" class="form-control" id="code" aria-describedby="code" placeholder="mother name">
+        </div>
+
+        <div class="form-group mt-2" id="code_div">
+            <label for="code">Mother Workplace</label>
+            <input type="text" name="mother_workplace" class="form-control" id="code" aria-describedby="code" placeholder="mother workplace">
         </div>
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
@@ -109,14 +155,3 @@
     </form>
 </div>
 
-<script>
-    jQuery("input:radio[name=code_checkbox]").on("change", function() {
-            if($('#custom_code_checkbox').is(":checked")){
-                console.log("checked")
-                $("#code_div").show();
-            }else{
-                console.log("not checked")
-                $("#code_div").hide();
-            }
-        }).change();
-</script>

@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ReceptionistProfile;
 use Carbon\Carbon;
-
-
+use App\Models\Appointment;
+use App\Models\ReceptionistVisit;
+use App\Models\Perscreption;
+use App\Models\Diagnose;
+use App\Models\Medicine;
 
 class DataOperationsController extends Controller
 {
@@ -41,18 +44,52 @@ class DataOperationsController extends Controller
             if(!empty($patients) && count($patients)){
                 foreach ($patients[0] as $patient) {
                     $records_count++;
-                    $receptionistProfile = ReceptionistProfile::where('id', Auth::user()->profile->id)->first();
+                    $receptionistProfile =  Auth::user()->profile;
                     $new_patient = new Patient();
                     $new_patient->name =  $patient['name'] ? $patient['name'] : 'no name';
-                    $new_patient->code = $new_patient->generateCode();
+                    $new_patient->code = $patient['id'];
                     $new_patient->phone =  $patient['phone'] ? $patient['phone'] : 'no phone';
                     $new_patient->age = $patient['age'] ? $patient['age'] : 0;
                     $new_patient->gender = $patient['gender'] == 1 ? 'male' : 'female';
                     $new_patient->birthdate = Carbon::now();
                     $new_patient->attendance_date = Carbon::now();
+                    //$patient['receptionist_name'] ? $patient['receptionist_name'] : 'no specialist';
+                    $new_patient->receptionist_name = 'no specialist';
                     $new_patient->receptionistProfile()->associate($receptionistProfile)->save();
                     $receptionistProfile->patients()->save($new_patient);
                     $new_patient->addToIndex();
+
+                    $appointment = new Appointment();
+                    $appointment->date = Carbon::now()->toDateTimeString();
+                    $appointment->from = Carbon::now()->toDateTimeString();
+                    $appointment->to = Carbon::now()->toDateTimeString();
+                    $appointment->leaved_at = Carbon::now()->toDateTimeString();
+                    $appointment->patient()->associate($new_patient)->save();
+
+                    $receptionistVisit = new ReceptionistVisit();
+                    $receptionistVisit->receptionist()->associate($receptionistProfile)->save();
+                    $receptionistVisit->save();
+                    $receptionistVisit->appointment()->save($appointment);
+
+                    if(!$patient['diagnose'] == null){
+                        $perscreption = new Perscreption();
+                        $diagnose = new Diagnose();
+                        $diagnose->name = $patient['diagnose'];
+                        $diagnose->save();
+                        $perscreption->save();
+                        $perscreption->diagnose()->save($diagnose);
+                        $diagnose->perscreption()->associate($perscreption)->save();
+    
+                        $medicine = new Medicine();
+                        $medicine->name = $patient['medicine'] ? $patient['medicine'] : 'no medicine';
+                        $medicine->save();
+                        $perscreption->medicines()->save($medicine);
+                        $medicine->perscreption()->associate($perscreption)->save();
+
+                        $appointment->perscreption()->save($perscreption);
+                        $perscreption->appointment()->associate($appointment)->save();
+                    }
+                    
                 }
                 session()->flash('success', trans('lang.rec.import_data_success'));
                 return redirect()->back(); 

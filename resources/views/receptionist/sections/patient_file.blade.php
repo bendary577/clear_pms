@@ -23,7 +23,7 @@
         <!----------------------------------------------- personal info -------------------------->
         <div class="row">
             <div class="personal_info col-md-6 my-4">
-                <div class="card" style="height:450px;">
+                <div class="card" style="height:750px;">
                     <div class="card-header">
                         <div class="clearfix">
                             <h5 class="card-title float-left">{{ __('lang.doctor.personal_info') }}</h5>
@@ -32,22 +32,38 @@
                         <p><small>list of all patient's personal info </small></p>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{ $patient->name }}</p>
-                        <p class="card-text">{{ $patient->receptionistProfile->user->name }}</p>
+                        <p class="card-text">Name : {{ $patient->name }}</p>
+                        <p class="card-text">Specialist Name : {{ $patient->receptionistProfile->user->name }}</p>
+                        <p class="card-text">Code : {{ $patient->code }}</p>
                         @if($patient->phone)
-                            <p class="card-text">{{ $patient->phone }}</p>
+                            <p class="card-text">Phone :{{ $patient->phone }}</p>
                         @endif
-                        <p class="card-text">{{ $patient->gender }}</p>
-                        <p class="card-text">{{ __('lang.rec.birthdate_at' , [ 'date' => $patient->birthdate])}}</p>
-                        <p class="card-text">{{ __('lang.rec.registered_at' , [ 'date' => $patient->attendance_date])}}</p>
-                        <p class="card-text">{{ __('lang.rec.age', ['age' => $patient->age])}}</p>
+                        <p class="card-text">Gender : {{ $patient->gender }}</p>
+                        <p class="card-text">Birthdate : {{ __('lang.rec.birthdate_at' , [ 'date' => $patient->birthdate])}}</p>
+                        <p class="card-text">Registered At : {{ __('lang.rec.registered_at' , [ 'date' => $patient->attendance_date])}}</p>
+                        <p class="card-text">Age : {{ __('lang.rec.age', ['age' => $patient->age])}}</p>
+                        @if($patient->province)
+                        <p class="card-text">Address : {{  $patient->province }} - {{  $patient->city }}</p>
+                        @endif
+                        @if($patient->parent_name)
+                        <p class="card-text">Parent Name : {{  $patient->parent_name }}</p>
+                        @endif
+                        @if($patient->parent_workplace)
+                        <p class="card-text">Parent Workplace : {{  $patient->parent_workplace }} </p>
+                        @endif
+                        @if($patient->mother_name)
+                        <p class="card-text">Mother Name  : {{ $patient->mother_name }}</p>
+                        @endif
+                        @if($patient->mother_workplace)
+                        <p class="card-text">Mother Workplace  : {{  $patient->mother_workplace }}</p>
+                        @endif
                     </div>
                 </div>
             </div>
 
         <!----------------------------------------------- past visits info -------------------------->
             <div class="past_visits_info col-md-6 my-4">
-                <div class="card" style="height:450px;">
+                <div class="card" style="height:750px;">
                     <div class="card-header">
                         <h5 class="">{{ __('lang.doctor.clinic_info')}}</h5>
                         <p><small>list of doctors that patient has visited</small></p>
@@ -234,51 +250,6 @@
                 @else
                     <h4 class="text-danger">{{ __('lang.rec.no_appointment')}}</h4>
                 @endif
-            </div>
-        </div>
-
-        <!---------------------------------- relatives information -------------------------------->
-
-        <div class="row">
-            <div class="card" id="relatives_info">
-                <div class="card-body">
-                    <button class="btn btn-danger" id="add_relative_id">Add New</button>
-                    <div class="" id="add_relative_div">
-                        <div class="my-2"><h3 class="">Relative Information</h3></div>
-
-                        <form method="POST" action="{{route('')}}">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Age</label>
-                                <input type="number" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Work Place</label>
-                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Relative Relation</label>
-                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Medical History</label>
-                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Notes</label>
-                                <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="name">
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     @endif

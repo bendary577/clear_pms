@@ -20,6 +20,15 @@ class Patient extends Model
         'attendance_date',
         'card_image_path',
         'sheet_image_path',
+        'city',
+        'province',
+        'parent_name',
+        'parent_workplace',
+        'mother_name',
+        'mother_workplace',
+        'receptionist_name',
+        'diagnose',
+        'medicine'
     ];
 
     protected $mappingProperties = array(
