@@ -28,135 +28,28 @@
         @if(!$system_configurations->importing_patients_configurations_chosen)
           <div class="choose_policies">
             <div class="row">
-                  <h2>Before importing the file please make sure that</h2>
+                  <h2>{{ __('lang.rec.importing_policies_title')}}</h2>
             </div>
             <div class="row">
                 <div class="instructions_list">
                     <ul class="mx-5">
                         <li>
-                          <h6>make sure that receptionists names recorded in the file are available in the system and associated with accounts with the same name</h6>
+                          <h6>{{ __('lang.rec.importing_policies_rec_names')}}</h6>
                         </li>
                         <li>
-                          <h6>make sure your excel sheet has the right format (system default)</h6>
+                          <h6>{{ __('lang.rec.importing_policies_excel_format')}}</h6>
                           <img src="{{url('/images/dashboard/excel-format.jpg')}}" style="width:100%;height:90px" class="" alt="excel-format">
                         </li>
                     </ul>
                     <div class="form-check mx-5">
                         <input class="form-check-input" type="checkbox" value="" id="instructions_checkbox">
-                        <label class="form-check-label" for="instructions_checkbox">I have read the instruction and chosen my policies</label>
+                        <label class="form-check-label" for="instructions_checkbox">{{ __('lang.rec.importing_policies_read_instructions')}}</label>
                     </div>
                 </div>
             </div>
-
-            <!-- CODE POLICY MODAL -->
-            <div class="modal fade" id="code_policy" tabindex="-1" role="dialog" aria-labelledby="code_policy" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="code_policy">Imported Patients Code Policy</h5>
-                  </div>
-                  <div class="modal-body">
-                      <form method="POST">
-                          <h5>Please choose your desired policy for recording new patients codes</h5>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                            <label class="form-check-label mx-2" for="inlineRadio1">Random (generated randomely)</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label mx-2" for="inlineRadio2">Sequential (code numbers are consecutive)</label>
-                          </div>
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                            <label class="form-check-label mx-2" for="inlineRadio2">Custom (codes are available in the file)</label>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- EXCEL POLICY MODAL -->
-            <div class="modal fade" id="excel_policy" tabindex="-1" role="dialog" aria-labelledby="excel_policy" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="excel_policy">Imported Patients Excel Policy</h5>
-                  </div>
-                  <div class="modal-body">
-                      <form method="POST">
-                          <h5>Please choose your desired values for excel file format</h5>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="select_all_checkbox">
-                            <label class="form-check-label text-primary" for="id"> Select all </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Name </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Age </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Phone </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Another Phone </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Birthdate </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Attendance Date </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Code </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Gender </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Specialist Name </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Diagnose </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Medicine </label>
-                          </div>
-                          <div class="form-check">
-                            <input class="check_ form-check-input" type="checkbox" value="" id="id">
-                            <label class="form-check-label" for="id"> Created at </label>
-                          </div>
-                      </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        @else
-          <div class="">
-            <h4>you can change your patients data importing policy from <a href="" class="" data-toggle="modal" data-target="#code_policy">here</a></h4>
           </div>
         @endif
+
 
         <div class="row">   
           <!---------------------------------- access card 

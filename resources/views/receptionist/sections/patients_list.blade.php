@@ -15,24 +15,24 @@
 
     @if(count($patients) > 0)
         <div class="">
-            <a href="javascript:void(0);" class="btn btn-sm btn-danger mb-4" id="delete_records_btn" data-toggle="modal" data-target="#delete_records_modal">delete all patients records</a>
+            <a href="javascript:void(0);" class="btn btn-sm btn-danger mb-4" id="delete_records_btn" data-toggle="modal" data-target="#delete_records_modal">{{ __('lang.rec.patients.delete.all') }}</a>
         </div>
 
         <div class="modal fade" id="delete_records_modal"  tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Warning</h5>
+                        <h5 class="modal-title">{{ __('lang.rec.patients.delete.paitients.warning') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>are you sure you want to delete all patients records in the system ?</p>
+                        <p>{{ __('lang.rec.patients.sure.to.delete.all') }}</p>
                     </div>
                     <div class="modal-footer">
-                        <a type="button" href="{{route('receptionist.delete.all.patient')}}" type="button" class="btn btn-primary">yes</a>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cancel</button>
+                        <a type="button" href="{{route('receptionist.delete.all.patient')}}" type="button" class="btn btn-primary">{{ __('lang.rec.patients.delete.paitients.agree') }}</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('lang.rec.patients.delete.paitients.cancel') }}</button>
                     </div>
                 </div>
             </div>

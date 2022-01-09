@@ -11,8 +11,6 @@ class ReceptionistVisit extends Model
 
     protected $fillable = []; 
 
-    //protected $with = ['appointment']; 
-
     public function appointment() 
     { 
       return $this->morphOne('App\Models\Appointment', 'visit');

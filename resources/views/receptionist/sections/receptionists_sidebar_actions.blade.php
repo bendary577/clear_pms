@@ -100,7 +100,7 @@
                                     <line x1="5" y1="12" x2="5" y2="12.01" />
                                     <line x1="5" y1="18" x2="5" y2="18.01" />
                                 </svg>
-                                <div class="mx-2"><small>{{ __('lang.rec.available.patients') }}</small></div>
+                                <div class="mx-2"><small>{{ __('lang.rec.available.clinics') }}</small></div>
                             </a>
                         </li>
                     </ul>
@@ -200,10 +200,11 @@
                     <ul class="collapse list-unstyled" id="import_data">
                         <li>
                             <a href="{{route('receptionist.import.excel.view')}}" class="text-dark d-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-broken" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-import" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                                    <path d="M12 7l-2 4l4 3l-2 4v3" />
+                                    <ellipse cx="12" cy="6" rx="8" ry="3" />
+                                    <path d="M4 6v8m5.009 .783c.924 .14 1.933 .217 2.991 .217c4.418 0 8 -1.343 8 -3v-6" />
+                                    <path d="M11.252 20.987c.246 .009 .496 .013 .748 .013c4.418 0 8 -1.343 8 -3v-6m-18 7h7m-3 -3l3 3l-3 3" />
                                 </svg>
                                 <div class="mx-2"><small>{{ __('lang.rec.import_data') }}</small></div>
                             </a>
@@ -224,10 +225,11 @@
                     <ul class="collapse list-unstyled" id="export_data">
                         <li>
                             <a href="{{route('receptionist.export.excel')}}" class="text-dark d-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-heart-broken" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-database-export" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                    <path d="M19.5 13.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
-                                    <path d="M12 7l-2 4l4 3l-2 4v3" />
+                                    <ellipse cx="12" cy="6" rx="8" ry="3" />
+                                    <path d="M4 6v6c0 1.657 3.582 3 8 3a19.84 19.84 0 0 0 3.302 -.267m4.698 -2.733v-6" />
+                                    <path d="M4 12v6c0 1.599 3.335 2.905 7.538 2.995m8.462 -6.995v-2m-6 7h7m-3 -3l3 3l-3 3" />
                                 </svg>
                                 <div class="mx-2"><small>{{ __('lang.rec.export_data') }}</small></div>
                             </a>

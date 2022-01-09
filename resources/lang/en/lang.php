@@ -7,11 +7,11 @@
     'services' => 'Services',
     'about' => 'About',
     //------------------------- welcome section ----------------------------------------
-    'welcome' => 'Welcome to Clear PMS, your number one solution to manage your medical institution. start now and begin your work on our patient management system! ',
+    'welcome' => 'Welcome to MediVeers, your number one solution to manage your medical institution. start now and begin your work on our patient management system! ',
     'getStarted'=> 'Get Started',
     //------------------------------------- about section ----------------------------
     'whatWeDo' => "What We Do",
-    'whatWeDo.description' => "Clear PMS is a medical application to make managing patients data more easier",
+    'whatWeDo.description' => "MediVeers is a medical application to make managing patients data more easier",
     'about.makeSimple' => "easier communication",
     'about.makeSimple.description' => "communication between doctors and his patients has never been such easy",
     'about.differentLayout' => "let's take care of you",
@@ -41,8 +41,8 @@
 
     'footer.register' => 'Register For Free',
     'footer.signup' => 'Sign Up',
-    'footer.copyrights' => '© 2020 Copyright: ClearPMS.com',
-    'footer.welcome' => 'Welcome to Clear PMS',
+    'footer.copyrights' => '© 2020 Copyright: MediVeers.com',
+    'footer.welcome' => 'Welcome to MediVeers',
 
     //--------------------------------------------- sign up --------------------------------
 
@@ -89,7 +89,7 @@
 
     //-------------------------------------------------- account navbar -------------------------
 
-    'accnav.brand' => 'Clear PMS',
+    'accnav.brand' => 'MediVeers',
     'accnav.dashboard' => 'Dashboard',
     'accnav.profile' => 'profile',
     'accnav.logout' => 'logout',
@@ -271,7 +271,7 @@
     'rec.no_diagnose' => 'patient has no diagnoses available',
     'rec.welcome' => 'Hello, Receptionist Dashboard !',
     'rec.import_data' => 'import data',
-    'rec.import_data_desc' => 'Import Data to Clear PMS',
+    'rec.import_data_desc' => 'Import Data to MediVeers',
     'rec.import_data_success' => 'data was imported successfully',
     'rec.import_data_error' => "error accured while importing data",
     'rec.import_file' => "Import File",
@@ -281,7 +281,10 @@
     'rec.please_import_file' => 'please import a valid file',
     'rec.export_data' => 'export data',
     'rec.excel_file_desc' => 'upload all your patients data in an excel file and merge it in your database',
-
+    'rec.importing_policies_title' => 'Before importing the file please make sure that',
+    'rec.importing_policies_rec_names' => 'make sure that receptionists names recorded in the file are available in the system and associated with accounts with the same name',
+    'rec.importing_policies_excel_format' => 'make sure your excel sheet has the right format (system default)',
+    'rec.importing_policies_read_instructions' => 'I have read the instructions',
     'rec.patient_files' => 'Patient Files',
     'rec.no_attached_files' => 'patient has no attached medical files',
     'rec.upload_files_instructions' => 'here, you can upload all medical files related to :name as medical tests, medical radiology and prescriptions',
@@ -328,6 +331,16 @@
     'rec.patients.search' => 'search patients',
     'rec.patients.name' => 'name',
     'rec.patients.code' => 'code',
+    'rec.patients.another_phone' => 'another phone',
+    'rec.patients.associated_receptionist' => 'Associated Receptionist',
+    'rec.patients.no_rec' => 'sorry, no receptionist',
+    'rec.patients.attendance_date' => 'Attendance Date',
+    'rec.patients.province' => 'Province',
+    'rec.patients.city' => 'City',
+    'rec.patients.parent_name' => 'Parent Name',
+    'rec.patients.parent_workplace' => 'Parent Workplace',
+    'rec.patients.mother_name' => 'Mother Name',
+    'rec.patients.mother_workplace' => 'Mother Workplace',
     'rec.patients.age' => 'age',
     'rec.patients.gender' => 'gender',
     'rec.patients.phone' => 'phone',
@@ -348,6 +361,11 @@
     'rec.patients.visit.start' => 'start visit',
     'rec.patients.visit.end' => 'end visit',
     'rec.patients.no.visits' => 'sorry, no appointments are available in the system',
+    'rec.patients.delete.all' => 'delete all patients records',
+    'rec.patients.sure.to.delete.all' => 'are you sure you want to delete all patients records in the system ?',
+    'rec.patients.delete.paitients.warning' => 'Warning',
+    'rec.patients.delete.paitients.agree' => 'Yes',
+    'rec.patients.delete.paitients.cancel' => 'Cancel',
     //diagnoses
     'rec.diagnoses.name' => 'name',
     'rec.diagnoses.action' => 'action',

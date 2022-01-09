@@ -14,16 +14,9 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!---
-      <a class="navbar-brand" href="#">
-        <img src="{{url('/images/brand/medi-veers.jfif')}}"
-             height="50"
-             width="120"
-             loading="lazy"
-        />
+      <a class="navbar-brand mt-2 mt-lg-0" href="/">
+        <img src="{{url('/images/brand/MediVeers-white.png')}}" width="120" height="70" alt="MediVeers" loading="lazy"/>
       </a>
-      ------->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">{{ __('lang.accnav.brand')}}</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mx-2">
           @if(Auth::user()->getHasReceptionistProfileAttribute())

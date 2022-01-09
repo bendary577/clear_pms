@@ -42,8 +42,8 @@
     
         'footer.register' => 'سجل مجانا',
         'footer.signup' => 'تسجيل',
-        'footer.copyrights' => '© 2020 Copyright: ClearPMS.com',
-        'footer.welcome' => 'أهلا بك في Clear PMS ',
+        'footer.copyrights' => '© 2020 Copyright: MediVeers.com',
+        'footer.welcome' => 'أهلا بك في MediVeers ',
 
         //--------------------------------------------- sign up --------------------------------
 
@@ -89,7 +89,7 @@
 
         //-------------------------------------------------- account navbar -------------------------
 
-    'accnav.brand' => 'Clear PMS',
+    'accnav.brand' => 'MediVeers',
     'accnav.dashboard' => 'لوحة التحكم',
     'accnav.profile' => 'الحساب',
     'accnav.logout' => 'تسجيل الخروج',
@@ -271,7 +271,7 @@
     'rec.no_diagnose' => 'لم يتم إضافة تشخيص للمريض حتي الاَن',
     'rec.welcome' => 'أهلا بك في لوحة تحكم موظفي الاستقبال',
     'rec.import_data' => 'استيراد البيانات',
-    'rec.import_data_desc' => 'استيراد البيانات لنظام Clear PMS',
+    'rec.import_data_desc' => 'استيراد البيانات لنظام MediVeers',
     'rec.import_data_success' => 'تم استيراد البيانات بنجاح',
     'rec.import_data_error' => "حدث حطأ أثناء استيراد البيانات",
     'rec.import_file' => "رفع الملف",
@@ -281,8 +281,10 @@
     'rec.please_import_file' => 'يرجي رفع الملف بشكل صحيح',
     'rec.export_data' => 'تصدير البيانات',
     'rec.excel_file_desc' => 'بإمكانك رفع كل بيانات المرضي الخاصة بالمؤسسة وإدخالها في قاعدة بيانات البرنامج',
-
-
+    'rec.importing_policies_title' => 'قبل استيراد الملف يرجى التأكد من الاَتي',
+    'rec.importing_policies_rec_names' => 'تأكد من أن أسماء موظفي الاستقبال المسجلين في الملف متوفرة في النظام ومرتبطة بالحسابات التي تحمل نفس الاسم',
+    'rec.importing_policies_excel_format' => 'تأكد من أن ملف الإكسيل مبني علي التنسيق الصحيح للنظام',
+    'rec.importing_policies_read_instructions' => 'لقد قرأت كافة الشروط',
     'rec.patient_files' => 'ملفات المريض',
     'rec.no_attached_files' => 'المريض لا يملك اي ملفات طبية',
     'rec.upload_files_instructions' => 'بإمكانك رفع كل الملفات الطبية الخاصة ب :name مثل الاشعة والتحاليل والروشتات',
@@ -329,6 +331,16 @@
     'rec.patients.search' => 'بحث في سجلات المرضي',
     'rec.patients.name' => 'اسم المريض',
     'rec.patients.code' => 'الكود',
+    'rec.patients.another_phone' => 'رقم هاتف اخر',
+    'rec.patients.associated_receptionist' => 'الأخصائي المنوط',
+    'rec.patients.no_rec' => 'عذرا, لا يوجد أخصائيين',
+    'rec.patients.attendance_date' => 'تاريخ التسجيل',
+    'rec.patients.province' => 'المحافظة',
+    'rec.patients.city' => 'المدينة',
+    'rec.patients.parent_name' => 'اسم الأب',
+    'rec.patients.parent_workplace' => 'محل عمل الأب',
+    'rec.patients.mother_name' => 'اسم الأم',
+    'rec.patients.mother_workplace' => 'محل عمل الأم',
     'rec.patients.age' => 'السن',
     'rec.patients.gender' => 'الجنس',
     'rec.patients.phone' => 'رقم المحمول',
@@ -349,6 +361,11 @@
     'rec.patients.visit.start' => 'بدء الزيارة',
     'rec.patients.visit.end' => 'إنهاء الزيارة',
     'rec.patients.no.visits' => 'عذرا, لا يوجد مواعيد زيارات مسجلة حاليا',
+    'rec.patients.delete.all' => 'حذف جميع سجلات المرضي',
+    'rec.patients.sure.to.delete.all' => 'هل انت متأكد أنك تريد حذف جميع سجلات المرضي ؟',
+    'rec.patients.delete.paitients.warning' => 'تحذير',
+    'rec.patients.delete.paitients.agree' => 'نعم',
+    'rec.patients.delete.paitients.cancel' => 'إلغاء',
     //diagnoses
     'rec.diagnoses.name' => 'الاسم',
     'rec.diagnoses.action' => 'الإجراء',

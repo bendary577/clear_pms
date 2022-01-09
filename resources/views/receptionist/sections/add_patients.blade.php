@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-group">
-            <label for="another_phone">another phone number</label>
-            <input type="phone" name="another_phone" class="form-control" id="another_phone" aria-describedby="emailHelp" placeholder="Another Phone">
+            <label for="another_phone">{{ __('lang.rec.patients.another_phone')}}</label>
+            <input type="phone" name="another_phone" class="form-control" id="another_phone" aria-describedby="emailHelp" placeholder="{{ __('lang.rec.patients.another_phone')}}">
         </div>
 
         <div class="form-group">
@@ -55,7 +55,7 @@
 
         @if(count($receptionistProfiles) > 0)
             <div class="form-group">
-                <label for="receptionist_profile_id">Associated Receptionist</label>
+                <label for="receptionist_profile_id">{{ __('lang.rec.patients.associated_receptionist')}}</label>
                 <select id="receptionist_profile_id" name="receptionist_profile_id" class="form-control">
                     @foreach($receptionistProfiles as $receptionistProfile)
                         <option value="{{$receptionistProfile->id}}">{{ $receptionistProfile->user->name }}</option>
@@ -63,12 +63,12 @@
                 </select>
             </div>
         @else
-            <h2 class="">sorry, no receptionist</h2>
+            <h2 class="">{{ __('lang.rec.patients.no_rec')}}</h2>
         @endif
 
         <div class="form-group">
-            <label for="attendance_date">Attendance Date</label>
-            <input type="date" name="attendance_date" class="form-control" id="attendance_date" placeholder="Attendance Date">
+            <label for="attendance_date">{{ __('lang.rec.patients.attendance_date')}}</label>
+            <input type="date" name="attendance_date" class="form-control" id="attendance_date" placeholder="{{ __('lang.rec.patients.attendance_date')}}">
         </div>
 
         <div class="form-check">
@@ -82,15 +82,14 @@
         </div>
 
         <div class="form-group mt-2" id="code_div">
-            <label for="code">Code</label>
+            <label for="code">{{ __('lang.rec.patients.code')}}</label>
             <input type="text" name="code" class="form-control" id="code" aria-describedby="code" placeholder="code">
         </div>
 
         <div class="row">
             <div class="col form-group">
-                <label for="province">Province</label>
+                <label for="province">{{ __('lang.rec.patients.province')}}</label>
                 <select class="form-control" id="province" name="province" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
                     <option value="1">القاهرة</option>
                     <option value="1">الجيزة</option>
                     <option value="1">الإسكندرية</option>
@@ -120,29 +119,29 @@
                 </select>
             </div>
             <div class="col form-group">
-                <label for="city">City</label>
-                <input type="text" name="city" class="form-control" id="city" aria-describedby="code" placeholder="city">
+                <label for="city">{{ __('lang.rec.patients.city')}}</label>
+                <input type="text" name="city" class="form-control" id="city" aria-describedby="code" placeholder="{{ __('lang.rec.patients.city')}}">
             </div>
         </div>
 
         <div class="form-group mt-2" id="code_div">
-            <label for="code">Parent Name</label>
-            <input type="text" name="parent_name" class="form-control" id="code" aria-describedby="code" placeholder="parent name">
+            <label for="code">{{ __('lang.rec.patients.parent_name')}}</label>
+            <input type="text" name="parent_name" class="form-control" id="code" aria-describedby="code" placeholder="{{ __('lang.rec.patients.parent_name')}}">
         </div>
 
         <div class="form-group mt-2" id="code_div">
-            <label for="code">Parent Workplace</label>
-            <input type="text" name="parent_workplace" class="form-control" id="code" aria-describedby="code" placeholder="parent workplace">
+            <label for="code">{{ __('lang.rec.patients.parent_workplace')}}</label>
+            <input type="text" name="parent_workplace" class="form-control" id="code" aria-describedby="code" placeholder="{{ __('lang.rec.patients.parent_workplace')}}">
         </div>
 
         <div class="form-group mt-2" id="code_div">
-            <label for="code">Mother Name</label>
-            <input type="text" name="mother_name" class="form-control" id="code" aria-describedby="code" placeholder="mother name">
+            <label for="code">{{ __('lang.rec.patients.mother_name')}}</label>
+            <input type="text" name="mother_name" class="form-control" id="code" aria-describedby="code" placeholder="{{ __('lang.rec.patients.mother_name')}}">
         </div>
 
         <div class="form-group mt-2" id="code_div">
-            <label for="code">Mother Workplace</label>
-            <input type="text" name="mother_workplace" class="form-control" id="code" aria-describedby="code" placeholder="mother workplace">
+            <label for="code">{{ __('lang.rec.patients.mother_workplace')}}</label>
+            <input type="text" name="mother_workplace" class="form-control" id="code" aria-describedby="code" placeholder="{{ __('lang.rec.patients.mother_workplace')}}">
         </div>
 
         <div class="my-2"><h4>{{ __('lang.rec.add_patient_card')}}</h4></div>
