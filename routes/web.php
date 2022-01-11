@@ -26,12 +26,13 @@ Route::get('/', function () {
         return view('home.home');
     }
 })->name('home');
-Route::post('/contactus', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
+
+Route::post('/contact-us', [App\Http\Controllers\HomeController::class, 'contactus'])->name('contactus');
 
 //--------- lang ----------------
 Route::get('/language/{lang}', [App\Http\Controllers\LocalizationController::class, 'index'])->name('change.language');
 
-//-------- auth ------------
+//-------- auth ------------    
 Route::get('/login', [App\Http\Controllers\AuthenticationController::class, 'login'])->name('login');
 Route::post('/authenticate', [App\Http\Controllers\AuthenticationController::class, 'authenticate'])->name('authenticate');
 Route::get('/register', [App\Http\Controllers\AuthenticationController::class, 'register'])->name('register');

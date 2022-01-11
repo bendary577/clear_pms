@@ -6,21 +6,21 @@
                 <div class="col-md-6 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:gray">Medical Insights</h5>
+                            <h5 class="card-title" style="color:gray">{{ __('lang.rec.medical_insights.medical_insights') }}</h5>
                             <ul class="px-3 my-2">
                                 <li>
                                     <div>
-                                        <small class="card-text"><strong>{{ $medical_specialities_count }} clinics registered</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.medical_insights.number_of_medical_specialities, :number', ['number' => $medical_specialities_count]) }}</strong></small>
                                     </div>
                                 </li>
                                 <li>
                                     <div >
-                                        <small class="card-text"><strong>{{ $system_diagnoses_count }} adults clinics</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.medical_insights.number_of_system_diagnoses, :number', ['number' => $system_diagnoses_count]) }}</strong></small>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <small class="card-text"><strong>{{ $system_medicines_count }} children clinics</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.medical_insights.number_of_system_medicines, :number', ['number' => $system_medicines_count]) }}</strong></small>
                                     </div>
                                 </li>
                             </ul>

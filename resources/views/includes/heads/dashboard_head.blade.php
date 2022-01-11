@@ -12,7 +12,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
 @endif
 
-
 <script src="{{ asset('js/app.js') }}" defer></script>
    
 <script src="{{ asset('js/dashboard.js') }}" defer></script>
@@ -42,7 +41,6 @@
 
 <!----------------- JQUERY -------------------->
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-
 
 <!-- Charting library -->
 <script src="https://unpkg.com/chart.js@^2.9.3/dist/Chart.min.js"></script>

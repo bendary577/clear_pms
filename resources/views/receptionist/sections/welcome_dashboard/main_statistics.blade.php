@@ -8,17 +8,17 @@
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_patients_count }} new patients</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_patients, :number', ['number' => $weekly_new_patients_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_new_appointments_count }} new appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_appointments, :number', ['number' => $weekly_new_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $weekly_finished_appointments_count }} finished appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_finished_appointments, :number', ['number' => $weekly_finished_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                     </ul>
@@ -40,17 +40,17 @@
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $monthly_new_patients_count }} new patients</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_patients, :number', ['number' => $monthly_new_patients_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $monthly_new_appointments_count }} new appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_appointments, :number', ['number' => $monthly_new_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $monthly_finished_appointments_count }} finished appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_finished_appointments, :number', ['number' => $monthly_finished_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                     </ul>
@@ -65,17 +65,17 @@
                     <ul class="px-4 my-2">
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $yearly_new_patients_count }} new patients</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_patients, :number', ['number' => $yearly_new_patients_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $yearly_new_appointments_count }} new appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_new_appointments, :number', ['number' => $yearly_new_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                         <li>
                             <div class="my-2">
-                                <small class="card-text"><strong>{{ $yearly_finished_appointments_count }} finished appointments</strong></small>
+                                <small class="card-text"><strong>{{ __('lang.rec.welcome.number_of_finished_appointments, :number', ['number' => $yearly_finished_appointments_count]) }}</strong></small>
                             </div>
                         </li>
                     </ul>

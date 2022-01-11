@@ -23,39 +23,42 @@
         <!----------------------------------------------- personal info -------------------------->
         <div class="row">
             <div class="personal_info col-md-6 my-4">
-                <div class="card" style="height:750px;">
+                <div class="card">
                     <div class="card-header">
                         <div class="clearfix">
                             <h5 class="card-title float-left">{{ __('lang.doctor.personal_info') }}</h5>
                             <a href="{{route('receptionist.edit.patient', ['id' => $patient->id ])}}" class="text-primary float-right">{{ __('lang.acc.edit_profile')}}</a>
                         </div>
-                        <p><small>list of all patient's personal info </small></p>
+                        <p><small>{{ __('lang.rec.patient_file.list_of_personal_info') }}</small></p>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">Name : {{ $patient->name }}</p>
-                        <p class="card-text">Specialist Name : {{ $patient->receptionistProfile->user->name }}</p>
-                        <p class="card-text">Code : {{ $patient->code }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.name, :name', ['name' => $patient->name]) }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.specialist_name, :name', ['name' =>$patient->receptionistProfile->user->name]) }} </p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.code, :code', ['code' => $patient->code]) }}</p>
                         @if($patient->phone)
-                            <p class="card-text">Phone :{{ $patient->phone }}</p>
+                            <p class="card-text">{{ __('lang.rec.patient_file.phone, :phone', ['phone' =>$patient->phone]) }}</p>
                         @endif
-                        <p class="card-text">Gender : {{ $patient->gender }}</p>
-                        <p class="card-text">Birthdate : {{ __('lang.rec.birthdate_at' , [ 'date' => $patient->birthdate])}}</p>
-                        <p class="card-text">Registered At : {{ __('lang.rec.registered_at' , [ 'date' => $patient->attendance_date])}}</p>
-                        <p class="card-text">Age : {{ __('lang.rec.age', ['age' => $patient->age])}}</p>
+                        @if($patient->another_phone)
+                            <p class="card-text">{{ __('lang.rec.patient_file.another_phone, :phone', ['phone' =>$patient->another_phone]) }}</p>
+                        @endif
+                        <p class="card-text">{{ __('lang.rec.patient_file.gender, :gender', ['gender' =>$patient->gender]) }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.birthdate, :date', ['date' => $patient->birthdate]) }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.registered_at, :date', ['date' => $patient->attendance_date]) }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.age, :age', ['age' => $patient->age]) }}</p>
                         @if($patient->province)
-                        <p class="card-text">Address : {{  $patient->province }} - {{  $patient->city }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.address, :address', ['address' =>   $patient->province . " " . $patient->city ]) }}</p>
                         @endif
                         @if($patient->parent_name)
-                        <p class="card-text">Parent Name : {{  $patient->parent_name }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.parent_name, :name', ['name' => $patient->parent_name]) }} </p>
                         @endif
                         @if($patient->parent_workplace)
-                        <p class="card-text">Parent Workplace : {{  $patient->parent_workplace }} </p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.parent_workplace, :info', ['info' => $patient->parent_workplace]) }}</p>
                         @endif
                         @if($patient->mother_name)
-                        <p class="card-text">Mother Name  : {{ $patient->mother_name }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.mother_name, :name', ['name' => $patient->mother_name]) }}</p>
                         @endif
                         @if($patient->mother_workplace)
-                        <p class="card-text">Mother Workplace  : {{  $patient->mother_workplace }}</p>
+                        <p class="card-text">{{ __('lang.rec.patient_file.mother_workplace, :info', ['info' => $patient->mother_workplace]) }}</p>
                         @endif
                     </div>
                 </div>
@@ -63,10 +66,10 @@
 
         <!----------------------------------------------- past visits info -------------------------->
             <div class="past_visits_info col-md-6 my-4">
-                <div class="card" style="height:750px;">
+                <div class="card">
                     <div class="card-header">
                         <h5 class="">{{ __('lang.doctor.clinic_info')}}</h5>
-                        <p><small>list of doctors that patient has visited</small></p>
+                        <p><small>{{ __('lang.rec.patient_file.list_of_doctors') }}</small></p>
                     </div>  
                     <div class="card-body" style="overflow-y: scroll;">
                             @if(count($doctor_visits) > 0)
@@ -196,12 +199,12 @@
             <div class="my-4 w-100">
                 <div class="title my-4"><h3>{{ __('lang.rec.appointment_list')}}</h3></div>
                 @if(count($patient->appointments) > 0)
-                    <h4 class="my-2">patient has <strong class="text-success">{{ count($patient->appointments) }}</strong> appointments </h4>
+                    <h4 class="my-2">{{ __('lang.rec.patient_file.number_of_patient_appointments, :number', ['number' => count($patient->appointments)]) }}</h4>
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">visit type</th>
-                                <th scope="col">visit owner</th>
+                                <th scope="col">{{ __('lang.rec.patient_file.visit_type')}}</th>
+                                <th scope="col">{{ __('lang.rec.patient_file.visit_owner')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_date')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_from')}}</th>
                                 <th scope="col">{{ __('lang.rec.appointment_to')}}</th>
@@ -232,7 +235,7 @@
                                             <td><h6 class="text-danger">{{ __('lang.rec.still_pending')}}</h6></td>
                                             @if($appointment->getHasReceptionistVisitAttribute())
                                                 @if($appointment->visit->receptionist->id == Auth::user()->profile->id)
-                                                    <td><a href="{{route('receptionist.start.visit', ['patient_id' => $patient->id, 'appointment_id'=> $appointment->id])}}" class="btn btn-warning">start visit</h6></td>
+                                                    <td><a href="{{route('receptionist.start.visit', ['patient_id' => $patient->id, 'appointment_id'=> $appointment->id])}}" class="btn btn-warning">{{ __('lang.doctor.start_visit')}}</h6></td>
                                                 @else
                                                 <td><h6 class="text-danger">{{ __('lang.rec.no_action')}}</h6></td>
                                                 @endif

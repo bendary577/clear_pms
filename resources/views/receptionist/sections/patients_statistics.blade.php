@@ -6,26 +6,21 @@
                 <div class="col-md-6 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:gray">Patients</h5>
+                            <h5 class="card-title" style="color:gray">{{ __('lang.rec.patient_statistics.patients') }}</h5>
                             <ul class="px-3 my-2">
                                 <li>
                                     <div>
-                                        <small class="card-text"><strong>{{ $patients_count }} patients</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.patient_statistics.number_of_patients, :number', ['number' => $patients_count]) }}</strong></small>
                                     </div>
                                 </li>
                                 <li>
                                     <div >
-                                        <small class="card-text"><strong>{{ $men_patients_count }} are men</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.patient_statistics.number_of_males, :number', ['number' => $men_patients_count]) }}</strong></small>
                                     </div>
                                 </li>
                                 <li>
                                     <div>
-                                        <small class="card-text"><strong>{{ $women_patients_count }} are women</strong></small>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div>
-                                        <small class="card-text"><strong>{{ $patients_ages_average }} average age</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.patient_statistics.number_of_females, :number', ['number' => $men_patients_count]) }}</strong></small>
                                     </div>
                                 </li>
                             </ul>
@@ -35,16 +30,41 @@
                 <div class="col-md-6 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:gray">Patients this Week</h5>
+                            <h5 class="card-title" style="color:gray">{{ __('lang.rec.patient_statistics.patients_this_week') }}</h5>
                             <div class="px-2 my-2">
-                                <h6 class="card-text mt-2"><strong>{{ $weekly_new_patients_count }} new patients</strong></h6>
+                                <h6 class="card-text mt-2"><strong>{{ __('lang.rec.patient_statistics.number_of_new_patients, :number', ['number' => $weekly_new_patients_count]) }}</strong></h6>
                             </div>
 
                             <div class="px-1 my-2 d-flex">
-                                <!--<div class=""><img src="{{url('/images/dashboard/down-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" /></div>-->
-                                <h6 class="card-text text-success mt-2"><strong>{{ $weekly_patients_change_percentage }}% increase</strong></h6>
+                                @if($weekly_patients_change_percentage > 0)
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{url('/images/dashboard/up-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" />
+                                    </div>
+                                    <div class="">
+                                        <h3 class="card-text text-success">{{ __('lang.rec.welcome.percentage, :number', ['number' => $weekly_patients_change_percentage]) }}</h3>
+                                    </div>
+                                </div>
+                                @elseif($weekly_patients_change_percentage == 0)
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{url('/images/dashboard/equal-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" />
+                                    </div>
+                                    <div class="">
+                                        <h3 class="card-text text-primary">{{ __('lang.rec.welcome.percentage, :number', ['number' => $weekly_patients_change_percentage]) }}</h3>
+                                    </div>
+                                </div>
+                                @else
+                                <div class="d-flex">
+                                    <div class="">
+                                        <img src="{{url('/images/dashboard/down-arrow.png')}}" style="width:40px;height:35px" class="card-img-top" alt="welcome" />
+                                    </div>
+                                    <div class="">
+                                        <h3 class="card-text text-danger">{{ __('lang.rec.welcome.percentage, :number', ['number' => $weekly_patients_change_percentage]) }}</h3>
+                                    </div>
+                                </div>
+                                @endif
                             </div>
-                            <h6 class="px-2">from last week</h6>
                         </div>
                     </div>
                 </div>   
@@ -53,8 +73,15 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="card shadow" style="border-radius:20px">
                         <div class="card-body">
-                            <h5 class="card-title">Patients Ages</h5>
+                            <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_ages') }}</h5>
+                            @if($patients_count > 0)
+                            <div>
+                                <small class="card-text text-primary"><strong> {{ __('lang.rec.patient_statistics.average_age, :average', ['average' => $patients_ages_average]) }}  </strong></small>
+                            </div>
                             <div id="patients_ages_chart" style="height:300px"> </div>
+                            @else
+                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -65,8 +92,14 @@
             <div class="row">
                 <div class="card shadow" style="border-radius:20px;height:280px;">
                     <div class="card-body">
-                        <h5 class="card-title">Patients Genders</h5>
-                        <div id="patients_genders_chart"> </div>
+                        <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_genders') }}</h5>
+                        @if($patients_count < 0 )
+                        <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
+                        @elseif(!checkdnsrr('php.net'))
+                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
+                        @else
+                            <div id="patients_genders_chart"> </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -109,4 +142,5 @@
         .datasets('doughnut')
         .pieColors(),
     });
+
 </script>

@@ -130,19 +130,19 @@ class PatientController extends Controller
 
     public function update(Request $request, $id)
     {
+       /*
         $validator = Validator::make($request->all(),
         [
-            'name' => 'required|string|max:200',
+            'name' => 'string|max:200',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'phone' => 'string',
-            'age' => '',
-            'birthdate' => ''
         ]);
 
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
-
+        */
+        
         $patient = Patient::find($id);
 
         if($request['name']){
