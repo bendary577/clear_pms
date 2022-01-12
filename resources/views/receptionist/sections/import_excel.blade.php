@@ -25,7 +25,6 @@
     
     <div class="container">
       <!---------------------------- system importing policy section ------------------------------->
-        @if(!$system_configurations->importing_patients_configurations_chosen)
           <div class="choose_policies">
             <div class="row">
                   <h2>{{ __('lang.rec.importing_policies_title')}}</h2>
@@ -48,7 +47,6 @@
                 </div>
             </div>
           </div>
-        @endif
 
 
         <div class="row">   

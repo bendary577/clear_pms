@@ -29,10 +29,21 @@ class SearchController extends Controller
     }
 
     public function elasticSearch(Request $request){
-        $results = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]])->paginate(10);       
-        return view('receptionist.dashboard.dashboard_search', [
-                        'patients' => $results
-                    ]);
+        if(is_numeric($request['search_keyword'])){
+            $int_value = (int)$request['search_keyword'];
+            if(Patient::where('code', $int_value)->exists()){
+                $patients = Patient::where('code', $int_value)->paginate(10);
+                return view('receptionist.dashboard.dashboard_search', ['patients' => $patients]);
+            }else{
+                session()->flash('error', 'patient profile doesn\'t exist');
+                return redirect()->back(); 
+            }
+        }else{
+            $results = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]])->paginate(10);       
+            return view('receptionist.dashboard.dashboard_search', [
+                            'patients' => $results
+                        ]);
+        }
     }
     
 }

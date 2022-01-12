@@ -23,8 +23,7 @@ class DataOperationsController extends Controller
 {
     
     public function getImportExcelView(){
-        $system_configurations = SystemConfiguration::all()->first();
-        return view('receptionist.dashboard.dashboard_import_excel', ['system_configurations' => $system_configurations]);
+        return view('receptionist.dashboard.dashboard_import_excel');
     }
 
     public function importExcel(Request $request)

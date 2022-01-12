@@ -20,7 +20,7 @@
                                 </li>
                                 <li>
                                     <div>
-                                        <small class="card-text"><strong>{{ __('lang.rec.patient_statistics.number_of_females, :number', ['number' => $men_patients_count]) }}</strong></small>
+                                        <small class="card-text"><strong>{{ __('lang.rec.patient_statistics.number_of_females, :number', ['number' => $women_patients_count]) }}</strong></small>
                                     </div>
                                 </li>
                             </ul>

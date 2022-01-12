@@ -99,8 +99,8 @@ class ReceptionistDashboardController extends Controller
             $lastWeekEndDate = Carbon::now()->subWeek()->endOfWeek()->format('Y-m-d H:i');
 
             $patients_count = Patient::all()->count();
-            $men_patients_count = Patient::where('gender', '=', 'male')->count();
-            $women_patients_count = Patient::where('gender', '=', 'female')->count();
+            $men_patients_count = Patient::where('gender', 'male')->count();
+            $women_patients_count = Patient::where('gender', 'female')->count();
 
             //calculate average age of patients
             $patients_ages = Patient::all('age');
@@ -167,7 +167,7 @@ class ReceptionistDashboardController extends Controller
                 }
             }
             return view('receptionist.dashboard.dashboard_clinics_statistics', [
-                    'clinics_count' => $clinics_count,
+                    'clinics_count' => 0,
                     'adult_clinics_count' => $adult_clinics_count,
                     'children_clinics_count' => $children_clinics_count,
                     'new_appointments_count' => $new_appointments_count,
