@@ -163,6 +163,7 @@
             </div>   
         </div>   
     </div>
+    <!--
     <div class="col-md-4">
         <div class="card shadow" style="height:100%;width: 18rem;border-radius:20px">
             <div class="card-body">
@@ -171,6 +172,7 @@
              </div>
         </div>
     </div>
+    -->
 </div>
 
 

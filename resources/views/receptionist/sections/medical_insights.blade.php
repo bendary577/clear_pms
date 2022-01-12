@@ -31,7 +31,11 @@
                     <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
                         <div class="card-body">
                             <h5 class="card-title" style="color:gray">Diagnoses Pie Chart</h5>
-                            <div id="clinics_department_pie_chart"></div>
+                            @if(!checkdnsrr('php.net'))
+                                <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
+                            @else
+                                <div id="clinics_department_pie_chart"></div>
+                            @endif
                         </div>
                     </div>
                 </div>    

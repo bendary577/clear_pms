@@ -74,13 +74,15 @@
                     <div class="card shadow" style="border-radius:20px">
                         <div class="card-body">
                             <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_ages') }}</h5>
-                            @if($patients_count > 0)
+                            @if($patients_count < 0)
+                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
+                            @elseif(!checkdnsrr('php.net'))
+                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
+                            @else
                             <div>
                                 <small class="card-text text-primary"><strong> {{ __('lang.rec.patient_statistics.average_age, :average', ['average' => $patients_ages_average]) }}  </strong></small>
                             </div>
                             <div id="patients_ages_chart" style="height:300px"> </div>
-                            @else
-                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
                             @endif
                         </div>
                     </div>
@@ -94,7 +96,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_genders') }}</h5>
                         @if($patients_count < 0 )
-                        <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
+                            <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
                         @elseif(!checkdnsrr('php.net'))
                             <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
                         @else

@@ -10,6 +10,7 @@ class PatientsExport implements FromCollection
 
     public function collection()
     {
-        return Patient::all();
+        $patients = Patient::all();
+        return $patients;
     }
 }
