@@ -386,6 +386,8 @@
     'rec.medical_insights.number_of_medical_specialities, :number' => ':number medical specialities',
     'rec.medical_insights.number_of_system_diagnoses, :number' => ':number system diagnoses',
     'rec.medical_insights.number_of_system_medicines, :number' => ':number system medicines',
+    'rec.medical_insights.diagnoses_pie_chart' => 'Diagnoses Pie Chart',
+    'rec.medical_insights.no_diagnoses' => 'no diagnoses registered',
 
     //system statistics 
     'rec.system_statistics.system_overview' => 'System Overview',

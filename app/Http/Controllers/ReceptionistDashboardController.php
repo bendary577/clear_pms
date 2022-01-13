@@ -8,6 +8,7 @@ use App\Models\Patient;
 use App\Models\DoctorProfile;
 use App\Models\Clinic;
 use App\Models\ReceptionistProfile;
+use App\Models\Diagnose;
 use Illuminate\Http\Request;
 use App\Charts\SampleChart;
 use Carbon\Carbon;
@@ -118,8 +119,12 @@ class ReceptionistDashboardController extends Controller
             }
             
             //calculate percentages of men and women patients
-            $men_patients_percentage = ($men_patients_count/$patients_count)*100;
-            $women_patients_percentage = ($women_patients_count/$patients_count)*100;
+            $men_patients_percentage = 0;
+            $women_patients_percentage = 0;
+            if($patients_count > 0){
+                $men_patients_percentage = ($men_patients_count/$patients_count)*100;
+                $women_patients_percentage = ($women_patients_count/$patients_count)*100;
+            }
 
             //calculate percentage of change of incomming new patients weekely
             $current_week_new_patients_count = Patient::whereBetween('created_at', [$weekStartDate, $weekEndDate])->count();
@@ -185,11 +190,12 @@ class ReceptionistDashboardController extends Controller
             $medical_specialities_count = MedicalSpeciality::all()->count();
             $system_diagnoses_count = SystemDiagnoses::all()->count();
             $system_medicines_count = SystemMedicine::all()->count();
-
+            $diagnoses_count = Diagnose::all()->count();
             return view('receptionist.dashboard.dashboard_medical_insights', [
                 'medical_specialities_count' => $medical_specialities_count,
                 'system_diagnoses_count' => $system_diagnoses_count,
-                'system_medicines_count' => $system_medicines_count
+                'system_medicines_count' => $system_medicines_count,
+                'diagnoses_count' => $diagnoses_count
             ]);
         }
 

@@ -83,7 +83,7 @@
                     <div class="card shadow round w-100" style="width: 18rem;height:220px;border-radius:20px">
                         <div class="card-body">
                             <h5 class="card-title" style="color:gray">{{ __('lang.rec.clinics_statistics.clinics_departments') }}</h5>
-                            @if($clinics_count < 0)
+                            @if($clinics_count == 0)
                                 <h5 class="text-danger">{{ __('lang.rec.clinics_statistics.no_clinics') }}</h5>
                             @elseif(!checkdnsrr('php.net'))
                                 <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>

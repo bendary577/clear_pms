@@ -153,7 +153,11 @@ class AuthenticationController extends Controller
             if (Auth::attempt($credentials)){
                 $user = User::where(['username' => $request['username']])->first();
                 Auth::login($user, $remember_me);
-                return redirect()->intended('/profile');
+                if(Auth::user()->getHasReceptionistProfileAttribute()){
+                    return redirect()->intended('/receptionist_dashboard');
+                }else{
+                    return redirect()->intended('/profile');
+                }
             }else{
                 return redirect('login')->with('error', trans('lang.login.invalid_credentials'));
             }

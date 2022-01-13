@@ -386,6 +386,9 @@
     'rec.medical_insights.number_of_medical_specialities, :number' => ':number تخصصات طبية مسجلة',
     'rec.medical_insights.number_of_system_diagnoses, :number' => ':number أعراض مسجلة',
     'rec.medical_insights.number_of_system_medicines, :number' => ':number أدوية مسجلة',
+    'rec.medical_insights.diagnoses_pie_chart' => 'التشخيصات المسجلة',
+    'rec.medical_insights.no_diagnoses' => 'لم يتم تسجيل أي تشخيصات بعد',
+
     //system statistics 
     'rec.system_statistics.system_overview' => 'إحصائيات عامة للنظام',
     'rec.system_statistics.number_of_admins, :number' => ':number مشرف مسجل',

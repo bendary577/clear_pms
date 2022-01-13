@@ -10,7 +10,8 @@ use ElasticScoutDriverPlus\Support\Query;
 class SearchController extends Controller
 {
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $validator = Validator::make($request->all(),
         [
             'search_keyword' => 'required',
@@ -28,7 +29,10 @@ class SearchController extends Controller
         }
     }
 
-    public function elasticSearch(Request $request){
+
+    
+    public function elasticSearch(Request $request)
+    {
         if(is_numeric($request['search_keyword'])){
             $int_value = (int)$request['search_keyword'];
             if(Patient::where('code', $int_value)->exists()){

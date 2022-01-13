@@ -74,7 +74,7 @@
                     <div class="card shadow" style="border-radius:20px">
                         <div class="card-body">
                             <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_ages') }}</h5>
-                            @if($patients_count < 0)
+                            @if($patients_count == 0)
                             <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
                             @elseif(!checkdnsrr('php.net'))
                             <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
@@ -95,7 +95,7 @@
                 <div class="card shadow" style="border-radius:20px;height:280px;">
                     <div class="card-body">
                         <h5 class="card-title">{{ __('lang.rec.patient_statistics.patients_genders') }}</h5>
-                        @if($patients_count < 0 )
+                        @if($patients_count == 0 )
                             <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_patients') }}</h5>
                         @elseif(!checkdnsrr('php.net'))
                             <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>

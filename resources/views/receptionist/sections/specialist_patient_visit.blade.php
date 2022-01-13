@@ -22,11 +22,6 @@
         </ul>
     @endif
 
-    <div class="d-flex justify-content-between">
-        <h2>{{ __('lang.rec.patients.visit') }}</h2>
-        <a href="{{route('receptionist.end.visit', ['appointment_id' => $appointment_id])}}" class="btn btn-danger">{{ __('lang.rec.patients.visit.end') }}</a>
-    </div>
-
     <form method="POST" action="{{route('receptionist.save.prescription', ['appointment_id'=> $appointment_id])}}">
         {{ csrf_field() }}
 
@@ -41,11 +36,11 @@
 
         <div class="form-group">
             <label for="description">{{__('lang.rec.diagnose_description')}}</label>
-            <textarea class="form-control" required name="description" rows="7" id="description" placeholder="{{__('lang.rec.diagnose_description')}}"></textarea>
+            <textarea class="form-control" name="description" rows="7" id="description" placeholder="{{__('lang.rec.diagnose_description')}}"></textarea>
         </div>
         <div class="form-group">
             <label for="treatment_protocol">{{__('lang.doctor.treatment_protocol')}}</label>
-            <input type="text" name="treatment_protocol" class="form-control" id="treatment_protocol" placeholder="{{__('lang.doctor.treatment_protocol')}}" required>
+            <input type="text" name="treatment_protocol" class="form-control" id="treatment_protocol" placeholder="{{__('lang.doctor.treatment_protocol')}}">
         </div>
 
         <div class="medicines" id="medicines">
@@ -56,11 +51,9 @@
             </div>
 
             <div class="form-row" id="medicine_row_1">
-
                 <div class="form-group col-md-6">
                     <label for="inputState">{{__('lang.doctor.medicine')}}</label>
                     <select id="inputState" id="medicine_1" name="medicine_1" class="form-control">
-                        <option selected>Select</option>
                         @foreach($system_medicines as $system_medicine)
                             <option value="{{$system_medicine->id}}">{{ $system_medicine->name }}</option>
                         @endforeach

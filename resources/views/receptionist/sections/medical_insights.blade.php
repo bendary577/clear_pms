@@ -30,64 +30,28 @@
                 <div class="col-md-6 col-xs-6">
                     <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
                         <div class="card-body">
-                            <h5 class="card-title" style="color:gray">Diagnoses Pie Chart</h5>
+                            <h5 class="card-title" style="color:gray">{{ __('lang.rec.medical_insights.diagnoses_pie_chart') }}</h5>
                             @if(!checkdnsrr('php.net'))
                                 <h5 class="text-danger">{{ __('lang.rec.patient_statistics.no_internet') }}</h5>
-                            @else
-                                <div id="clinics_department_pie_chart"></div>
+                            @elseif($diagnoses_count == 0)
+                                <h5 class="text-danger">{{ __('lang.rec.medical_insights.no_diagnoses') }}</h5>
+                            @else 
+                               <div id="patients_diagnoses_chart"></div>
                             @endif
                         </div>
                     </div>
                 </div>    
             </div> 
-            <!--------------
-            <div class="row mb-4">
-                <div class="col-md-12 col-xs-6">
-                    <div class="card shadow round w-100" style="width: 18rem;border-radius:20px">
-                        <div class="card-body">
-                            <h5 class="card-title" style="color:gray">Diagnoses Pie Chart</h5>
-                            <div id="clinics_department_pie_chart"></div>
-                        </div>
-                    </div>
-                </div>  
-            </div>
-            ------------>
         </div>
-        <!-------
-        <div class="col-md-8">
-            <div class="card shadow round w-100" style="width: 18rem;height:410px;border-radius:20px">
-                <div class="card-body">
-                    <h5 class="card-title" style="color:gray">Diagnoses Insights</h5>
-                    <div id="system_diagnoses_bar_chart"></div>
-                </div>
-            </div>
-        </div>
-        ----------->
     </div>
 </div>
 
 <script>
-
-
-
-    const clinicsDepartmentsPieChart = new Chartisan({
-        el: '#clinics_department_pie_chart',
-        url: "@chart('clinics_department_pie_chart')",
+    const PatientsDiagnosesChart = new Chartisan({
+        el: '#patients_diagnoses_chart',
+        url: "@chart('patients_diagnoses_chart')",
         hooks: new ChartisanHooks()
         .datasets('doughnut')
         .pieColors(),
     });
-
-   /* const diagnosesBarChart = new Chartisan({
-        el: '#system_diagnoses_bar_chart',
-        url: "@chart('system_diagnoses_bar_chart')",
-        hooks: new ChartisanHooks()
-            .colors(['#ECC94B', '#4299E1'])
-            .responsive()
-            .legend({ position: 'bottom' })
-            .title('This is a sample chart using chartisan!')
-            .datasets([{ type: 'bar', fill: false }, 'bar']),
-            });
-    });
-*/
 </script>

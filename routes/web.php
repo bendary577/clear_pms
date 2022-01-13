@@ -155,12 +155,6 @@ Route::middleware('auth')->group(function () {
             Route::get('/doctors', [App\Http\Controllers\DoctorProfileController::class, 'indexReceptionist'] )->name('receptionist.doctors');
             Route::get('/{id}/doctor_schedules', [App\Http\Controllers\DoctorProfileController::class, 'schedules'] )->name('receptionist.doctor.schedules');
 
-            Route::prefix('system-configurations')->group(function () {
-                Route::post('/store', [App\Http\Controllers\SystemDiagnosesController::class, 'store'] )->name('receptionist.store.diagnose');
-                Route::get('/{id}/edit', [App\Http\Controllers\SystemDiagnosesController::class, 'edit'] )->name('receptionist.edit.diagnose');
-                Route::post('/{id}/update', [App\Http\Controllers\SystemDiagnosesController::class, 'update'] )->name('receptionist.update.diagnose');
-            });
-
             Route::prefix('system-diagnoses')->group(function () {
                 Route::get('/list', [App\Http\Controllers\SystemDiagnosesController::class, 'index'])->name('receptionist.system.diagnoses.list');
                 Route::get('/add', [App\Http\Controllers\SystemDiagnosesController::class, 'create'] )->name('receptionist.add.diagnose');
@@ -220,7 +214,6 @@ Route::middleware('auth')->group(function () {
                     Route::post('/{appointment_id}/save-prescription', [App\Http\Controllers\PerscreptionController::class, 'store'])->name('receptionist.save.prescription');
                     Route::get('/{patient_id}/reserve', [App\Http\Controllers\AppointmentController::class, 'reserveReceptionistVisit'])->name('receptionist.reserve.visit');
                     Route::post('{patient_id}/register', [App\Http\Controllers\AppointmentController::class, 'registerReceptionistVisit'])->name('receptionist.register.visit');
-                    Route::get('{appointment_id}/end', [App\Http\Controllers\AppointmentController::class, 'endReceptionistVisit'])->name('receptionist.end.visit');
                 });
 
                 //doctor visits

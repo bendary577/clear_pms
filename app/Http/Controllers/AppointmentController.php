@@ -136,8 +136,8 @@ class AppointmentController extends Controller
         if(Auth::user()->getHasReceptionistProfileAttribute()){
             $receptionist_profile = Auth::user()->profile;
             $receptionistVisit = new ReceptionistVisit();
-            $receptionistVisit->receptionist()->associate($receptionist_profile)->save();
             $receptionistVisit->save();
+            $receptionistVisit->receptionist()->associate($receptionist_profile)->save();
             $receptionistVisit->appointment()->save($appointment);
         }else{
             return redirect()->back()->with('sorry, you aren\'nt authorized for this action');
@@ -181,13 +181,22 @@ class AppointmentController extends Controller
                                                     ]);
     }
 
+    /*
     public function endReceptionistVisit($appointment_id){
-        $appointment = Appointment::find($appointment_id);
-        $appointment->leaved_at = Carbon::now()->toDateTimeString();
-        $appointment->save();
-        session()->flash('success', trans('lang.appointment.leaving_time_updated'));
-        return redirect('receptionist_dashboard/patients/list');
+        if(Appointment::where('id', $appointment_id)->exists()){
+            dd($appointment_id);
+            $appointment = Appointment::where('id', $appointment_id)->first();
+            $appointment->leaved_at = Carbon::now()->format('Y-m-d H:i:s');
+            $appointment->save();
+            session()->flash('success', trans('lang.appointment.leaving_time_updated'));
+            return redirect('receptionist_dashboard/patients/list');
+        }else{
+            session()->flash('success', trans('lang.appointment.leaving_time_updated'));
+            return redirect()->back();
+        }
+
     }
+    */
 
     public function reserveReceptionistVisit($patient_id){
         return view('receptionist.dashboard.dashboard_reserve_receptionist_patient_visit', ['patient_id' => $patient_id]);
