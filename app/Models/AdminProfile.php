@@ -10,7 +10,6 @@ class AdminProfile extends Model
     use HasFactory;
 
     protected $guarded = [];
-
     
     protected $fillable = [
       'security_code',

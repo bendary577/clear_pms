@@ -49,5 +49,43 @@ class SearchController extends Controller
                         ]);
         }
     }
+
+    public function adultsChildrenElasticSearch(Request $request)
+    {
+        if(is_numeric($request['search_keyword'])){
+            $int_value = (int)$request['search_keyword'];
+            if(Patient::where('code', $int_value)->where('clinic_type', 'adults')->exists()){
+                $patients = Patient::where('code', $int_value)->where('clinic_type', 'adults')->paginate(10);
+                return view('receptionist.dashboard.dashboard_search', ['patients' => $patients]);
+            }else{
+                session()->flash('error', 'patient profile doesn\'t exist');
+                return redirect()->back(); 
+            }
+        }else{
+            $results = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]])->paginate(10);       
+            return view('receptionist.dashboard.dashboard_search', [
+                            'patients' => $results
+                        ]);
+        }
+    }
+
+    public function childrenCLinicElasticSearch(Request $request)
+    {
+        if(is_numeric($request['search_keyword'])){
+            $int_value = (int)$request['search_keyword'];
+            if(Patient::where('code', $int_value)->where('clinic_type', 'children')->exists()){
+                $patients = Patient::where('code', $int_value)->where('clinic_type', 'children')->paginate(10);
+                return view('receptionist.dashboard.dashboard_search', ['patients' => $patients]);
+            }else{
+                session()->flash('error', 'patient profile doesn\'t exist');
+                return redirect()->back(); 
+            }
+        }else{
+            $results = Patient::searchByQuery(['match' => ['name' => $request['search_keyword']]])->where('clinic_type', 'children')->paginate(10);       
+            return view('receptionist.dashboard.dashboard_search', [
+                            'patients' => $results
+                        ]);
+        }
+    }
     
 }

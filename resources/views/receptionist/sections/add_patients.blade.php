@@ -67,6 +67,14 @@
         @endif
 
         <div class="form-group">
+                <label for="patient_clinic">Patient Clinic</label>
+                <select id="patient_clinic" name="patient_clinic" class="form-control">
+                    <option value="adults">adults clinic</option>
+                    <option value="children">children clinic</option>
+                </select>
+            </div>
+
+        <div class="form-group">
             <label for="attendance_date">{{ __('lang.rec.patients.attendance_date')}}</label>
             <input type="date" name="attendance_date" class="form-control" id="attendance_date" placeholder="{{ __('lang.rec.patients.attendance_date')}}">
         </div>

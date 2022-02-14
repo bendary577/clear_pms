@@ -9,6 +9,8 @@ use App\Models\Diagnose;
 use App\Models\SystemDiagnoses;
 use App\Models\Appointment;
 use App\Models\MedicalSpeciality;
+use App\Models\ChildrenClinic;
+use App\Models\AdultsClinic;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -48,6 +50,7 @@ class PatientController extends Controller
         if ($validator->fails()){
             return  redirect()->back()->withErrors('error', $validator->errors()->all());   
         }
+        var_dump($request->all());
         $patient = new Patient();
         $patient->name = $request['name'];
         $patient->code = $request['code'];
@@ -68,6 +71,21 @@ class PatientController extends Controller
             $receptionistProfile->patients()->save($patient);
             $patient->receptionistProfile()->associate($receptionistProfile)->save();
         }
+
+        if($request['patient_clinic']){
+            if($request['patient_clinic'] == 'adults'){
+                $patient->clinic_type = 'adults';
+                $adults_clinic = AdultsClinic::where('id', '=', 1)->first();
+                $adults_clinic->patients()->save($patient);
+                $patient->adultsClinic()->associate($adults_clinic)->save();
+            }else if($request['patient_clinic'] == 'children'){
+                $patient->clinic_type = 'children';
+                $children_clinic = ChildrenClinic::where('id', '=', 1)->first();
+                $children_clinic->patients()->save($patient);
+                $patient->childrenClinic()->associate($children_clinic)->save();
+            }
+        }
+
         if($request['city']){
             $patient->city = $request['city'];
         }

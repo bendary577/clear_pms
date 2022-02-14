@@ -11,7 +11,7 @@
                 @endforeach
             </ul>
     @endif
-
+    
     @if(count($visits) > 0)
         <table class="table table-striped">
             <thead>
@@ -56,3 +56,5 @@
         <h3 class="text-danger">{{ __('lang.rec.patients.no.visits') }}</h3>
     @endif
 </div>
+
+

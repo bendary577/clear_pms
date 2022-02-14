@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clinic;
+use App\Models\Patient;
 use App\Models\User;
 use App\Models\DoctorProfile;
 use App\Models\MedicalSpeciality;
@@ -141,14 +142,16 @@ class ClinicController extends Controller
 
     public function getAdultsClinics()
     {
+        $patients = Patient::where('clinic_type', 'adults')->paginate(10);
         $clinics = Clinic::where('department', 'adults')->with('doctorProfile')->paginate(10);
-        return view('receptionist.dashboard.dashboard_udults_clinics', ['clinics' => $clinics]);
+        return view('receptionist.dashboard.dashboard_udults_clinics', ['clinics' => $clinics, 'patients' => $patients]);
     }
 
     public function getChildrenClinics()
     {
+        $patients = Patient::where('clinic_type', 'children')->paginate(10);
         $clinics = Clinic::where('department', 'children')->with('doctorProfile')->paginate(10);
-        return view('receptionist.dashboard.dashboard_children_clinics', ['clinics' => $clinics]);
+        return view('receptionist.dashboard.dashboard_children_clinics', ['clinics' => $clinics, 'patients' => $patients]);
     }
 
 

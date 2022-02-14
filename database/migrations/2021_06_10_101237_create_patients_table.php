@@ -12,6 +12,8 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('receptionist_profile_id')->nullable();
+            $table->unsignedBigInteger('adults_clinic_id')->nullable();
+            $table->unsignedBigInteger('children_clinic_id')->nullable();
             $table->string('name');
             $table->string('phone');
             $table->string('another_phone')->nullable();
@@ -31,7 +33,10 @@ class CreatePatientsTable extends Migration
             $table->string('mother_workplace')->nullable();
             $table->string('diagnose')->nullable();
             $table->string('medicine')->nullable();
+            $table->string('clinic_type')->nullable();
             $table->foreign('receptionist_profile_id')->references('id')->on('receptionist_profiles')->onDelete('set null');
+            $table->foreign('adults_clinic_id')->references('id')->on('adults_clinics')->onDelete('cascade');
+            $table->foreign('children_clinic_id')->references('id')->on('children_clinics')->onDelete('cascade');
             $table->timestamps();
         });
     }

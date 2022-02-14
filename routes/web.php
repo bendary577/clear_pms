@@ -184,6 +184,8 @@ Route::middleware('auth')->group(function () {
                 Route::get('/', [App\Http\Controllers\PatientController::class, 'indexReceptionist'])->name('receptionist.patients');
                 Route::get('/list', [App\Http\Controllers\PatientController::class, 'index'])->name('receptionist.patients.list');
                 Route::post('/search', [App\Http\Controllers\SearchController::class, 'elasticSearch'])->name('receptionist.patients.search');
+                Route::post('/adults-search', [App\Http\Controllers\SearchController::class, 'adultsChildrenElasticSearch'])->name('receptionist.patients.adults.search');
+                Route::post('/children-search', [App\Http\Controllers\SearchController::class, 'childrenCLinicElasticSearch'])->name('receptionist.patients.children.search');
                 Route::get('/add', [App\Http\Controllers\PatientController::class, 'create'])->name('receptionist.add.patient');
                 Route::post('/store', [App\Http\Controllers\PatientController::class, 'store'])->name('receptionist.store.patient');
                 Route::get('{id}/delete', [App\Http\Controllers\PatientController::class, 'delete'])->name('receptionist.delete.patient');

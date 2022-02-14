@@ -28,7 +28,8 @@ class Patient extends Model
         'mother_workplace',
         'receptionist_name',
         'diagnose',
-        'medicine'
+        'medicine',
+        'clinic_type'
     ];
 
     protected $mappingProperties = array(
@@ -36,6 +37,10 @@ class Patient extends Model
           'type' => 'text',
           "analyzer" => "standard",
         ],
+        'clinic_type' => [
+            'type' => 'text',
+            "analyzer" => "standard",
+          ],
       );
 
     public static function boot()
@@ -70,6 +75,17 @@ class Patient extends Model
     public function receptionistProfile()
     {
         return $this->belongsTo(ReceptionistProfile::class);
+    }
+
+    /* ------------------- not recommended behaviour ---------------------------- */
+    public function adultsClinic()
+    {
+        return $this->belongsTo(AdultsClinic::class);
+    }
+
+    public function childrenClinic()
+    {
+        return $this->belongsTo(ChildrenClinic::class);
     }
 
     public function generateCode()
